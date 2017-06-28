@@ -1,0 +1,36 @@
+---
+# tasks file for ansible-role-grafana
+
+- include: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
+- name: 'Install packages'
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ grafana_packages }}"
+
+# - name: 'TEST ONLY: Create directory'
+#   file:
+#     path: /etc/grafana
+#     owner: root
+#     group: root
+#     state: directory
+#     mode: 0775
+
+- name: 'Set configuration'
+  template:
+    src: "{{ grafana_conf_template }}"
+    dest: "{{ grafana_conf_path }}"
+    owner: root
+    group: root
+    mode:  0644
+  notify: restart grafana
+
+- name: 'Start service'
+  service:
+    name: "{{ grafana_service_name }}"
+    state: started
+    enabled: true

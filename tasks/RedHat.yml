@@ -1,0 +1,12 @@
+---
+- name: "Configure repository for {{ ansible_distribution}} {{ ansible_distribution_major_version }}"
+  yum_repository:
+    name: grafana
+    description: "Grafana packages for Entreprise Linux $releasever - $basearch"
+    file: grafana
+    baseurl: "https://packagecloud.io/grafana/{{ grafana_repo_release }}/el/$releasever/$basearch"
+    enabled: yes
+    gpgkey: https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
+    gpgcheck: yes
+    sslverify: 1
+    sslcacert: /etc/pki/tls/certs/ca-bundle.crt
