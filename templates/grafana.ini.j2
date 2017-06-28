@@ -1,0 +1,9 @@
+{% for key, value in grafana_conf.items() %}
+[{{ key }}]
+{% if value is iterable %}
+{% for mykey in value %}
+{{ mykey }} = {{ value[mykey] }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
