@@ -1,8 +1,0 @@
-{% for skey, svalue in grafana_conf.items() %}
-[{{ skey }}]
-{{ svalue }}
-<!-- {% for key, value in svalue.items() %}
-{{ key }} = {{ value }}
-{% endfor %} -->
-{% endfor %}
-

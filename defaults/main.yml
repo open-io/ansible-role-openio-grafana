@@ -1,159 +1,39 @@
 ---
-# defaults file for ansible-role-grafana
 
+grafana_repo_release: testing
 grafana_service_name: grafana-server
-grafana_packages: ['grafana']
-grafana_repo_release: stable
+grafana_paths:
+    conf: /etc/grafana
+    provisioning: /etc/grafana/provisioning
+    log: /var/log/grafana
+    data: /var/lib/grafana/data
+    plugins: /var/lib/grafana/plugins
 
-grafana_conf_template: grafana.ini.j2
-grafana_conf_path: /etc/grafana/grafana.ini
+grafana_dashboard:
+    host_regex: "/.openio*/"
+    namespace: OPENIO
+    # TODO: base hosts on a grafana group in playbook
+    hosts:
+        - openio01
+        - openio02
+        - openio03
 
-# Change this value
-grafana_secret_key: changeme
+grafana_http:
+    protocol: http
+    host: 0.0.0.0
+    port: 3000
+    domain: localhost
 
-# Grafana configuration file
-grafana_conf:
-  global:
-    app_mode: "production"
-    instance_name: "${HOSTNAME}"
-  paths:
-    data: "/var/lib/grafana"
-    logs: "/var/log/grafana"
-    plugins: "/var/lib/grafana/plugins"
-  server:
-    protocol: "http"
-    http_port: "3000"
-    domain: "localhost"
-    enforce_domain: "false"
-    root_url: "http://localhost:3000"
-    router_logging: "false"
-    static_root_path: "public"
-    enable_gzip: "false"
-  database:
-    type: "sqlite3"
-    host: "127.0.0.1:3306"
-    name: "grafana"
-    user: "root"
-    ssl_mode: "disable"
-    path: "grafana.db"
-  session:
-    provider: "file"
-    provider_config: "sessions"
-    cookie_name: "grafana_sess"
-    cookie_secure: "false"
-    session_life_time: "86400"
-  analytics:
-    reporting_enabled: "true"
-    check_for_updates: "true"
-  security:
-    admin_user: "admin"
-    admin_password: "admin"
-    secret_key: "pouet"
-    login_remember_days: "7"
-    cookie_username: "grafana_user"
-    cookie_remember_name: "grafana_remember"
-    disable_gravatar: "false"
-  snapshots:
-    external_enabled: "true"
-    external_snapshot_url: "https://snapshots-origin.raintank.io"
-    external_snapshot_name: "Publish to snapshot.raintank.io"
-    snapshot_remove_expired: "true"
-    snapshot_TTL_days: "90"
-  users:
-    allow_sign_up: "true"
-    allow_org_create: "true"
-    auto_assign_org: "true"
-    auto_assign_org_role: "Viewer"
-    login_hint: "email or username"
-    default_theme: "dark"
-  auth:
-    disable_login_form: "false"
-  auth.anonymous:
-    enabled: "false"
-    org_name: "Main Org."
-    org_role: "Viewer"
-  auth.github:
-    enabled: "false"
-    allow_sign_up: "false"
-    client_id: "some_id"
-    client_secret: "some_secret"
-    scopes: "user:email,read:org"
-    auth_url: "https://github.com/login/oauth/authorize"
-    token_url: "https://github.com/login/oauth/access_token"
-    api_url: "https://api.github.com/user"
-  auth.google:
-    enabled: "false"
-    allow_sign_up: "false"
-    client_id: "some_client_id"
-    client_secret: "some_client_secret"
-    scopes: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"
-    auth_url: "https://accounts.google.com/o/oauth2/auth"
-    token_url: "https://accounts.google.com/o/oauth2/token"
-    api_url: "https://www.googleapis.com/oauth2/v1/userinfo"
-  auth.generic_oauth:
-    enabled: "false"
-    allow_sign_up: "false"
-    client_id: "some_id"
-    client_secret: "some_secret"
-    scopes: "user:email,read:org"
-    auth_url: "https://foo.bar/login/oauth/authorize"
-    token_url: "https://foo.bar/login/oauth/access_token"
-    api_url: "https://foo.bar/user"
-  auth.grafananet:
-    enabled: "false"
-    allow_sign_up: "false"
-    client_id: "some_id"
-    client_secret: "some_secret"
-    scopes: "user:email"
-  auth.proxy:
-    enabled: "false"
-    header_name: "X-WEBAUTH-USER"
-    header_property: "username"
-    auto_sign_up: "true"
-  auth.basic:
-    enabled: "true"
-  auth.ldap:
-    enabled: "false"
-    config_file: "/etc/grafana/ldap.toml"
-    allow_sign_up: "true"
-  smtp:
-    enabled: "false"
-    host: "localhost:25"
-    skip_verify: "false"
-    from_address: "admin@grafana.localhost"
-  emails:
-    welcome_email_on_sign_up: "false"
-  log:
-    mode: "console, file"
-    level: "info"
-    filters:
-  log.console:
-    format: "console"
-  log.file:
-    format: "text"
-    log_rotate: "true"
-    max_lines: "1000000"
-    max_size_shift: "28"
-    daily_rotate: "true"
-    max_days: "7"
-  log.syslog:
-    format: "text"
-  event_publisher:
-    enabled: "false"
-    rabbitmq_url: "amqp://localhost/"
-    exchange: "grafana_events"
-  dashboards.json:
-    enabled: "false"
-    path: "/var/lib/grafana/dashboards"
-  alerting:
-    execute_alerts: "true"
-  metrics:
-    enabled: "true"
-    interval_seconds: "10"
-  metrics.graphite:
-    prefix: "prod.grafana.%(instance_name)s."
-  grafana_net:
-    url: "https://grafana.net"
-  external_image_storage:
-  external_image_storage.s3:
-  external_image_storage.webdav:
+grafana_auth:
+    user: admin
+    password: admin
+
+grafana_theme: light
+
+influxdb_http:
+    host: localhost
+    port: 8086
+
+influxdb_auth:
+    user: admin
+    password: admin
