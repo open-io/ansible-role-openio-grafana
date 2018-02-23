@@ -8,12 +8,5 @@
 
 - name: Add APT repository
   apt_repository:
-    repo: 'deb https://packagecloud.io/grafana/stable/debian/ jessie main'
+    repo: 'deb https://packagecloud.io/grafana/{{ grafana_repo_release }}/debian/ jessie main'
     state: present
-
-- name: Install packages
-  apt:
-    name: "{{ grafana_packages }}"
-    state: present
-  notify:
-    - restart grafana

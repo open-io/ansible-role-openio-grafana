@@ -1,35 +1,52 @@
 ---
-# tasks file for ansible-role-grafana
-
 - include: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
 
-- name: 'Install packages'
+- name: Install
   package:
-    name: "{{ item }}"
+    name: grafana
     state: installed
-  with_items: "{{ grafana_packages }}"
 
-# - name: 'TEST ONLY: Create directory'
-#   file:
-#     path: /etc/grafana
-#     owner: root
-#     group: root
-#     state: directory
-#     mode: 0775
+- name: Ensure directories
+  file:
+    path: {{ item }}
+    owner: root
+    group: root
+    mode: 0644
+    state: directory
+  with_items:
+      "{{ grafana_paths | values }}"
 
-- name: 'Set configuration'
+- name: Configure
   template:
-    src: "{{ grafana_conf_template }}"
-    dest: "{{ grafana_conf_path }}"
+    src: "grafana.ini.j2"
+    dest: "{{ grafana_paths['conf'] | dirname }}/grafana.ini"
     owner: root
     group: root
     mode:  0644
   notify: restart grafana
 
-- name: 'Start service'
+- name: Provision - datasource
+  template:
+    src: "influxdb.yaml.j2"
+    dest: "{{ grafana_paths['provisioning'] | dirname }}/datasources/influxdb.yaml"
+    owner: root
+    group: root
+    mode:  0644
+  notify: restart grafana
+
+- name: Provision - dashboard
+  template:
+    src: "openio.json.j2"
+    dest: "{{ grafana_paths['provisioning'] | dirname }}/dashboards/openio.json"
+    owner: root
+    group: root
+    mode:  0644
+  notify: restart grafana
+
+- name: Start service
   service:
     name: "{{ grafana_service_name }}"
     state: started
