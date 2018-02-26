@@ -6,8 +6,10 @@ grafana_paths:
     conf: /etc/grafana
     provisioning: /etc/grafana/provisioning
     log: /var/log/grafana
-    data: /var/lib/grafana/data
-    plugins: /var/lib/grafana/plugins
+    data: /usr/share/grafana/data
+    plugins: /usr/share/grafana/plugins
+    datasources: /etc/grafana/provisioning/datasources
+    dashboards: /etc/grafana/provisioning/dashboards
 
 grafana_dashboard:
     host_regex: "/.openio*/"
