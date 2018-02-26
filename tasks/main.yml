@@ -16,8 +16,8 @@
 - name: Ensure directories
   file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: grafana
+    group: grafana
     mode: 0644
     state: directory
   with_items:
@@ -27,8 +27,8 @@
   template:
     src: "grafana.ini.j2"
     dest: "{{ grafana_paths['conf'] | realpath }}/grafana.ini"
-    owner: root
-    group: root
+    owner: grafana
+    group: grafana
     mode:  0644
   notify: restart grafana
 
@@ -36,17 +36,26 @@
   template:
     src: "influxdb.yaml.j2"
     dest: "{{ grafana_paths['datasources'] | realpath }}/influxdb.yaml"
-    owner: root
-    group: root
+    owner: grafana
+    group: grafana
     mode:  0644
   notify: restart grafana
 
-- name: Provision - dashboard
+- name: Provision - dashboard JSON
   template:
     src: "openio.json.j2"
     dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.json"
-    owner: root
-    group: root
+    owner: grafana
+    group: grafana
+    mode:  0644
+  notify: restart grafana
+
+- name: Provision - dashboard config
+  template:
+    src: "openio.yml.j2"
+    dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.yml"
+    owner: grafana
+    group: grafana
     mode:  0644
   notify: restart grafana
 
