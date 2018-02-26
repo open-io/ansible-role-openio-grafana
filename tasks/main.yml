@@ -9,20 +9,24 @@
     name: grafana
     state: installed
 
+- name: Generate secret key
+  register: grafana_secret
+  command: "openssl rand -base64 64"
+
 - name: Ensure directories
   file:
-    path: {{ item }}
+    path: "{{ item }}"
     owner: root
     group: root
     mode: 0644
     state: directory
   with_items:
-      "{{ grafana_paths | values }}"
+      "{{ grafana_paths.values() }}"
 
 - name: Configure
   template:
     src: "grafana.ini.j2"
-    dest: "{{ grafana_paths['conf'] | dirname }}/grafana.ini"
+    dest: "{{ grafana_paths['conf'] | realpath }}/grafana.ini"
     owner: root
     group: root
     mode:  0644
@@ -31,7 +35,7 @@
 - name: Provision - datasource
   template:
     src: "influxdb.yaml.j2"
-    dest: "{{ grafana_paths['provisioning'] | dirname }}/datasources/influxdb.yaml"
+    dest: "{{ grafana_paths['datasources'] | realpath }}/influxdb.yaml"
     owner: root
     group: root
     mode:  0644
@@ -40,7 +44,7 @@
 - name: Provision - dashboard
   template:
     src: "openio.json.j2"
-    dest: "{{ grafana_paths['provisioning'] | dirname }}/dashboards/openio.json"
+    dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.json"
     owner: root
     group: root
     mode:  0644
