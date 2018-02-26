@@ -6425,7 +6425,7 @@
         "multi": true,
         "name": "host",
         "options": [
-          {% for host in grafana_dashboard['hosts'] %}
+          {% for host in groups[grafana_dashboard['group']] %}
           {
             "selected": false,
             "text": "{{host}}",
