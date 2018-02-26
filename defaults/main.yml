@@ -14,11 +14,7 @@ grafana_paths:
 grafana_dashboard:
     host_regex: "/.openio*/"
     namespace: OPENIO
-    # TODO: base hosts on a grafana group in playbook
-    hosts:
-        - openio01
-        - openio02
-        - openio03
+    group: openio
 
 grafana_http:
     protocol: http
