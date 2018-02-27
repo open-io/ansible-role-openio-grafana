@@ -6,7 +6,7 @@ After=network-online.target
 After=postgresql.service mariadb.service mysql.service
 
 [Service]
-EnvironmentFile=/etc/default/grafana-server
+EnvironmentFile=/etc/sysconfig/grafana-server
 User=root
 Group=root
 Type=simple
