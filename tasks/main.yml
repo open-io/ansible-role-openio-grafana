@@ -32,6 +32,18 @@
     mode:  0644
   notify: restart grafana
 
+- name: Overwrite systemd unit
+  template:
+    src: "grafana-server.service.j2"
+    dest: "/usr/lib/systemd/system/grafana-server.service"
+    owner: root
+    group: root
+    mode:  0644
+  notify: restart grafana
+
+- name: Reload daemon
+  systemd: daemon_reload=yes
+
 - name: Provision - datasource
   template:
     src: "influxdb.yaml.j2"
