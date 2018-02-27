@@ -1,0 +1,3 @@
+---
+grafana_defaults_path: /etc/default/grafana-server
+...
