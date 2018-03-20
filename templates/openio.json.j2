@@ -6525,7 +6525,7 @@
             "value": "{{ grafana_dashboard['namespace'] }}"
           }
         ],
-        "query": "SHOW TAG VALUES FROM openio_score WITH KEY=namespace",
+        "query": "{{ grafana_namespace_fetch_cmd }}",
         "refresh": 1,
         "regex": "",
         "sort": 2,
