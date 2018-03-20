@@ -3,6 +3,7 @@
 grafana_repo_release: testing
 grafana_service_name: grafana-server
 grafana_version: 5.0.0
+grafana_namespace_fetch_cmd: "SHOW TAG VALUES FROM openio_log_bandwidth WITH KEY=namespace"
 grafana_paths:
     conf: /etc/grafana
     provisioning: /etc/grafana/provisioning
