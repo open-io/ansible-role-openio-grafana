@@ -2,6 +2,7 @@
 
 grafana_repo_release: testing
 grafana_service_name: grafana-server
+grafana_version: 5.0.0
 grafana_paths:
     conf: /etc/grafana
     provisioning: /etc/grafana/provisioning

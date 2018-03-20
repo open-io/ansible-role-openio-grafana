@@ -12,7 +12,7 @@
 
 - name: Install
   package:
-    name: grafana
+    name: "grafana-{{grafana_version}}"
     state: installed
 
 - name: Generate secret key
