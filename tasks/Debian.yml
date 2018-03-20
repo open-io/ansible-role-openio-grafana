@@ -10,3 +10,8 @@
   apt_repository:
     repo: 'deb https://packagecloud.io/grafana/{{ grafana_repo_release }}/debian/ jessie main'
     state: present
+
+- name: Install
+  apt:
+    name: "grafana={{ grafana_version }}"
+    state: present

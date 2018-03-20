@@ -10,3 +10,8 @@
     gpgcheck: yes
     sslverify: 1
     sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+
+- name: Install
+  package:
+    name: "grafana-{{ grafana_version }}"
+    state: installed
