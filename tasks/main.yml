@@ -47,8 +47,8 @@
 
 - name: Provision - datasource
   template:
-    src: "influxdb.yaml.j2"
-    dest: "{{ grafana_paths['datasources'] | realpath }}/influxdb.yaml"
+    src: "prometheus.yaml.j2"
+    dest: "{{ grafana_paths['datasources'] | realpath }}/prometheus.yaml"
     owner: grafana
     group: grafana
     mode:  0644

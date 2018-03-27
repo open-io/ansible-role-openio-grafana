@@ -1,0 +1,12 @@
+apiVersion: 1
+
+datasources:
+- name: prometheus
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: http://{{ prometheus_host }}:{{ prometheus_port }}
+  isDefault: true
+  jsonData:
+  version: 1
+  editable: false

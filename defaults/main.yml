@@ -3,7 +3,6 @@
 grafana_repo_release: stable
 grafana_service_name: grafana-server
 grafana_version: 5.0.0
-grafana_namespace_fetch_cmd: "SHOW TAG VALUES FROM openio_log_bandwidth WITH KEY=namespace"
 grafana_paths:
     conf: /etc/grafana
     provisioning: /etc/grafana/provisioning
@@ -12,11 +11,6 @@ grafana_paths:
     plugins: /usr/share/grafana/plugins
     datasources: /etc/grafana/provisioning/datasources
     dashboards: /etc/grafana/provisioning/dashboards
-
-grafana_dashboard:
-    host_regex: "/.openio*/"
-    namespace: OPENIO
-    group: openio
 
 grafana_http:
     protocol: http
@@ -30,10 +24,5 @@ grafana_auth:
 
 grafana_theme: light
 
-influxdb_http:
-    host: localhost
-    port: 8086
-
-influxdb_auth:
-    user: admin
-    password: admin
+prometheus_host: localhost
+prometheus_port: 9090
