@@ -16,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 5,
   "iteration": 1522158338010,
   "links": [],
   "panels": [
@@ -8139,5 +8138,5 @@
     ]
   },
   "timezone": "browser",
-  "title": "OpenIO",
+  "title": "OpenIO"
 }

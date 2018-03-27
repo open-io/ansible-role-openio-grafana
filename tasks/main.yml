@@ -55,13 +55,15 @@
   notify: restart grafana
 
 - name: Provision - dashboard JSON
-  template:
-    src: "openio.json.j2"
+  copy:
+    src: "openio.json"
     dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.json"
     owner: grafana
     group: grafana
     mode:  0644
+    backup: yes
   notify: restart grafana
+
 
 - name: Provision - dashboard config
   template:
