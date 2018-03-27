@@ -2,7 +2,7 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:93",
+        "$$hashKey": "object:435",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -10,26 +10,14 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
-      },
-      {
-        "$$hashKey": "object:94",
-        "datasource": "local",
-        "enable": true,
-        "iconColor": "rgba(255, 96, 96, 1)",
-        "limit": 100,
-        "name": "events",
-        "query": "select * from events2 where $timeFilter AND \"host\" =~ /^$host$/",
-        "tagsColumn": "host,status",
-        "textColumn": "value",
-        "titleColumn": "title",
-        "type": "alert"
       }
     ]
   },
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1519657667214,
+  "id": 5,
+  "iteration": 1522158338010,
   "links": [],
   "panels": [
     {
@@ -51,7 +39,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": null,
+          "datasource": "prometheus",
           "format": "percent",
           "gauge": {
             "maxValue": 100,
@@ -104,6 +92,8 @@
           "targets": [
             {
               "dsType": "influxdb",
+              "expr": "avg(netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",dimension=\"user\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -118,6 +108,10 @@
                   "type": "fill"
                 }
               ],
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "",
               "measurement": "cpu",
               "orderByTime": "ASC",
               "policy": "default",
@@ -176,7 +170,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": null,
+          "datasource": "prometheus",
           "format": "decmbytes",
           "gauge": {
             "maxValue": 100,
@@ -230,6 +224,8 @@
             {
               "alias": "",
               "dsType": "influxdb",
+              "expr": "sum(netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",dimension=\"used\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -245,6 +241,7 @@
                 }
               ],
               "hide": false,
+              "intervalFactor": 1,
               "measurement": "ram",
               "orderByTime": "ASC",
               "policy": "default",
@@ -303,7 +300,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": null,
+          "datasource": "prometheus",
           "format": "decgbytes",
           "gauge": {
             "maxValue": 100,
@@ -357,6 +354,8 @@
             {
               "alias": "",
               "dsType": "influxdb",
+              "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -372,6 +371,7 @@
                 }
               ],
               "hide": false,
+              "intervalFactor": 1,
               "measurement": "disk_space",
               "orderByTime": "ASC",
               "policy": "default",
@@ -430,7 +430,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": null,
+          "datasource": "prometheus",
           "format": "Kbits",
           "gauge": {
             "maxValue": 100,
@@ -483,6 +483,8 @@
           "targets": [
             {
               "dsType": "influxdb",
+              "expr": "sum(netdata_net_net_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}) + sum(netdata_net_net_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"})\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -497,6 +499,7 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
               "measurement": "net",
               "orderByTime": "ASC",
               "policy": "default",
@@ -566,7 +569,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -584,7 +587,7 @@
             "hideZero": true,
             "max": true,
             "min": false,
-            "show": false,
+            "show": true,
             "total": false,
             "values": true
           },
@@ -604,6 +607,8 @@
             {
               "alias": "$tag_mode",
               "dsType": "influxdb",
+              "expr": "avg(netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -624,6 +629,9 @@
                   "type": "fill"
                 }
               ],
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "cpu",
               "orderByTime": "ASC",
               "policy": "ds_30d",
@@ -695,7 +703,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -733,6 +741,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -753,10 +763,12 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ram",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(value) FROM \"[[DS]]\".\"ram\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)",
+              "query": "",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -806,7 +818,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -824,7 +836,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -859,6 +871,8 @@
             {
               "alias": "$tag_avg",
               "dsType": "influxdb",
+              "expr": "avg(netdata_system_load_load_average{chart=\"system.load\",family=\"load\",instance=~\"[[host]]\"}) by (dimension)\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -879,6 +893,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension }}",
               "measurement": "load",
               "orderByTime": "ASC",
               "policy": "default",
@@ -950,7 +966,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -987,6 +1003,8 @@
             {
               "alias": "context_switches",
               "dsType": "influxdb",
+              "expr": "sum(netdata_system_ctxt_context_switches_persec_average{chart=\"system.ctxt\",family=\"processes\",dimension=\"switches\",instance=~\"[[host]]\"})\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1001,6 +1019,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "context switches",
               "measurement": "ctxt_switches",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1072,7 +1092,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -1111,6 +1131,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_system_processes_processes_average{chart=\"system.processes\",family=\"processes\",dimension=\"running\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1131,6 +1153,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "running",
               "measurement": "processes",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1196,7 +1220,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
@@ -1230,6 +1254,8 @@
             {
               "alias": "commited_memory",
               "dsType": "influxdb",
+              "expr": "sum(netdata_mem_committed_MB_average{chart=\"mem.committed\",family=\"system\",dimension=\"Committed_AS\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1244,6 +1270,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "committed memory",
               "measurement": "mem_committed",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1330,13 +1358,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 30
+            "y": 12
           },
           "id": 4,
           "interval": "",
@@ -1369,6 +1397,8 @@
             {
               "alias": "$tag_operation",
               "dsType": "influxdb",
+              "expr": "sum(netdata_system_io_kilobytes_persec_average{chart=\"system.io\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1389,6 +1419,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "io",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1460,13 +1492,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 30
+            "y": 12
           },
           "id": 5,
           "legend": {
@@ -1498,6 +1530,8 @@
             {
               "alias": "$tag_operation",
               "dsType": "influxdb",
+              "expr": "sum(netdata_disk_ops_operations_persec_average{chart=\"disk_ops.vda\",family=\"vda\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1518,10 +1552,12 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "disk_ops",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_ops\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"operation\" fill(null)",
+              "query": "",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -1589,13 +1625,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 19
           },
           "id": 6,
           "interval": "",
@@ -1628,6 +1664,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_disk_space_GB_average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1642,6 +1680,8 @@
                   "type": "tag"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "disk_space",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1713,13 +1753,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 19
           },
           "id": 7,
           "legend": {
@@ -1751,6 +1791,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_disk_inodes_Inodes_average{instance=~\"[[host]]\"}) by (dimension)\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1771,6 +1813,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "disk_inodes",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1842,13 +1886,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 44
+            "y": 26
           },
           "id": 22,
           "interval": "",
@@ -1878,6 +1922,8 @@
             {
               "alias": "maximum",
               "dsType": "influxdb",
+              "expr": "quantile(0.95, avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"[[host]]\"}))",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -1892,6 +1938,9 @@
                   "type": "fill"
                 }
               ],
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "95th percentile",
               "measurement": "disk_backlog",
               "orderByTime": "ASC",
               "policy": "default",
@@ -1922,42 +1971,11 @@
               ]
             },
             {
-              "alias": "95 percentile",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT percentile(\"value\", 95) FROM \"[[DS]]\".\"disk_backlog\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": []
+              "expr": "avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"[[host]]\"})",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "maximum",
+              "refId": "B"
             }
           ],
           "thresholds": [],
@@ -2001,13 +2019,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 44
+            "y": 26
           },
           "id": 23,
           "legend": {
@@ -2039,6 +2057,8 @@
             {
               "alias": "maximum",
               "dsType": "influxdb",
+              "expr": "avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2054,6 +2074,8 @@
                 }
               ],
               "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "maximum",
               "measurement": "disk_util",
               "orderByTime": "ASC",
               "policy": "default",
@@ -2084,53 +2106,11 @@
               ]
             },
             {
-              "alias": "95 percentile",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "measurement": "disk_util",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT percentile(\"value\", 95) FROM \"[[DS]]\".\"disk_util\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-              "rawQuery": true,
-              "refId": "C",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [
-                      "95"
-                    ],
-                    "type": "percentile"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
+              "expr": "quantile(0.95, avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"[[host]]\"}))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "95th percentile",
+              "refId": "A"
             }
           ],
           "thresholds": [],
@@ -2189,13 +2169,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 13
           },
           "id": 12,
           "interval": ">10s",
@@ -2228,6 +2208,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_net_net_kilobits_persec_average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2248,6 +2230,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "net",
               "orderByTime": "ASC",
               "policy": "default",
@@ -2319,13 +2303,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 31
+            "y": 13
           },
           "id": 13,
           "interval": ">10s",
@@ -2358,6 +2342,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_net_packets_packets_persec_average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2378,64 +2364,14 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "net_packets",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net_packets\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)",
+              "query": "",
               "rawQuery": true,
               "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "sum"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
-            },
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "type"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": true,
-              "measurement": "net_drops",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\"./network_rx_drop|network_tx_drop/ WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-              "rawQuery": true,
-              "refId": "B",
               "resultFormat": "time_series",
               "select": [
                 [
@@ -2501,13 +2437,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 38
+            "y": 20
           },
           "id": 14,
           "legend": {
@@ -2539,6 +2475,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_net_drops_drops_persec_average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2559,10 +2497,12 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "net_drops",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\"./network_rx_drop|network_tx_drop/ WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net_drops\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2630,13 +2570,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 38
+            "y": 20
           },
           "id": 15,
           "interval": ">10s",
@@ -2669,6 +2609,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_errors_packets_persec_average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2689,6 +2631,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_errors",
               "orderByTime": "ASC",
               "policy": "default",
@@ -2775,13 +2719,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 5
+            "y": 11
           },
           "id": 16,
           "interval": ">10s",
@@ -2814,6 +2758,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_packets_packets_persec_average{chart=\"ipv4.packets\",family=\"packets\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2834,10 +2780,12 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_packets",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"ipv4_packets\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"ipv4_packets\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)\n\n",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2905,13 +2853,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 5
+            "y": 11
           },
           "id": 18,
           "legend": {
@@ -2943,6 +2891,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_errors_packets_persec_average{chart=\"ipv4.errors\",family=\"errors\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -2963,6 +2913,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_errors",
               "orderByTime": "ASC",
               "policy": "default",
@@ -3028,13 +2980,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 12
+            "y": 18
           },
           "id": 17,
           "interval": "",
@@ -3067,6 +3019,8 @@
             {
               "alias": "established",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_tcpsock_active_connections_average{chart=\"ipv4.tcpsock\",family=\"tcp\",dimension=\"connections\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -3087,6 +3041,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "established",
               "measurement": "ipv4_tcpsock",
               "orderByTime": "ASC",
               "policy": "default",
@@ -3158,13 +3114,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 12
+            "y": 18
           },
           "id": 19,
           "legend": {
@@ -3196,6 +3152,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_tcphandshake_events_persec_average{chart=\"ipv4.tcphandshake\",family=\"tcp\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -3216,6 +3174,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_tcphandshake",
               "orderByTime": "ASC",
               "policy": "default",
@@ -3281,13 +3241,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 19
+            "y": 25
           },
           "id": 20,
           "legend": {
@@ -3319,6 +3279,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_tcperrors_packets_persec_average{chart=\"ipv4.tcperrors\",family=\"tcp\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -3339,6 +3301,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_tcperrors",
               "orderByTime": "ASC",
               "policy": "default",
@@ -3404,13 +3368,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 19
+            "y": 25
           },
           "id": 21,
           "legend": {
@@ -3442,6 +3406,8 @@
             {
               "alias": "$tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_ipv4_udppackets_packets_persec_average{chart=\"ipv4.udppackets\",family=\"udp\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -3462,6 +3428,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
               "measurement": "ipv4_udppackets",
               "orderByTime": "ASC",
               "policy": "default",
@@ -3534,7 +3502,7 @@
       "type": "row"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3542,1001 +3510,1034 @@
         "y": 5
       },
       "id": 55,
-      "panels": [],
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 27,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype: $tag_mode",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "mode"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_cpu\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "cpu"
+                },
+                {
+                  "condition": "AND",
+                  "key": "mode",
+                  "operator": "=",
+                  "value": "used"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "id": 28,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "reads - {{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_preads\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "disk"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type",
+                  "operator": "=",
+                  "value": "read"
+                }
+              ]
+            },
+            {
+              "alias": "$tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "writes - {{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT (sum(\"value\") * -1) FROM \"[[DS]]\".\"apps_pwrites\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "disk"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type",
+                  "operator": "=",
+                  "value": "write"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk Throughput",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "KBs",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 19
+          },
+          "id": 29,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_files_open_files_average{chart=\"apps.files\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)\n",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_files\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "files"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Open Files",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 19
+          },
+          "id": 30,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_mem_MB_average{chart=\"apps.mem\",family=\"mem\",instance=~\"[[host]]\"}) by (dimension)\n",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_mem\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "mem"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 26
+          },
+          "id": 31,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_processes_processes_average{chart=\"apps.processes\",family=\"processes\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_processes\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "processes"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Processes",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 26
+          },
+          "id": 32,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_threads_threads_average{chart=\"apps.threads\",family=\"processes\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_threads\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "threads"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Threads",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 33
+          },
+          "id": 33,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servicetype",
+              "dsType": "influxdb",
+              "expr": "sum(netdata_apps_sockets_open_sockets_average{chart=\"apps.sockets\",family=\"net\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "measurement": "openio",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_sockets\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "resource",
+                  "operator": "=",
+                  "value": "sockets"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Opened Sockets",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
       "repeat": null,
       "title": "OpenIO System",
       "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 6
-      },
-      "id": 27,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype: $tag_mode",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "mode"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_cpu\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "cpu"
-            },
-            {
-              "condition": "AND",
-              "key": "mode",
-              "operator": "=",
-              "value": "used"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "CPU Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 6
-      },
-      "id": 28,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype: $tag_type",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "type"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_preads\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            },
-            {
-              "condition": "AND",
-              "key": "type",
-              "operator": "=",
-              "value": "read"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_servicetype: $tag_type",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "type"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT (sum(\"value\") * -1) FROM \"[[DS]]\".\"apps_pwrites\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            },
-            {
-              "condition": "AND",
-              "key": "type",
-              "operator": "=",
-              "value": "write"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Disk Throughput",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "KBs",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 13
-      },
-      "id": 29,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_files\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "files"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Open Files",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "id": 30,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_mem\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "mem"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Memory Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "decmbytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 20
-      },
-      "id": 31,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_processes\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "processes"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Processes",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 20
-      },
-      "id": 32,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_threads\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "threads"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Threads",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 27
-      },
-      "id": 33,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 6,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_servicetype",
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "servicetype"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "openio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"apps_sockets\" WHERE \"app\" = 'openio' AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "sockets"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Opened Sockets",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
     },
     {
       "collapsed": true,
@@ -4544,22 +4545,149 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 6
       },
       "id": 56,
       "panels": [
+        {
+          "content": "# Score",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "id": 77,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#d44a3a",
+            "rgba(237, 129, 40, 0.89)",
+            "#299c46"
+          ],
+          "datasource": "prometheus",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 15
+          },
+          "id": 75,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "avg(netdata_openio_score__average{instance=~\"[[host]]\"})",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "25,75",
+          "title": "Score",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
         {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 35
+            "h": 8,
+            "w": 11,
+            "x": 6,
+            "y": 15
           },
           "id": 34,
           "legend": {
@@ -4591,6 +4719,8 @@
             {
               "alias": "$tag_namespace: $tag_service_type",
               "dsType": "influxdb",
+              "expr": "avg(label_replace(netdata_openio_score__average{chart=\"openio.score\",family=\"Score\",instance=~\"[[host]]\"}, \"dim2\", \"$1\", \"dimension\", \"(.*?)[_].*\")) by (dim2)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -4617,6 +4747,9 @@
                   "type": "fill"
                 }
               ],
+              "hide": true,
+              "intervalFactor": 1,
+              "legendFormat": "{{dim2}}",
               "measurement": "openio_score",
               "orderByTime": "ASC",
               "policy": "default",
@@ -4645,6 +4778,14 @@
                   "value": "/^$host$/"
                 }
               ]
+            },
+            {
+              "expr": "aggr:netdata_openio_score:avg_per_service",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{dim2}}",
+              "refId": "B"
             }
           ],
           "thresholds": [],
@@ -4684,17 +4825,1037 @@
           ]
         },
         {
+          "cards": {
+            "cardPadding": 1,
+            "cardRound": null
+          },
+          "color": {
+            "cardColor": "#b4ff00",
+            "colorScale": "sqrt",
+            "colorScheme": "interpolateBlues",
+            "exponent": 0.5,
+            "max": null,
+            "min": 0,
+            "mode": "spectrum"
+          },
+          "dataFormat": "timeseries",
+          "datasource": "prometheus",
+          "gridPos": {
+            "h": 8,
+            "w": 7,
+            "x": 17,
+            "y": 15
+          },
+          "heatmap": {},
+          "highlightCards": true,
+          "id": 73,
+          "legend": {
+            "show": false
+          },
+          "links": [],
+          "targets": [
+            {
+              "expr": "avg(netdata_openio_score__average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "Score distribution",
+          "tooltip": {
+            "show": true,
+            "showHistogram": false
+          },
+          "type": "heatmap",
+          "xAxis": {
+            "show": true
+          },
+          "xBucketNumber": null,
+          "xBucketSize": null,
+          "yAxis": {
+            "decimals": null,
+            "format": "short",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true,
+            "splitFactor": null
+          },
+          "yBucketNumber": null,
+          "yBucketSize": null
+        },
+        {
+          "content": "# Storage",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 89,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 25
+          },
+          "id": 97,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(204, 204, 204, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum(netdata_openio_container_bytes__average)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Data",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
+            "h": 8,
+            "w": 9,
+            "x": 6,
+            "y": 25
+          },
+          "id": 61,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "topk(10, netdata_openio_container_bytes__average)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 10 largest containers (size)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 15,
+            "y": 25
+          },
+          "id": 63,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "topk(10, sum(netdata_openio_container_count__average) by (dimension))",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 10 accounts with most containers",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 30
+          },
+          "id": 99,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(164, 164, 164, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum(netdata_openio_container_objects__average{instance=~\"[[host]]\"})",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Objects",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 6,
+            "y": 33
+          },
+          "id": 59,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "topk(10, netdata_openio_container_objects__average)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 10 largest containers (object count)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 15,
+            "y": 33
+          },
+          "id": 65,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "topk(10, sum(rate(netdata_openio_container_bytes__average[5m]) / 300) by (dimension))",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 10 containers with biggest growth (bytes)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
             "y": 35
+          },
+          "id": 101,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(210, 210, 210, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum(netdata_openio_container_count__average)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Containers",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "content": "# Bandwidth",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 41
+          },
+          "id": 79,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "format": "KBs",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 43
+          },
+          "id": 95,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))\n-sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Bandwidth",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 18,
+            "x": 6,
+            "y": 43
           },
           "id": 44,
           "legend": {
@@ -4726,6 +5887,8 @@
             {
               "alias": "$tag_namespace: $tag_servicetype",
               "dsType": "influxdb",
+              "expr": "sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2)\n-sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -4746,6 +5909,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}}",
               "measurement": "openio_log_bandwidth",
               "orderByTime": "ASC",
               "policy": "default",
@@ -4819,50 +5984,1069 @@
           ]
         },
         {
-          "alert": {
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    2000
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "B",
-                    "60s",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "last"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "frequency": "60s",
-            "handler": 1,
-            "name": "Event queue alert",
-            "noDataState": "no_data",
-            "notifications": []
+          "content": "# Requests",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 51
           },
+          "id": 87,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "decimals": 1,
+          "format": "ms",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 0,
+            "y": 53
+          },
+          "id": 91,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgb(232, 232, 232)",
+            "full": false,
+            "lineColor": "#5195ce",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "avg(netdata_netdata_response_time_ms_request_average{dimension=\"average\",instance=~\"[[host]]\"})",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Response time",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
+            "w": 9,
+            "x": 6,
+            "y": 53
+          },
+          "id": 46,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(label_replace(netdata_web_log_response_time_milliseconds_average{family=\"timings\",instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}} {{dimension}}",
+              "measurement": "openio_log_response_time",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_log_response_time\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\", \"namespace\", \"type\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Response Time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 9,
+            "x": 15,
+            "y": 53
+          },
+          "id": 49,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(label_replace(netdata_web_log_response_codes_requests_persec_average{family=\"responses\", dimension=~\"4xx|5xx\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}} {{dimension}}",
+              "measurement": "openio_log_response_codes",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\")/($__interval_ms / 10000) FROM \"[[DS]]\".\"openio_log_response_codes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND (\"type\" = '5xx'  OR \"type\" = '4xx') AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Errors",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 9,
+            "x": 6,
+            "y": 60
+          },
+          "id": 45,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(label_replace(netdata_web_log_response_codes_requests_persec_average{family=\"responses\",instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (dimension, chart2)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}} {{dimension}}",
+              "measurement": "openio_log_response_codes",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(value) FROM \"[[DS]]\".\"openio_log_response_codes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Responses Codes",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 9,
+            "x": 15,
+            "y": 60
+          },
+          "id": 47,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "dsType": "influxdb",
+              "expr": "sum(label_replace(netdata_web_log_http_method_requests_persec_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servicetype"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "type"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}} {{dimension}}",
+              "measurement": "openio_log_http_method",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"openio_log_http_method\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Request Method",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Redis",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 67
+          },
+          "id": 85,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 69
+          },
+          "id": 71,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(label_replace(netdata_redis_keys_keys_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*?_(.*).keys\")) by (chart2)",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Keys",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 69
+          },
+          "id": 67,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(label_replace(netdata_redis_operations_operations_persec_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*?_(.*).operations\")) by (chart2)\n",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "legendFormat": "{{chart2}}",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Operations",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "prometheus",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 69
+          },
+          "id": 93,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(214, 214, 214, 0.18)",
+            "full": false,
+            "lineColor": "#5195ce",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "avg(netdata_redis_hit_rate_percent_average{instance=~\"[[host]]\"})",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 1,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "",
+          "title": "Hit rate",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "content": "# Events",
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 77
+          },
+          "id": 81,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 79
           },
           "id": 38,
           "legend": {
@@ -4894,6 +7078,8 @@
             {
               "alias": "$tag_namespace: $tag_tube: $tag_type",
               "dsType": "influxdb",
+              "expr": "sum(netdata_beanstalk_jobs_jobs_average{instance=~\"[[host]]\"}) by (family, dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -4926,6 +7112,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "{{ dimension }} {{ family }}",
               "measurement": "openio_beanstalkd_tubes",
               "orderByTime": "ASC",
               "policy": "default",
@@ -4962,80 +7150,14 @@
               ]
             },
             {
-              "alias": "$tag_namespace: $tag_tube: $tag_type",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "namespace"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "tube"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "type"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": true,
-              "measurement": "openio_beanstalkd_tubes",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT sum(\"value\")/($__interval_ms / 10000) FROM \"ds_30d\".\"openio_beanstalkd_tubes\",\"ds_90d\".\"openio_beanstalkd_tubes\",\"ds_360d\".\"openio_beanstalkd_tubes\",\"ds_inf\".\"openio_beanstalkd_tubes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"type\" = 'current_jobs_buried' AND $timeFilter GROUP BY time($__interval), \"namespace\", \"tube\", \"type\" fill(null)",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "sum"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "type",
-                  "operator": "=",
-                  "value": "current_jobs_buried"
-                }
-              ]
+              "expr": "sum(netdata_beanstalk_current_jobs_jobs_average{chart=\"beanstalk_OPENIO_beanstalkd_1.current_jobs\",instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}",
+              "refId": "B"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 2000
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Event queue",
@@ -5076,13 +7198,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
+            "h": 8,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 79
           },
           "id": 39,
           "legend": {
@@ -5115,6 +7237,8 @@
             {
               "alias": "$tag_namespace: $tag_host: processed",
               "dsType": "influxdb",
+              "expr": "sum(netdata_beanstalk_jobs_rate_jobs_persec_average{chart=\"beanstalk_OPENIO_beanstalkd_1.jobs_rate\",family=\"server statistics\",dimension=\"total\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -5153,6 +7277,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "events",
               "measurement": "openio_beanstalkd_tubes",
               "orderByTime": "ASC",
               "policy": "default",
@@ -5232,195 +7358,32 @@
           ]
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "fill": 1,
+          "content": "# Zookeeper",
           "gridPos": {
-            "h": 7,
-            "w": 12,
+            "h": 2,
+            "w": 24,
             "x": 0,
-            "y": 49
+            "y": 87
           },
-          "id": 40,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
+          "id": 83,
           "links": [],
-          "minSpan": 6,
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_namespace: avg_latency",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "namespace"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "openio_zookeeper_zk_avg_latency",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
-            },
-            {
-              "alias": "$tag_namespace: max_latency",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "namespace"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "openio_zookeeper_zk_max_latency",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Zookeeper Latency",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
         },
         {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 49
+            "h": 8,
+            "w": 16,
+            "x": 0,
+            "y": 89
           },
           "id": 41,
           "legend": {
@@ -5452,6 +7415,8 @@
             {
               "alias": "$tag_namespace: approximate_data_size",
               "dsType": "influxdb",
+              "expr": "sum(netdata_openio_zk_approximate_data_size__average{chart=\"openio.zk_approximate_data_size\",family=\"Zookeeper\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -5472,6 +7437,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "data_size",
               "measurement": "openio_zookeeper_zk_approximate_data_size",
               "orderByTime": "ASC",
               "policy": "default",
@@ -5505,7 +7472,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Zookeeper Datasize",
+          "title": "Datasize",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -5543,139 +7510,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 56
-          },
-          "id": 42,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "minSpan": 6,
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_namespace: requests",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "namespace"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "openio_zookeeper_zk_outstanding_requests",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT max(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_outstanding_requests\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "max"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Zookeeper Outstanding Requests",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 56
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 89
           },
           "id": 43,
           "legend": {
@@ -5707,6 +7548,8 @@
             {
               "alias": "$tag_namespace: pending_syncs",
               "dsType": "influxdb",
+              "expr": "sum(netdata_openio_zk_pending_syncs__average{instance=~\"[[host]]\"}) by (dimension)",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -5727,6 +7570,8 @@
                   "type": "fill"
                 }
               ],
+              "intervalFactor": 1,
+              "legendFormat": "",
               "measurement": "openio_zookeeper_zk_pending_syncs",
               "orderByTime": "ASC",
               "policy": "default",
@@ -5760,7 +7605,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Zookeeper Pending Syncs",
+          "title": "Pending Syncs",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -5798,26 +7643,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
+            "h": 8,
+            "w": 16,
             "x": 0,
-            "y": 63
+            "y": 97
           },
-          "id": 45,
+          "id": 40,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
+            "avg": false,
+            "current": false,
+            "max": false,
             "min": false,
-            "show": false,
+            "show": true,
             "total": false,
-            "values": true
+            "values": false
           },
           "lines": true,
           "linewidth": 1,
@@ -5830,12 +7672,14 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "alias": "$tag_namespace: avg_latency",
               "dsType": "influxdb",
+              "expr": "avg(netdata_openio_zk_max_latency__average{chart=\"openio.zk_max_latency\",family=\"Zookeeper\",instance=~\"[[host]]\"})\n",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -5845,13 +7689,7 @@
                 },
                 {
                   "params": [
-                    "servicetype"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "type"
+                    "namespace"
                   ],
                   "type": "tag"
                 },
@@ -5862,10 +7700,12 @@
                   "type": "fill"
                 }
               ],
-              "measurement": "openio_log_response_codes",
+              "intervalFactor": 1,
+              "legendFormat": "max",
+              "measurement": "openio_zookeeper_zk_avg_latency",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(value) FROM \"[[DS]]\".\"openio_log_response_codes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
+              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -5879,7 +7719,7 @@
                   },
                   {
                     "params": [],
-                    "type": "sum"
+                    "type": "mean"
                   }
                 ]
               ],
@@ -5890,87 +7730,12 @@
                   "value": "/^$host$/"
                 }
               ]
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Responses Codes",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
             },
             {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 63
-          },
-          "id": 46,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "minSpan": 6,
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "alias": "$tag_namespace: max_latency",
               "dsType": "influxdb",
+              "expr": "avg(netdata_openio_zk_avg_latency__average{chart=\"openio.zk_avg_latency\",family=\"Zookeeper\",instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -5980,13 +7745,7 @@
                 },
                 {
                   "params": [
-                    "servicetype"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "type"
+                    "namespace"
                   ],
                   "type": "tag"
                 },
@@ -5997,12 +7756,14 @@
                   "type": "fill"
                 }
               ],
-              "measurement": "openio_log_response_time",
+              "intervalFactor": 1,
+              "legendFormat": "average",
+              "measurement": "openio_zookeeper_zk_max_latency",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_log_response_time\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\", \"namespace\", \"type\" fill(null)",
+              "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
               "rawQuery": true,
-              "refId": "A",
+              "refId": "B",
               "resultFormat": "time_series",
               "select": [
                 [
@@ -6030,10 +7791,10 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Response Time",
+          "title": "Latency",
           "tooltip": {
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "individual"
           },
           "type": "graph",
@@ -6068,26 +7829,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 70
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 97
           },
-          "id": 47,
+          "id": 42,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
+            "avg": false,
+            "current": false,
+            "max": false,
             "min": false,
-            "show": false,
+            "show": true,
             "total": false,
-            "values": true
+            "values": false
           },
           "lines": true,
           "linewidth": 1,
@@ -6100,12 +7858,14 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
+              "alias": "$tag_namespace: requests",
               "dsType": "influxdb",
+              "expr": "avg(netdata_openio_zk_outstanding_requests__average{instance=~\"[[host]]\"})",
+              "format": "time_series",
               "groupBy": [
                 {
                   "params": [
@@ -6115,13 +7875,7 @@
                 },
                 {
                   "params": [
-                    "servicetype"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "type"
+                    "namespace"
                   ],
                   "type": "tag"
                 },
@@ -6132,10 +7886,12 @@
                   "type": "fill"
                 }
               ],
-              "measurement": "openio_log_http_method",
+              "intervalFactor": 1,
+              "legendFormat": "outstanding_requests",
+              "measurement": "openio_zookeeper_zk_outstanding_requests",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"openio_log_http_method\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
+              "query": "SELECT max(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_outstanding_requests\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -6149,7 +7905,7 @@
                   },
                   {
                     "params": [],
-                    "type": "sum"
+                    "type": "max"
                   }
                 ]
               ],
@@ -6165,10 +7921,10 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Request Method",
+          "title": "Outstanding Requests",
           "tooltip": {
             "shared": true,
-            "sort": 2,
+            "sort": 0,
             "value_type": "individual"
           },
           "type": "graph",
@@ -6180,144 +7936,8 @@
             "values": []
           },
           "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
             {
               "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 70
-          },
-          "id": 49,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "minSpan": 6,
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_namespace: $tag_servicetype: $tag_type",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "servicetype"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "type"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "measurement": "openio_log_response_codes",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT sum(\"value\")/($__interval_ms / 10000) FROM \"[[DS]]\".\"openio_log_response_codes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND (\"type\" = '5xx'  OR \"type\" = '4xx') AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "sum"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Responses Codes",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -6345,7 +7965,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 7
       },
       "id": 57,
       "panels": [
@@ -6358,7 +7978,7 @@
             "h": 13,
             "w": 24,
             "x": 0,
-            "y": 78
+            "y": 86
           },
           "height": "500px",
           "id": 48,
@@ -6464,7 +8084,7 @@
       "type": "row"
     }
   ],
-  "refresh": "1m",
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -6472,109 +8092,17 @@
     "list": [
       {
         "allValue": null,
-        "datasource": "local",
+        "datasource": "prometheus",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "host",
-        "name": "host",
-        "options": [
-          {% for host in groups[grafana_dashboard['group']] %}
-          {
-            "selected": false,
-            "text": "{{ hostvars[host]['ansible_hostname'] }}",
-            "value": "{{ hostvars[host]['ansible_hostname'] }}"
-          },
-          {% endfor %}
-          {
-            "selected": false,
-            "text": "All",
-            "value": "$__all"
-          }
-        ],
-        "query": "SHOW TAG VALUES FROM cpu WITH KEY=host",
-        "refresh": 1,
-        "regex": "{{ grafana_dashboard['host_regex'] }}",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "tags": [],
-          "text": "{{ grafana_dashboard['namespace'] }}",
-          "value": [
-            "{{ grafana_dashboard['namespace'] }}"
-          ]
-        },
-        "datasource": "local",
-        "hide": 0,
-        "includeAll": false,
-        "label": null,
-        "multi": true,
-        "name": "namespace",
-        "options": [
-          {
-            "selected": true,
-            "text": "{{ grafana_dashboard['namespace'] }}",
-            "value": "{{ grafana_dashboard['namespace'] }}"
-          }
-        ],
-        "query": "{{ grafana_namespace_fetch_cmd }}",
-        "refresh": 1,
-        "regex": "",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "realtime",
-          "value": "realtime"
-        },
-        "datasource": "local",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Retention",
-        "multi": false,
-        "name": "DS",
         "options": [],
-        "query": "show tag values from \"rp_inf\".\"ds_interval\" with key=ds",
+        "query": "label_values(instance)",
         "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "10s",
-          "value": "10s"
-        },
-        "datasource": "local",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "ds_int",
-        "options": [],
-        "query": "show tag values from \"graphite\".\"rp_inf\".\"ds_interval\" with key=int where ds='$DS'",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
+        "regex": "/.*/",
+        "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -6584,7 +8112,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -6612,5 +8140,4 @@
   },
   "timezone": "browser",
   "title": "OpenIO",
-  "version": 1
 }
