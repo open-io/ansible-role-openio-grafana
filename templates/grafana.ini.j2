@@ -56,7 +56,7 @@ check_for_updates = false
 [security]
 admin_user = {{ grafana_auth['user'] }}
 admin_password = {{ grafana_auth['password'] }}
-secret_key = {{ grafana_secret.stdout }}
+secret_key = {{ grafana_secret }}
 login_remember_days = 7
 cookie_username = grafana_user
 cookie_remember_name = grafana_remember
