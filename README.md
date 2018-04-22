@@ -1,31 +1,49 @@
 ansible-role-grafana
 =========
 
-A brief description of the role goes here.
+This role will deploy Grafana and provision a dashboard onto it
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable name   | Description                                   | Type    |
+| --------------- | --------------------------------------------- | ------- |
+| grafana_version | Version of grafana to use                     | String  |
+| grafana_paths   | Configuration paths used by grafana-server    | Object  |
+| grafana_http    | Host/Port on which grafana listens            | Object  |
+| grafana_auth    | Grafana credentials                           | Object  |
+| grafana_thene   | Theme (dark or light) used by grafana         | String  |
+| prometheus_host | Host on which prometheus source is configured | String  |
+| prometheus_port | Port on which prometheus source is configured | Integer |
+
+
+Tools - Sanitize
+-----
+
+This role is outfitted with a sanitization tool to update dashboards. In order to update a dashboard you need to:
+
+- Head to grafana dashboard, and modify it using the Web Interface (Make it editable first in the gear menu)
+- In the gear menu, click View JSON, and copy the json to a file (e.g. `files/dashboard`)
+- Run the sanitization script: `tools/sanitize.py files/dashboard`
+- Update the dashboard with the sanitized one: `mv files/dashboard files/openio.json`
+- Remove (or keep) the backup file (`files/dashboard.old`), you don't need to commit it
+- Commit the changes and push to remote
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+https://github.com/vdombrovski/ansible-openio-monitoring
 
 License
 -------
@@ -35,4 +53,6 @@ Apache v2.0
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Vladimir DOMBROVSKI (maintainer)
+Cedric Delgehier (contributor)
+Romain Acciari (contributor)
