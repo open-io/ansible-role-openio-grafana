@@ -44,7 +44,7 @@ class DashboardRetriever(object):
     def save(self, name, data):
         """ Save a Grafana dashboard """
         with open(path.join(self.DST, "%s.json" % name), 'w') as f:
-            f.write(json.dumps(data))
+            f.write(json.dumps(data, indent=2))
 
 
 if __name__ == "__main__":
