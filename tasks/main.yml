@@ -65,7 +65,7 @@
     group: grafana
     mode:  0644
     backup: yes
-  with_items: grafana_dashboards
+  with_items: "{{ grafana_dashboards }}"
   notify: restart grafana
 
 - name: Provision - dashboard config
