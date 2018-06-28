@@ -22,18 +22,27 @@ Role Variables
 | prometheus_port | Port on which prometheus source is configured | Integer |
 
 
-Tools - Sanitize
+Tools - Dashboard retriever
 -----
 
-This role is outfitted with a sanitization tool to update dashboards. In order to update a dashboard you need to:
+### Description:
 
-- Head to grafana dashboard, and modify it using the Web Interface (Make it editable first in the gear menu)
-- In the gear menu, click View JSON, and copy the json to a file (e.g. `files/dashboard`)
-- Run the sanitization script: `tools/sanitize.py files/dashboard`
-- Update the dashboard with the sanitized one: `mv files/dashboard files/openio.json`
-- Remove (or keep) the backup file (`files/dashboard.old`), you don't need to commit it
-- Commit the changes and push to remote
+This role is outfitted with a tool that updates provisioned dashboards. In order to update a dashboard you need to:
 
+### Requirements:
+
+- python3
+- python-requests
+
+### How to use
+
+- Head to grafana dashboards, and modify them using the Web Interface (Make it editable first in the gear menu)
+- Once done, run the tool: `python3 tools/retriever.py HOST:PORT USER PASSWORD ./files` where:
+    - HOST:PORT is the IP/PORT of your Grafana
+    - USER: is the Grafana user
+    - PASSWORD: is the Grafana password
+- If you have added a new dashboard, make sure you add it to vars/main.yml (grafana_dashboards)
+- Your provisioned dashboards are now updated and are ready to be committed
 
 Dependencies
 ------------

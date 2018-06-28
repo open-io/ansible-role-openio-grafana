@@ -48,7 +48,7 @@
   systemd: daemon_reload=yes
   when: ansible_virtualization_type != 'docker'
 
-- name: Provision - datasource
+- name: Provision - datasources
   template:
     src: "prometheus.yaml.j2"
     dest: "{{ grafana_paths['datasources'] | realpath }}/prometheus.yaml"
@@ -57,14 +57,15 @@
     mode:  0644
   notify: restart grafana
 
-- name: Provision - dashboard JSON
+- name: Provision - dashboards
   copy:
-    src: "openio.json"
-    dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.json"
+    src: "{{item}}.json"
+    dest: "{{ grafana_paths['dashboards'] | realpath }}/{{item}}.json"
     owner: grafana
     group: grafana
     mode:  0644
     backup: yes
+  with_items: grafana_dashboards
   notify: restart grafana
 
 - name: Provision - dashboard config
