@@ -9,10 +9,10 @@
     "url": "/d/jPkxz4vik/openio-services",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T13:28:39Z",
-    "updated": "2018-06-28T16:26:36Z",
+    "updated": "2018-06-29T07:58:26Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 17,
+    "version": 30,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -37,7 +37,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 7,
-    "iteration": 1530203155303,
+    "iteration": 1530259012161,
     "links": [],
     "panels": [
       {
@@ -1114,7 +1114,7 @@
           "#d44a3a"
         ],
         "datasource": "prometheus",
-        "format": "KBs",
+        "format": "Kbits",
         "gauge": {
           "maxValue": 100,
           "minValue": 0,
@@ -1165,7 +1165,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))\n-sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))",
+            "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
             "format": "time_series",
             "groupBy": [
               {
@@ -1260,7 +1260,7 @@
           {
             "alias": "$tag_namespace: $tag_servicetype",
             "dsType": "influxdb",
-            "expr": "sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2)\n-sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2)",
+            "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) by (chart2) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"}) by (chart2)",
             "format": "time_series",
             "groupBy": [
               {
@@ -1339,7 +1339,7 @@
         },
         "yaxes": [
           {
-            "format": "KBs",
+            "format": "Kbits",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1512,7 +1512,7 @@
           {
             "alias": "$tag_namespace: $tag_servicetype: $tag_type",
             "dsType": "influxdb",
-            "expr": "sum(label_replace(netdata_web_log_response_time_milliseconds_average{family=\"timings\",instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+            "expr": "sum(aggr:netdata_web_log_response_time_ms:sum{instance=~\"[[host]]\"}) by (chart2, dimension)",
             "format": "time_series",
             "groupBy": [
               {
@@ -1649,67 +1649,11 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "$tag_namespace: $tag_servicetype: $tag_type",
-            "dsType": "influxdb",
-            "expr": "sum(label_replace(netdata_web_log_response_codes_requests_persec_average{family=\"responses\", dimension=~\"4xx|5xx\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+            "expr": "sum(aggr:netdata_web_log_response_codes:sum{dimension=~\"4xx|5xx\", instance=~\"[[host]]\"}) by (dimension, chart2)",
             "format": "time_series",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "servicetype"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "type"
-                ],
-                "type": "tag"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "hide": false,
             "intervalFactor": 1,
             "legendFormat": "{{chart2}} {{dimension}}",
-            "measurement": "openio_log_response_codes",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT sum(\"value\")/($__interval_ms / 10000) FROM \"[[DS]]\".\"openio_log_response_codes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND (\"type\" = '5xx'  OR \"type\" = '4xx') AND $timeFilter GROUP BY time([[ds_int]]), \"servicetype\",\"namespace\", \"type\" fill(null)",
-            "rawQuery": true,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "sum"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=~",
-                "value": "/^$host$/"
-              }
-            ]
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -1791,7 +1735,7 @@
           {
             "alias": "$tag_namespace: $tag_servicetype: $tag_type",
             "dsType": "influxdb",
-            "expr": "sum(label_replace(netdata_web_log_response_codes_requests_persec_average{family=\"responses\",instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (dimension, chart2)",
+            "expr": "sum(aggr:netdata_web_log_response_codes:sum{instance=~\"[[host]]\"}) by (dimension, chart2)",
             "format": "time_series",
             "groupBy": [
               {
@@ -1931,7 +1875,7 @@
           {
             "alias": "$tag_namespace: $tag_servicetype: $tag_type",
             "dsType": "influxdb",
-            "expr": "sum(label_replace(netdata_web_log_http_method_requests_persec_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\")) by (chart2, dimension)",
+            "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"[[host]]\"}) by (chart2, dimension)",
             "format": "time_series",
             "groupBy": [
               {
@@ -3609,6 +3553,6 @@
     "timezone": "browser",
     "title": "OpenIO Services",
     "uid": "jPkxz4vik",
-    "version": 17
+    "version": 30
   }
 }

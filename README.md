@@ -37,10 +37,11 @@ This role is outfitted with a tool that updates provisioned dashboards. In order
 ### How to use
 
 - Head to grafana dashboards, and modify them using the Web Interface (Make it editable first in the gear menu)
-- Once done, run the tool: `python3 tools/retriever.py HOST:PORT USER PASSWORD ./files` where:
+- Once done, run the tool: `python3 tools/retriever.py HOST:PORT USER PASSWORD ./files [STRICT]` where:
     - HOST:PORT is the IP/PORT of your Grafana
     - USER: is the Grafana user
     - PASSWORD: is the Grafana password
+    - STRICT will fail on warnings
 - If you have added a new dashboard, make sure you add it to vars/main.yml (grafana_dashboards)
 - Your provisioned dashboards are now updated and are ready to be committed
 
