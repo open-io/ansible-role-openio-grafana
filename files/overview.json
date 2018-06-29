@@ -10,10 +10,10 @@
     "url": "/d/Exqs3nvmz/overview",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T12:39:27Z",
-    "updated": "2018-06-28T16:25:37Z",
+    "updated": "2018-06-29T08:04:14Z",
     "updatedBy": "admin",
     "createdBy": "Anonymous",
-    "version": 30,
+    "version": 34,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -38,7 +38,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 2,
-    "iteration": 1530203069412,
+    "iteration": 1530259130269,
     "links": [],
     "panels": [
       {
@@ -781,7 +781,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))\n-sum(label_replace(netdata_web_log_bandwidth_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*openio[.](.*)[.].*.log.*\"))",
+            "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
             "format": "time_series",
             "groupBy": [
               {
@@ -1567,6 +1567,6 @@
     "timezone": "browser",
     "title": "Overview",
     "uid": "Exqs3nvmz",
-    "version": 30
+    "version": 34
   }
 }

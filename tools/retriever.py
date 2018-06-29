@@ -8,9 +8,10 @@ from os import path
 
 class DashboardRetriever(object):
 
-    def __init__(self, host, user, password, dst):
+    def __init__(self, host, user, password, dst, strict=False):
         self.BASE_URL = "http://%s:%s@%s" % (user, password, host)
         self.DST = dst
+        self.strict = strict
 
     @property
     def list_dashboards(self):
@@ -27,19 +28,27 @@ class DashboardRetriever(object):
         dashboards = self.list_dashboards
         for index, dash in enumerate(dashboards):
             name = dash['title'].lower().replace(' ', '_')
-            data = self.sanitize(self.get_dashboard(dash['uid']))
+            data, errors = self.sanitize(self.get_dashboard(dash['uid']))
             self.save(name, data)
             print("Imported dashboard \"%s\" (%d/%d)" %
                   (name, index + 1, len(dashboards)))
+            for e in errors:
+                print(e % name)
+                if self.strict:
+                    sys.exit("ERROR: Strict validation mode is on, \
+aborting due to warning")
 
     def sanitize(self, data):
         """ Sanitize a dashboard """
+        errors = list()
         for k in ('id', 'version', 'uid'):
             if k in data:
                 del data[k]
         if 'templating' in data and 'list' in data['templating']:
             del data['templating']['list'][0]['current']
-        return data
+        if 'editable' in data['dashboard'] and data['dashboard']['editable']:
+            errors.append('WARN: [%s] dashboard has been left editable')
+        return data, errors
 
     def save(self, name, data):
         """ Save a Grafana dashboard """
@@ -49,6 +58,6 @@ class DashboardRetriever(object):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        sys.exit("Usage: %s HOST:PORT USER PASSWORD DESTINATION" % sys.argv[0])
+        sys.exit("Usage: %s HOST:PORT USER PASSWORD DESTINATION [STRICT]" % sys.argv[0])
 
     DashboardRetriever(*sys.argv[1:]).run()
