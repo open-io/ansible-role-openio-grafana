@@ -3,7 +3,7 @@
 import requests
 import sys
 import json
-from os import path
+from os import path, makedirs
 
 
 class DashboardRetriever(object):
@@ -27,15 +27,19 @@ class DashboardRetriever(object):
         """ Retrieve dashboards from Grafana, and sanitizes them """
         dashboards = self.list_dashboards
         for index, dash in enumerate(dashboards):
-            name = dash['title'].lower().replace(' ', '_')
-            data, errors = self.sanitize(self.get_dashboard(dash['uid']))
-            self.save(name, data)
-            print("Imported dashboard \"%s\" (%d/%d)" %
-                  (name, index + 1, len(dashboards)))
-            for e in errors:
-                print(e % name)
-                if self.strict:
-                    sys.exit("ERROR: Strict validation mode is on, \
+            if dash['type'] == 'dash-db':
+                self.import_one(index, dash, len(dashboards))
+
+    def import_one(self, index, dash, total):
+        name = dash['title'].lower().replace(' ', '_')
+        data, errors = self.sanitize(self.get_dashboard(dash['uid']))
+        saved = self.save(name, data, folder=dash.get('folderTitle', None))
+        print("Imported dashboard \"%s\" (%d/%d)" %
+              (saved, index + 1, total))
+        for e in errors:
+            print(e % name)
+            if self.strict:
+                sys.exit("ERROR: Strict validation mode is on, \
 aborting due to warning")
 
     def sanitize(self, data):
@@ -50,14 +54,21 @@ aborting due to warning")
             errors.append('WARN: [%s] dashboard has been left editable')
         return data, errors
 
-    def save(self, name, data):
+    def save(self, name, data, folder=None):
         """ Save a Grafana dashboard """
-        with open(path.join(self.DST, "%s.json" % name), 'w') as f:
+        dest = self.DST
+        if folder:
+            dest = path.join(self.DST, folder)
+            if not path.exists(dest):
+                makedirs(dest)
+        with open(path.join(dest, "%s.json" % name), 'w') as f:
             f.write(json.dumps(data, indent=2))
+        return path.join(folder or str(), "%s.json" % name)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        sys.exit("Usage: %s HOST:PORT USER PASSWORD DESTINATION [STRICT]" % sys.argv[0])
+        sys.exit("Usage: %s HOST:PORT USER \
+PASSWORD DESTINATION [STRICT]" % sys.argv[0])
 
     DashboardRetriever(*sys.argv[1:]).run()
