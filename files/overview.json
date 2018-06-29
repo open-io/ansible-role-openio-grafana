@@ -10,10 +10,10 @@
     "url": "/d/Exqs3nvmz/overview",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T12:39:27Z",
-    "updated": "2018-06-29T08:04:14Z",
+    "updated": "2018-06-29T10:09:33Z",
     "updatedBy": "admin",
     "createdBy": "Anonymous",
-    "version": 34,
+    "version": 52,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -38,15 +38,15 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 2,
-    "iteration": 1530259130269,
+    "iteration": 1530266963947,
     "links": [],
     "panels": [
       {
         "content": "## System",
         "gridPos": {
           "h": 2,
-          "w": 9,
-          "x": 0,
+          "w": 12,
+          "x": 2,
           "y": 0
         },
         "id": 113,
@@ -57,26 +57,11 @@
         "type": "text"
       },
       {
-        "content": "## Data",
-        "gridPos": {
-          "h": 2,
-          "w": 10,
-          "x": 10,
-          "y": 0
-        },
-        "id": 114,
-        "links": [],
-        "mode": "markdown",
-        "title": "",
-        "transparent": true,
-        "type": "text"
-      },
-      {
         "content": "## Network",
         "gridPos": {
           "h": 2,
-          "w": 3,
-          "x": 21,
+          "w": 6,
+          "x": 16,
           "y": 0
         },
         "id": 115,
@@ -105,9 +90,9 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 0,
+          "x": 2,
           "y": 2
         },
         "id": 10,
@@ -205,7 +190,8 @@
           }
         ],
         "thresholds": "50,80,90",
-        "title": "CPU Usage",
+        "title": "CPU",
+        "transparent": false,
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -236,9 +222,9 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 3,
+          "x": 5,
           "y": 2
         },
         "id": 11,
@@ -335,7 +321,7 @@
           }
         ],
         "thresholds": "",
-        "title": "RAM Used",
+        "title": "RAM",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -366,9 +352,9 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 10,
+          "x": 8,
           "y": 2
         },
         "id": 24,
@@ -465,119 +451,7 @@
           }
         ],
         "thresholds": "",
-        "title": "DiskSpace Used",
-        "type": "singlestat",
-        "valueFontSize": "80%",
-        "valueMaps": [
-          {
-            "op": "=",
-            "text": "N/A",
-            "value": "null"
-          }
-        ],
-        "valueName": "current"
-      },
-      {
-        "cacheTimeout": null,
-        "colorBackground": false,
-        "colorValue": false,
-        "colors": [
-          "#299c46",
-          "rgba(237, 129, 40, 0.89)",
-          "#d44a3a"
-        ],
-        "datasource": "prometheus",
-        "format": "decbytes",
-        "gauge": {
-          "maxValue": 100,
-          "minValue": 0,
-          "show": false,
-          "thresholdLabels": false,
-          "thresholdMarkers": true
-        },
-        "gridPos": {
-          "h": 5,
-          "w": 4,
-          "x": 13,
-          "y": 2
-        },
-        "id": 97,
-        "interval": null,
-        "links": [],
-        "mappingType": 1,
-        "mappingTypes": [
-          {
-            "name": "value to text",
-            "value": 1
-          },
-          {
-            "name": "range to text",
-            "value": 2
-          }
-        ],
-        "maxDataPoints": 100,
-        "nullPointMode": "connected",
-        "nullText": null,
-        "postfix": "",
-        "postfixFontSize": "50%",
-        "prefix": "",
-        "prefixFontSize": "50%",
-        "rangeMaps": [
-          {
-            "from": "null",
-            "text": "N/A",
-            "to": "null"
-          }
-        ],
-        "sparkline": {
-          "fillColor": "rgba(204, 204, 204, 0.18)",
-          "full": false,
-          "lineColor": "rgb(31, 120, 193)",
-          "show": true
-        },
-        "tableColumn": "",
-        "targets": [
-          {
-            "expr": "sum(netdata_openio_container_bytes__average)",
-            "format": "time_series",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "intervalFactor": 1,
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "thresholds": "",
-        "title": "Stored data",
+        "title": "Capacity",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -609,9 +483,9 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 17,
+          "x": 11,
           "y": 2
         },
         "id": 111,
@@ -725,358 +599,6 @@
         "colorBackground": false,
         "colorValue": false,
         "colors": [
-          "#299c46",
-          "rgba(237, 129, 40, 0.89)",
-          "#d44a3a"
-        ],
-        "datasource": "prometheus",
-        "format": "Kbits",
-        "gauge": {
-          "maxValue": 100,
-          "minValue": 0,
-          "show": false,
-          "thresholdLabels": false,
-          "thresholdMarkers": true
-        },
-        "gridPos": {
-          "h": 5,
-          "w": 3,
-          "x": 21,
-          "y": 2
-        },
-        "id": 95,
-        "interval": null,
-        "links": [],
-        "mappingType": 1,
-        "mappingTypes": [
-          {
-            "name": "value to text",
-            "value": 1
-          },
-          {
-            "name": "range to text",
-            "value": 2
-          }
-        ],
-        "maxDataPoints": 100,
-        "nullPointMode": "connected",
-        "nullText": null,
-        "postfix": "",
-        "postfixFontSize": "50%",
-        "prefix": "",
-        "prefixFontSize": "50%",
-        "rangeMaps": [
-          {
-            "from": "null",
-            "text": "N/A",
-            "to": "null"
-          }
-        ],
-        "sparkline": {
-          "fillColor": "rgba(31, 118, 189, 0.18)",
-          "full": false,
-          "lineColor": "rgb(31, 120, 193)",
-          "show": false
-        },
-        "tableColumn": "",
-        "targets": [
-          {
-            "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
-            "format": "time_series",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "intervalFactor": 1,
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "thresholds": "",
-        "title": "Bandwidth",
-        "transparent": false,
-        "type": "singlestat",
-        "valueFontSize": "80%",
-        "valueMaps": [
-          {
-            "op": "=",
-            "text": "N/A",
-            "value": "null"
-          }
-        ],
-        "valueName": "current"
-      },
-      {
-        "content": "## OpenIO",
-        "gridPos": {
-          "h": 2,
-          "w": 9,
-          "x": 0,
-          "y": 7
-        },
-        "id": 116,
-        "links": [],
-        "mode": "markdown",
-        "title": "",
-        "transparent": true,
-        "type": "text"
-      },
-      {
-        "cacheTimeout": null,
-        "colorBackground": false,
-        "colorValue": false,
-        "colors": [
-          "#299c46",
-          "rgba(237, 129, 40, 0.89)",
-          "#d44a3a"
-        ],
-        "datasource": "prometheus",
-        "format": "none",
-        "gauge": {
-          "maxValue": 100,
-          "minValue": 0,
-          "show": false,
-          "thresholdLabels": false,
-          "thresholdMarkers": true
-        },
-        "gridPos": {
-          "h": 5,
-          "w": 5,
-          "x": 10,
-          "y": 7
-        },
-        "id": 101,
-        "interval": null,
-        "links": [],
-        "mappingType": 1,
-        "mappingTypes": [
-          {
-            "name": "value to text",
-            "value": 1
-          },
-          {
-            "name": "range to text",
-            "value": 2
-          }
-        ],
-        "maxDataPoints": 100,
-        "nullPointMode": "connected",
-        "nullText": null,
-        "postfix": "",
-        "postfixFontSize": "50%",
-        "prefix": "",
-        "prefixFontSize": "50%",
-        "rangeMaps": [
-          {
-            "from": "null",
-            "text": "N/A",
-            "to": "null"
-          }
-        ],
-        "sparkline": {
-          "fillColor": "rgba(210, 210, 210, 0.18)",
-          "full": false,
-          "lineColor": "rgb(31, 120, 193)",
-          "show": true
-        },
-        "tableColumn": "",
-        "targets": [
-          {
-            "expr": "sum(netdata_openio_container_count__average)",
-            "format": "time_series",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "intervalFactor": 1,
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "thresholds": "",
-        "title": "Containers",
-        "type": "singlestat",
-        "valueFontSize": "80%",
-        "valueMaps": [
-          {
-            "op": "=",
-            "text": "N/A",
-            "value": "null"
-          }
-        ],
-        "valueName": "current"
-      },
-      {
-        "cacheTimeout": null,
-        "colorBackground": false,
-        "colorValue": false,
-        "colors": [
-          "#299c46",
-          "rgba(237, 129, 40, 0.89)",
-          "#d44a3a"
-        ],
-        "datasource": "prometheus",
-        "format": "none",
-        "gauge": {
-          "maxValue": 100,
-          "minValue": 0,
-          "show": false,
-          "thresholdLabels": false,
-          "thresholdMarkers": true
-        },
-        "gridPos": {
-          "h": 5,
-          "w": 5,
-          "x": 15,
-          "y": 7
-        },
-        "id": 99,
-        "interval": null,
-        "links": [],
-        "mappingType": 1,
-        "mappingTypes": [
-          {
-            "name": "value to text",
-            "value": 1
-          },
-          {
-            "name": "range to text",
-            "value": 2
-          }
-        ],
-        "maxDataPoints": 100,
-        "nullPointMode": "connected",
-        "nullText": null,
-        "postfix": "",
-        "postfixFontSize": "50%",
-        "prefix": "",
-        "prefixFontSize": "50%",
-        "rangeMaps": [
-          {
-            "from": "null",
-            "text": "N/A",
-            "to": "null"
-          }
-        ],
-        "sparkline": {
-          "fillColor": "rgba(164, 164, 164, 0.18)",
-          "full": false,
-          "lineColor": "rgb(31, 120, 193)",
-          "show": true
-        },
-        "tableColumn": "",
-        "targets": [
-          {
-            "expr": "sum(netdata_openio_container_objects__average{instance=~\"[[host]]\"})",
-            "format": "time_series",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "intervalFactor": 1,
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "thresholds": "",
-        "title": "Objects",
-        "type": "singlestat",
-        "valueFontSize": "80%",
-        "valueMaps": [
-          {
-            "op": "=",
-            "text": "N/A",
-            "value": "null"
-          }
-        ],
-        "valueName": "current"
-      },
-      {
-        "cacheTimeout": null,
-        "colorBackground": false,
-        "colorValue": false,
-        "colors": [
           "rgba(245, 54, 54, 0.9)",
           "rgba(237, 129, 40, 0.89)",
           "rgba(50, 172, 45, 0.97)"
@@ -1091,10 +613,10 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 21,
-          "y": 7
+          "x": 16,
+          "y": 2
         },
         "id": 25,
         "interval": null,
@@ -1188,7 +710,7 @@
           }
         ],
         "thresholds": "",
-        "title": "Raw",
+        "title": "System",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -1199,6 +721,149 @@
           }
         ],
         "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": "prometheus",
+        "format": "Kbits",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 19,
+          "y": 2
+        },
+        "id": 95,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
+            "format": "time_series",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "intervalFactor": 1,
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": "",
+        "title": "SDS",
+        "transparent": false,
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "content": "## OpenIO",
+        "gridPos": {
+          "h": 2,
+          "w": 12,
+          "x": 2,
+          "y": 6
+        },
+        "id": 116,
+        "links": [],
+        "mode": "markdown",
+        "title": "",
+        "transparent": true,
+        "type": "text"
+      },
+      {
+        "content": "## Dashboards",
+        "gridPos": {
+          "h": 2,
+          "w": 6,
+          "x": 16,
+          "y": 6
+        },
+        "id": 119,
+        "links": [],
+        "mode": "markdown",
+        "title": "",
+        "transparent": true,
+        "type": "text"
       },
       {
         "cacheTimeout": null,
@@ -1219,10 +884,10 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 0,
-          "y": 9
+          "x": 2,
+          "y": 8
         },
         "id": 75,
         "interval": null,
@@ -1332,10 +997,10 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 3,
-          "y": 9
+          "x": 5,
+          "y": 8
         },
         "id": 91,
         "interval": null,
@@ -1366,7 +1031,7 @@
           }
         ],
         "sparkline": {
-          "fillColor": "rgb(232, 232, 232)",
+          "fillColor": "#badff4",
           "full": false,
           "lineColor": "#5195ce",
           "show": true
@@ -1374,7 +1039,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "avg(netdata_web_log_response_time_milliseconds_average{dimension=\"max\",instance=~\"[[host]]\"})",
+            "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{chart2=~\".*.oioswift\", instance=~\"[[host]]\"})",
             "format": "time_series",
             "groupBy": [
               {
@@ -1444,10 +1109,10 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 5,
+          "h": 4,
           "w": 3,
-          "x": 6,
-          "y": 9
+          "x": 8,
+          "y": 8
         },
         "id": 109,
         "interval": null,
@@ -1478,10 +1143,10 @@
           }
         ],
         "sparkline": {
-          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "fillColor": "#badff4",
           "full": false,
           "lineColor": "rgb(31, 120, 193)",
-          "show": false
+          "show": true
         },
         "tableColumn": "",
         "targets": [
@@ -1494,6 +1159,458 @@
         ],
         "thresholds": "",
         "title": "Events",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": null,
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 11,
+          "y": 8
+        },
+        "id": 120,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "70%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "#badff4",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": true
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "expr": "sum(netdata_beanstalk_jobs_rate_jobs_persec_average{dimension=\"total\",instance=~\"[[host]]\"})",
+            "format": "time_series",
+            "intervalFactor": 1,
+            "refId": "A"
+          }
+        ],
+        "thresholds": "",
+        "title": "Events/s",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "folderId": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 16,
+          "y": 8
+        },
+        "headings": false,
+        "id": 118,
+        "limit": 10,
+        "links": [],
+        "query": "",
+        "recent": false,
+        "search": true,
+        "starred": false,
+        "tags": [],
+        "title": "",
+        "transparent": true,
+        "type": "dashlist"
+      },
+      {
+        "content": "## Data",
+        "gridPos": {
+          "h": 2,
+          "w": 9,
+          "x": 2,
+          "y": 12
+        },
+        "id": 114,
+        "links": [],
+        "mode": "markdown",
+        "title": "",
+        "transparent": true,
+        "type": "text"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": "prometheus",
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 2,
+          "y": 14
+        },
+        "id": 101,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "#badff4",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": true
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "expr": "sum(netdata_openio_container_count__average)",
+            "format": "time_series",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "intervalFactor": 1,
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": "",
+        "title": "Containers",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": "prometheus",
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 5,
+          "y": 14
+        },
+        "id": 99,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "#badff4",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": true
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "expr": "sum(netdata_openio_container_objects__average{instance=~\"[[host]]\"})",
+            "format": "time_series",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "intervalFactor": 1,
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": "",
+        "title": "Objects",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": "prometheus",
+        "format": "decbytes",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 8,
+          "y": 14
+        },
+        "id": 97,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "#badff4",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": true
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "expr": "sum(netdata_openio_container_bytes__average)",
+            "format": "time_series",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "intervalFactor": 1,
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": "",
+        "title": "Stored data",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -1567,6 +1684,6 @@
     "timezone": "browser",
     "title": "Overview",
     "uid": "Exqs3nvmz",
-    "version": 34
+    "version": 52
   }
 }
