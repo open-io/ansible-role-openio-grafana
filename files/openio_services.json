@@ -9,10 +9,10 @@
     "url": "/d/jPkxz4vik/openio-services",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T13:28:39Z",
-    "updated": "2018-06-29T07:58:26Z",
+    "updated": "2018-06-29T10:09:21Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 30,
+    "version": 32,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -37,7 +37,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 7,
-    "iteration": 1530259012161,
+    "iteration": 1530266862562,
     "links": [],
     "panels": [
       {
@@ -1418,7 +1418,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "avg(netdata_netdata_response_time_ms_request_average{dimension=\"average\",instance=~\"[[host]]\"})",
+            "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\", instance=~\"[[host]]\"})",
             "format": "time_series",
             "groupBy": [
               {
@@ -3553,6 +3553,6 @@
     "timezone": "browser",
     "title": "OpenIO Services",
     "uid": "jPkxz4vik",
-    "version": 30
+    "version": 32
   }
 }
