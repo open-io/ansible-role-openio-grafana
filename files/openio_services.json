@@ -9,10 +9,10 @@
     "url": "/d/jPkxz4vik/openio-services",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T13:28:39Z",
-    "updated": "2018-06-29T10:09:21Z",
+    "updated": "2018-07-02T10:14:05Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 32,
+    "version": 39,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -37,7 +37,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 7,
-    "iteration": 1530266862562,
+    "iteration": 1530526325653,
     "links": [],
     "panels": [
       {
@@ -480,7 +480,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(netdata_openio_container_bytes__average)",
+            "expr": "sum(netdata_openio_account_bytes__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -568,7 +568,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "topk(10, netdata_openio_container_bytes__average)",
+            "expr": "topk(10, netdata_openio_account_bytes__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -610,7 +610,7 @@
         "thresholds": [],
         "timeFrom": null,
         "timeShift": null,
-        "title": "Top 10 largest containers (size)",
+        "title": "Top 10 largest accounts (size)",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -816,7 +816,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(netdata_openio_container_objects__average{instance=~\"[[host]]\"})",
+            "expr": "sum(netdata_openio_account_objects__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -904,7 +904,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "topk(10, netdata_openio_container_objects__average)",
+            "expr": "topk(10, netdata_openio_account_objects__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -946,7 +946,7 @@
         "thresholds": [],
         "timeFrom": null,
         "timeShift": null,
-        "title": "Top 10 largest containers (object count)",
+        "title": "Top 10 largest accounts (objects)",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -3553,6 +3553,6 @@
     "timezone": "browser",
     "title": "OpenIO Services",
     "uid": "jPkxz4vik",
-    "version": 32
+    "version": 39
   }
 }

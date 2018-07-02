@@ -10,10 +10,10 @@
     "url": "/d/Exqs3nvmz/overview",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2018-06-28T12:39:27Z",
-    "updated": "2018-06-29T16:29:46Z",
+    "updated": "2018-07-02T10:09:49Z",
     "updatedBy": "admin",
     "createdBy": "Anonymous",
-    "version": 54,
+    "version": 57,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -38,7 +38,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 2,
-    "iteration": 1530289782078,
+    "iteration": 1530526134105,
     "links": [],
     "panels": [
       {
@@ -1459,7 +1459,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(netdata_openio_container_objects__average{instance=~\"[[host]]\"})",
+            "expr": "sum(netdata_openio_account_objects__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -1571,7 +1571,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sum(netdata_openio_container_bytes__average)",
+            "expr": "sum(netdata_openio_account_bytes__average)",
             "format": "time_series",
             "groupBy": [
               {
@@ -1684,6 +1684,6 @@
     "timezone": "browser",
     "title": "Overview",
     "uid": "Exqs3nvmz",
-    "version": 54
+    "version": 57
   }
 }

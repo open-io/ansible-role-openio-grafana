@@ -60,7 +60,7 @@
 - name: Provision - dashboards
   copy:
     src: "{{item}}.json"
-    dest: "{{ grafana_paths['dashboards'] | realpath }}/{{item}}.json"
+    dest: "{{ grafana_paths['dashboards'] | realpath }}/{{ item }}.json"
     owner: grafana
     group: grafana
     mode:  0644
