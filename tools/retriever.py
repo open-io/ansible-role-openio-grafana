@@ -45,12 +45,15 @@ aborting due to warning")
     def sanitize(self, data):
         """ Sanitize a dashboard """
         errors = list()
+        if 'dashboard' not in data:
+            raise Exception('Invalid dashboard format')
+        data = data['dashboard']
         for k in ('id', 'version', 'uid'):
             if k in data:
                 del data[k]
         if 'templating' in data and 'list' in data['templating']:
             del data['templating']['list'][0]['current']
-        if 'editable' in data['dashboard'] and data['dashboard']['editable']:
+        if 'editable' in data and data['editable']:
             errors.append('WARN: [%s] dashboard has been left editable')
         return data, errors
 
