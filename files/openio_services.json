@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1530526325653,
+  "iteration": 1531143817149,
   "links": [],
   "panels": [
     {
@@ -1569,7 +1569,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "\u00b5s",
           "label": null,
           "logBase": 1,
           "max": null,
