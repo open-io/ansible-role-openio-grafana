@@ -51,8 +51,10 @@ aborting due to warning")
         for k in ('id', 'version', 'uid'):
             if k in data:
                 del data[k]
-        if 'templating' in data and 'list' in data['templating']:
+        try:
             del data['templating']['list'][0]['current']
+        except Exception:
+            pass
         if 'editable' in data and data['editable']:
             errors.append('WARN: [%s] dashboard has been left editable')
         return data, errors
