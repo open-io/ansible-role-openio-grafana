@@ -1,7 +1,7 @@
 ---
 - package:
     name: apt-transport-https
-    state: installed
+    state: present
 
 - name: Install Package Cloud GPG key
   apt_key: url=https://packagecloud.io/gpg.key state=present
