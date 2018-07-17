@@ -1,9 +1,2 @@
 ---
-# vars file for ansible-role-grafana
-grafana_dashboards:
-  - overview
-  - openio_services
-  - openio_system
-  - network
-  - storage
-  - system
+...
