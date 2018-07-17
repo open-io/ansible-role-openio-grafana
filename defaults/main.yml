@@ -26,3 +26,13 @@ grafana_theme: light
 
 prometheus_host: localhost
 prometheus_port: 9090
+
+grafana_dashboards:
+  - overview
+  - openio_services
+  - openio_system
+  - network
+  - storage
+  - system
+  - health
+...
