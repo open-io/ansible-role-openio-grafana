@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1531136377170,
+  "iteration": 1532424221048,
   "links": [],
   "panels": [
     {
@@ -740,7 +740,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Raw Capacity",
+      "title": "Raw usage",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
