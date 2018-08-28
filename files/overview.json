@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1532424221048,
+  "iteration": 1535462036045,
   "links": [],
   "panels": [
     {
@@ -351,7 +351,7 @@
       "title": "CPU",
       "transparent": false,
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -481,7 +481,7 @@
       "thresholds": "75,90",
       "title": "RAM",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -502,9 +502,9 @@
       ],
       "datasource": "prometheus",
       "decimals": 1,
-      "format": "percent",
+      "format": "percentunit",
       "gauge": {
-        "maxValue": 100,
+        "maxValue": 1,
         "minValue": 0,
         "show": true,
         "thresholdLabels": false,
@@ -609,10 +609,10 @@
           ]
         }
       ],
-      "thresholds": "80,95",
+      "thresholds": "0.8,0.95",
       "title": "Storage",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -1463,7 +1463,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 6,
         "x": 18,
         "y": 9
@@ -1505,7 +1505,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(netdata_openio_account_bytes__average)",
+          "expr": "sum(netdata_openio_account_kilobytes__average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1578,7 +1578,7 @@
         "h": 5,
         "w": 3,
         "x": 18,
-        "y": 12
+        "y": 13
       },
       "id": 101,
       "interval": null,
@@ -1690,7 +1690,7 @@
         "h": 5,
         "w": 3,
         "x": 21,
-        "y": 12
+        "y": 13
       },
       "id": 99,
       "interval": null,
