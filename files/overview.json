@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1535462036045,
+  "iteration": 1535464728482,
   "links": [],
   "panels": [
     {
@@ -1454,7 +1454,7 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "format": "decbytes",
+      "format": "deckbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
