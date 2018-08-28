@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1531143817149,
+  "iteration": 1535462194412,
   "links": [],
   "panels": [
     {
@@ -407,7 +407,7 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "format": "decbytes",
+      "format": "deckbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -458,7 +458,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(netdata_openio_account_bytes__average)",
+          "expr": "sum(netdata_openio_account_kilobytes__average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -546,7 +546,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(10, netdata_openio_account_bytes__average)",
+          "expr": "topk(10, netdata_openio_account_kilobytes__average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -604,7 +604,7 @@
       },
       "yaxes": [
         {
-          "format": "decbytes",
+          "format": "deckbytes",
           "label": null,
           "logBase": 1,
           "max": null,
