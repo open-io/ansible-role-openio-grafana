@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1535462194412,
+  "iteration": 1541517197484,
   "links": [],
   "panels": [
     {
@@ -1077,6 +1077,179 @@
         "x": 0,
         "y": 26
       },
+      "id": 123,
+      "panels": [],
+      "title": "Meta2",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "id": 121,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aggr:netdata_web_log_response_codes:sum{chart2=~\".*.meta2\",dimension=~\"5xx\", instance=~\"[[host]]\"}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meta2 Errors",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 125,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(netdata_apps_mem_MB_average{instance=~\"[[host]]\", dimension=\"openio.meta2\"}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meta2 Memory usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decmbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
       "id": 113,
       "panels": [],
       "title": "Requests",
@@ -1104,7 +1277,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 27
+        "y": 37
       },
       "id": 95,
       "interval": null,
@@ -1206,7 +1379,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 27
+        "y": 37
       },
       "id": 44,
       "legend": {
@@ -1357,7 +1530,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 35
+        "y": 45
       },
       "id": 91,
       "interval": null,
@@ -1458,7 +1631,7 @@
         "h": 7,
         "w": 9,
         "x": 6,
-        "y": 35
+        "y": 45
       },
       "id": 46,
       "legend": {
@@ -1490,7 +1663,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(aggr:netdata_web_log_response_time_ms:sum{instance=~\"[[host]]\"}) by (chart2, dimension)",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\", instance=~\"[[host]]\"}) by (chart2, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1569,7 +1742,7 @@
       },
       "yaxes": [
         {
-          "format": "\u00b5s",
+          "format": "ms",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1597,7 +1770,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 35
+        "y": 45
       },
       "id": 49,
       "legend": {
@@ -1681,7 +1854,7 @@
         "h": 7,
         "w": 9,
         "x": 6,
-        "y": 42
+        "y": 52
       },
       "id": 45,
       "legend": {
@@ -1821,7 +1994,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 42
+        "y": 52
       },
       "id": 47,
       "legend": {
@@ -1955,7 +2128,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 59
       },
       "id": 115,
       "panels": [],
@@ -1984,7 +2157,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 50
+        "y": 60
       },
       "id": 107,
       "interval": null,
@@ -2054,7 +2227,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 50
+        "y": 60
       },
       "id": 71,
       "legend": {
@@ -2166,7 +2339,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 50
+        "y": 60
       },
       "id": 67,
       "legend": {
@@ -2289,7 +2462,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 58
+        "y": 68
       },
       "id": 93,
       "interval": null,
@@ -2390,7 +2563,7 @@
         "h": 9,
         "w": 9,
         "x": 6,
-        "y": 58
+        "y": 68
       },
       "id": 103,
       "legend": {
@@ -2470,7 +2643,7 @@
         "h": 9,
         "w": 9,
         "x": 15,
-        "y": 58
+        "y": 68
       },
       "id": 105,
       "legend": {
@@ -2545,7 +2718,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 77
       },
       "id": 117,
       "panels": [],
@@ -2563,7 +2736,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 68
+        "y": 78
       },
       "id": 38,
       "legend": {
@@ -2722,7 +2895,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 68
+        "y": 78
       },
       "id": 39,
       "legend": {
@@ -2881,7 +3054,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 76
+        "y": 86
       },
       "id": 119,
       "panels": [],
@@ -2899,7 +3072,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 77
+        "y": 87
       },
       "id": 41,
       "legend": {
@@ -3032,7 +3205,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 77
+        "y": 87
       },
       "id": 43,
       "legend": {
@@ -3165,7 +3338,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 85
+        "y": 95
       },
       "id": 40,
       "legend": {
@@ -3351,7 +3524,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 85
+        "y": 95
       },
       "id": 42,
       "legend": {
@@ -3471,6 +3644,7 @@
       ]
     }
   ],
+  "refresh": "10s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -3498,7 +3672,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

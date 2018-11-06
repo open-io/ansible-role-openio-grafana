@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1530202813050,
+  "iteration": 1541517206075,
   "links": [],
   "panels": [
     {
@@ -1012,6 +1012,86 @@
       "tooltip": {
         "shared": true,
         "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "id": 35,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "netdata_apps_sockets_open_sockets_average{instance=~'[[host]]', dimension='openio.meta2'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{dimension}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Opened Sockets (META2)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
         "value_type": "individual"
       },
       "type": "graph",
