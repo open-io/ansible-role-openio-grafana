@@ -35,4 +35,5 @@ grafana_dashboards:
   - storage
   - system
   - health
+  - software_version_info
 ...
