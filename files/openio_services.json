@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1541517197484,
+  "iteration": 1542204282606,
   "links": [],
   "panels": [
     {
@@ -3104,7 +3104,7 @@
         {
           "alias": "$tag_namespace: approximate_data_size",
           "dsType": "influxdb",
-          "expr": "sum(netdata_openio_zk_approximate_data_size__average{chart=\"openio.zk_approximate_data_size\",family=\"Zookeeper\",instance=~\"[[host]]\"})",
+          "expr": "sum(netdata_zk_data_bytes_average{instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -3237,7 +3237,7 @@
         {
           "alias": "$tag_namespace: pending_syncs",
           "dsType": "influxdb",
-          "expr": "sum(netdata_openio_zk_pending_syncs__average{instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "sum(netdata_zk_syncs_syncs_average{instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -3294,7 +3294,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Pending Syncs",
+      "title": "Leader Pending Syncs",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -3367,7 +3367,7 @@
         {
           "alias": "$tag_namespace: avg_latency",
           "dsType": "influxdb",
-          "expr": "avg(netdata_openio_zk_max_latency__average{chart=\"openio.zk_max_latency\",family=\"Zookeeper\",instance=~\"[[host]]\"})\n",
+          "expr": "avg(netdata_zk_latency_microseconds_average{instance=~\"[[host]]\"}) by (dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -3390,69 +3390,13 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "max",
+          "legendFormat": "{{dimension}}",
           "measurement": "openio_zookeeper_zk_avg_latency",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_namespace: max_latency",
-          "dsType": "influxdb",
-          "expr": "avg(netdata_openio_zk_avg_latency__average{chart=\"openio.zk_avg_latency\",family=\"Zookeeper\",instance=~\"[[host]]\"})",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "namespace"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 1,
-          "legendFormat": "average",
-          "measurement": "openio_zookeeper_zk_max_latency",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_zookeeper_zk_avg_latency\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
           "resultFormat": "time_series",
           "select": [
             [
@@ -3532,7 +3476,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -3553,7 +3497,7 @@
         {
           "alias": "$tag_namespace: requests",
           "dsType": "influxdb",
-          "expr": "avg(netdata_openio_zk_outstanding_requests__average{instance=~\"[[host]]\"})",
+          "expr": "avg(netdata_zk_requests_requests_average{instance=~\"[[host]]\", dimension=\"outstanding\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -3576,7 +3520,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "outstanding_requests",
+          "legendFormat": "outstanding requests",
           "measurement": "openio_zookeeper_zk_outstanding_requests",
           "orderByTime": "ASC",
           "policy": "default",
