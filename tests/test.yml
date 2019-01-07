@@ -1,7 +1,7 @@
 ---
 - name: Install and configure OpenIO SDS
   hosts: local
-  become : true
+  become: true
   gather_facts: true
 
 #  vars:
@@ -14,3 +14,4 @@
     - name: "Processing playbook on following servers"
       debug:
         msg: "{{ inventory_hostname }}"
+...
