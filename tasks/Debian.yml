@@ -2,6 +2,7 @@
 - package:
     name: apt-transport-https
     state: present
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Install Package Cloud GPG key
   apt_key: url=https://packagecloud.io/gpg.key state=present
@@ -19,4 +20,5 @@
   until: install_packages is success
   retries: 5
   delay: 2
+  ignore_errors: "{{ ansible_check_mode }}"
 ...
