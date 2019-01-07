@@ -1,5 +1,4 @@
 ---
-
 - name: Include per distro vars
   include_vars: "{{ item }}"
   with_first_found:
@@ -14,7 +13,7 @@
 
 - name: Generate secret key
   set_fact:
-      grafana_secret: "{{999999999999999999999 | random | to_uuid | hash('md5')}}"
+    grafana_secret: "{{999999999999999999999 | random | to_uuid | hash('md5')}}"
 
 - name: Ensure directories
   file:
@@ -24,7 +23,7 @@
     mode: 0644
     state: directory
   with_items:
-      "{{ grafana_paths.values() }}"
+    "{{ grafana_paths.values() }}"
 
 - name: Configure
   template:
@@ -32,7 +31,7 @@
     dest: "{{ grafana_paths['conf'] | realpath }}/grafana.ini"
     owner: grafana
     group: grafana
-    mode:  0644
+    mode: 0644
   notify: restart grafana
 
 - name: Overwrite systemd unit
@@ -41,7 +40,7 @@
     dest: "/usr/lib/systemd/system/grafana-server.service"
     owner: root
     group: root
-    mode:  0644
+    mode: 0644
   notify: restart grafana
 
 - name: Reload daemon
@@ -54,7 +53,7 @@
     dest: "{{ grafana_paths['datasources'] | realpath }}/prometheus.yaml"
     owner: grafana
     group: grafana
-    mode:  0644
+    mode: 0644
   notify: restart grafana
 
 - name: Provision - dashboards
@@ -63,8 +62,8 @@
     dest: "{{ grafana_paths['dashboards'] | realpath }}/{{ item }}.json"
     owner: grafana
     group: grafana
-    mode:  0644
-    backup: yes
+    mode: 0644
+    backup: true
   with_items: "{{ grafana_dashboards }}"
   notify: restart grafana
 
@@ -74,7 +73,7 @@
     dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.yml"
     owner: grafana
     group: grafana
-    mode:  0644
+    mode: 0644
   notify: restart grafana
 
 - name: Start service
@@ -82,3 +81,4 @@
     name: "{{ grafana_service_name }}"
     state: started
     enabled: true
+...

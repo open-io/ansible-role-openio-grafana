@@ -1,26 +1,25 @@
 ---
-
 grafana_repo_release: stable
 grafana_service_name: grafana-server
 grafana_version: 5.0.0
 grafana_paths:
-    conf: /etc/grafana
-    provisioning: /etc/grafana/provisioning
-    log: /var/log/grafana
-    data: /usr/share/grafana/data
-    plugins: /usr/share/grafana/plugins
-    datasources: /etc/grafana/provisioning/datasources
-    dashboards: /etc/grafana/provisioning/dashboards
+  conf: /etc/grafana
+  provisioning: /etc/grafana/provisioning
+  log: /var/log/grafana
+  data: /usr/share/grafana/data
+  plugins: /usr/share/grafana/plugins
+  datasources: /etc/grafana/provisioning/datasources
+  dashboards: /etc/grafana/provisioning/dashboards
 
 grafana_http:
-    protocol: http
-    host: 0.0.0.0
-    port: 3000
-    domain: localhost
+  protocol: http
+  host: 0.0.0.0
+  port: 3000
+  domain: localhost
 
 grafana_auth:
-    user: admin
-    password: admin
+  user: admin
+  password: admin
 
 grafana_theme: light
 
