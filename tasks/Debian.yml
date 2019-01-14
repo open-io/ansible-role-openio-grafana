@@ -1,15 +1,18 @@
 ---
-- package:
+- name: Install apt-transport-https
+  package:
     name: apt-transport-https
     state: present
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Install Package Cloud GPG key
-  apt_key: url=https://packagecloud.io/gpg.key state=present
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
 
 - name: Add APT repository
   apt_repository:
-    repo: 'deb https://packagecloud.io/grafana/{{ grafana_repo_release }}/debian/ jessie main'
+    repo: 'deb https://packages.grafana.com/oss/deb stable main'
     state: present
 
 - name: Install
