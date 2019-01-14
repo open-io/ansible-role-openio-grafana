@@ -20,6 +20,8 @@ grafana_http:
 grafana_auth:
   user: admin
   password: admin
+  #grafana_secret: "{{999999999999999999999 | random | to_uuid | hash('md5')}}"
+  grafana_secret: "2dbdd78852f5db31d990a9bec62499db"
 
 grafana_theme: light
 

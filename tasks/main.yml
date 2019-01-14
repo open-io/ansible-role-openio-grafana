@@ -11,10 +11,6 @@
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
 
-- name: Generate secret key
-  set_fact:
-    grafana_secret: "{{999999999999999999999 | random | to_uuid | hash('md5')}}"
-
 - name: Ensure directories
   file:
     path: "{{ item }}"
