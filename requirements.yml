@@ -1,0 +1,6 @@
+---
+- src: https://github.com/open-io/ansible-role-openio-users.git
+  version: master
+  name: users
+
+...
