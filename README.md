@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/open-io/ansible-role-openio-grafana.svg?branch=master)](https://travis-ci.org/open-io/ansible-role-openio-grafana)
 ansible-role-grafana
 =========
 
@@ -58,11 +59,11 @@ https://github.com/vdombrovski/ansible-openio-monitoring
 License
 -------
 
-Apache v2.0
+GNU AFFERO GENERAL PUBLIC LICENSE, Version 3
 
 Author Information
 ------------------
 
-Vladimir DOMBROVSKI (maintainer)
-Cedric Delgehier (contributor)
-Romain Acciari (contributor)
+- [Cedric DELGEHIER](https://github.com/cdelgehier) (maintainer)
+- [Romain ACCIARI](https://github.com/racciari) (maintainer)
+- [Vladimir DOMBROVSKI](https://github.com/vdombrovski) (maintainer)
