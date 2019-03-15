@@ -28,7 +28,6 @@
     owner: grafana
     group: grafana
     mode: 0644
-  notify: restart grafana
 
 - name: Overwrite systemd unit
   template:
@@ -37,7 +36,6 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart grafana
 
 - name: Reload daemon
   systemd: daemon_reload=yes
@@ -50,7 +48,6 @@
     owner: grafana
     group: grafana
     mode: 0644
-  notify: restart grafana
 
 - name: Provision - dashboards
   copy:
@@ -61,7 +58,6 @@
     mode: 0644
     backup: true
   with_items: "{{ grafana_dashboards + (['filesystem_connector'] if grafana_oiofs_enabled else []) }}"
-  notify: restart grafana
 
 - name: Provision - dashboard config
   template:
@@ -70,11 +66,22 @@
     owner: grafana
     group: grafana
     mode: 0644
-  notify: restart grafana
 
 - name: Start service
   service:
     name: "{{ grafana_service_name }}"
-    state: started
+    state: "{{'started' if grafana_provision_only else 'restarted' }}"
     enabled: true
+
+- name: Ensure the service is started
+  wait_for:
+    host: "{{ grafana_bind_address }}"
+    port: "{{ grafana_http['port'] }}"
+    delay: 10
+
+- name: Set overview as the default dashboard
+  debug:
+    msg: "{{ grafana_http | set_default_dashboard(grafana_auth, grafana_bind_address) }}"
+  when:
+    - not grafana_provision_only
 ...
