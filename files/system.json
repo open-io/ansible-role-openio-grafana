@@ -16,7 +16,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1530202862192,
+  "iteration": 1552580699335,
   "links": [],
   "panels": [
     {
@@ -42,7 +42,7 @@
         "hideZero": true,
         "max": true,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -529,7 +529,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -657,7 +657,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -780,7 +780,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {

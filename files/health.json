@@ -15,35 +15,205 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1541517174111,
+  "iteration": 1552499282784,
   "links": [],
   "panels": [
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
+      "colorBackground": true,
+      "colorValue": false,
       "colors": [
-        "#d44a3a",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#f29191",
+        "#f29191",
+        "#9ac48a"
       ],
       "datasource": null,
-      "decimals": null,
+      "description": "Indicates the current health of the monitoring system. Errors correspond to netdata/blackbox targets that are down",
       "format": "percent",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 6,
-        "w": 5,
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 213,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "100",
+          "text": "OK",
+          "to": "100"
+        },
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "99"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * count(up{module=~\"netdata|blackbox\"} == 1) / count(up{module=~\"netdata|blackbox\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "99,100",
+      "title": "Collection status",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "100"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": ""
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#badff4",
+        "#65c5db",
+        "#5195ce"
+      ],
+      "datasource": null,
+      "description": "",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
         "x": 3,
         "y": 0
       },
-      "id": 109,
+      "id": 226,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "count(up{module=\"netdata\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0",
+      "title": "Instances",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "100"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": ""
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f9ba8f",
+        "rgba(237, 129, 40, 0.89)",
+        "#65c5db"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 118,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -71,26 +241,27 @@
           "to": "null"
         }
       ],
+      "repeatDirection": "h",
       "sparkline": {
-        "fillColor": "rgb(240, 240, 240)",
-        "full": true,
-        "lineColor": "#65c5db",
-        "show": true
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
       },
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * count(probe_success == 1) / count(probe_success)",
+          "expr": "count(probe_success)",
           "format": "time_series",
+          "instant": false,
           "intervalFactor": 1,
           "refId": "A"
         }
       ],
-      "thresholds": "50,80",
-      "title": "Cluster health",
-      "transparent": false,
+      "thresholds": "0,0",
+      "title": "Checks",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "120%",
       "valueMaps": [
         {
           "op": "=",
@@ -119,12 +290,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 8,
+        "h": 4,
+        "w": 3,
+        "x": 9,
         "y": 0
       },
-      "id": 118,
+      "id": 214,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -170,9 +341,9 @@
         }
       ],
       "thresholds": "0,0",
-      "title": "Passed checks",
+      "title": "Passed",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "120%",
       "valueMaps": [
         {
           "op": "=",
@@ -201,8 +372,8 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 6,
-        "w": 4,
+        "h": 4,
+        "w": 3,
         "x": 12,
         "y": 0
       },
@@ -252,9 +423,9 @@
         }
       ],
       "thresholds": "1,1",
-      "title": "Failed checks",
+      "title": "Failed",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "120%",
       "valueMaps": [],
       "valueName": "current"
     },
@@ -277,9 +448,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 16,
+        "h": 4,
+        "w": 3,
+        "x": 15,
         "y": 0
       },
       "id": 206,
@@ -319,7 +490,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(ALERTS) OR vector(0)",
+          "expr": "count(ALERTS{alertstate=\"firing\"}) OR vector(0)",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -330,8 +501,169 @@
       "thresholds": "1,1",
       "title": "Active alerts",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "120%",
       "valueMaps": [],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f29191",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "description": "",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 224,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * count(up{module=\"netdata\"} == 1) / count(up{module=\"netdata\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "99,100",
+      "title": "Netdata",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "100"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": ""
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f29191",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "description": "",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 225,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * count(up{module=\"blackbox\"} == 1) / count(up{module=\"blackbox\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "99,100",
+      "title": "Blackbox",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "100"
+        },
+        {
+          "op": "=",
+          "text": "",
+          "value": ""
+        }
+      ],
       "valueName": "current"
     },
     {
@@ -340,11 +672,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 4
       },
-      "id": 120,
+      "id": 268,
       "panels": [],
-      "title": "Health",
+      "title": "Services",
       "type": "row"
     },
     {
@@ -367,9 +699,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 3,
         "x": 0,
-        "y": 7
+        "y": 5
       },
       "id": 123,
       "interval": null,
@@ -386,7 +718,7 @@
         }
       ],
       "maxDataPoints": 100,
-      "minSpan": 2,
+      "minSpan": 3,
       "nullPointMode": "connected",
       "nullText": null,
       "postfix": "",
@@ -399,8 +731,8 @@
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "meta0",
-          "value": "meta0"
+          "text": "conscience",
+          "value": "conscience"
         }
       },
       "sparkline": {
@@ -412,7 +744,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -453,11 +785,11 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 4,
-        "y": 7
+        "w": 3,
+        "x": 3,
+        "y": 5
       },
-      "id": 207,
+      "id": 269,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -472,7 +804,7 @@
         }
       ],
       "maxDataPoints": 100,
-      "minSpan": 2,
+      "minSpan": 3,
       "nullPointMode": "connected",
       "nullText": null,
       "postfix": "",
@@ -482,7 +814,95 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1541517174111,
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "zookeeper",
+          "value": "zookeeper"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 5
+      },
+      "id": 270,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
@@ -500,7 +920,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -541,11 +961,11 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 8,
-        "y": 7
+        "w": 3,
+        "x": 9,
+        "y": 5
       },
-      "id": 208,
+      "id": 271,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -560,7 +980,7 @@
         }
       ],
       "maxDataPoints": 100,
-      "minSpan": 2,
+      "minSpan": 3,
       "nullPointMode": "connected",
       "nullText": null,
       "postfix": "",
@@ -570,7 +990,359 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1541517174111,
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "oioswift",
+          "value": "oioswift"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 5
+      },
+      "id": 272,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "account",
+          "value": "account"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 15,
+        "y": 5
+      },
+      "id": 273,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "redis",
+          "value": "redis"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 18,
+        "y": 5
+      },
+      "id": 274,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "redissentinel",
+          "value": "redissentinel"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 5
+      },
+      "id": 275,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
@@ -588,7 +1360,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -629,11 +1401,11 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 12,
-        "y": 7
+        "w": 3,
+        "x": 0,
+        "y": 8
       },
-      "id": 209,
+      "id": 276,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -648,7 +1420,7 @@
         }
       ],
       "maxDataPoints": 100,
-      "minSpan": 2,
+      "minSpan": 3,
       "nullPointMode": "connected",
       "nullText": null,
       "postfix": "",
@@ -658,183 +1430,7 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1541517174111,
-      "repeatPanelId": 123,
-      "scopedVars": {
-        "service": {
-          "selected": false,
-          "text": "meta2",
-          "value": "meta2"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
-          "format": "time_series",
-          "instant": true,
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": "50,100",
-      "title": "[[service]]",
-      "transparent": false,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "?",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#f29191",
-        "#f2c96d",
-        "#9ac48a"
-      ],
-      "datasource": null,
-      "format": "percent",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 16,
-        "y": 7
-      },
-      "id": 210,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 2,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1541517174111,
-      "repeatPanelId": 123,
-      "scopedVars": {
-        "service": {
-          "selected": false,
-          "text": "conscience",
-          "value": "conscience"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
-          "format": "time_series",
-          "instant": true,
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": "50,100",
-      "title": "[[service]]",
-      "transparent": false,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "?",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#f29191",
-        "#f2c96d",
-        "#9ac48a"
-      ],
-      "datasource": null,
-      "format": "percent",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 20,
-        "y": 7
-      },
-      "id": 211,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 2,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1541517174111,
+      "repeatIteration": 1552499282784,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
@@ -852,7 +1448,359 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\", host=~\"[[host]]\"})",
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 277,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "meta2",
+          "value": "meta2"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 8
+      },
+      "id": 278,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "rawx",
+          "value": "rawx"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 8
+      },
+      "id": 279,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "rdir",
+          "value": "rdir"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 8
+      },
+      "id": 280,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1552499282784,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "meta0",
+          "value": "meta0"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -879,11 +1827,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 11
       },
-      "id": 192,
+      "id": 240,
       "panels": [],
-      "title": "Alerts",
+      "title": "Details",
       "type": "row"
     },
     {
@@ -891,10 +1839,10 @@
       "datasource": null,
       "fontSize": "100%",
       "gridPos": {
-        "h": 17,
-        "w": 12,
+        "h": 15,
+        "w": 9,
         "x": 0,
-        "y": 11
+        "y": 12
       },
       "id": 133,
       "links": [],
@@ -986,6 +1934,36 @@
           "thresholds": [],
           "type": "hidden",
           "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "Value #A",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
         }
       ],
       "targets": [
@@ -995,6 +1973,13 @@
           "instant": true,
           "intervalFactor": 1,
           "refId": "A"
+        },
+        {
+          "expr": "up{module=~\"netdata|blackbox\"} == 0",
+          "format": "table",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "B"
         }
       ],
       "title": "Failed checks",
@@ -1006,10 +1991,10 @@
       "datasource": null,
       "fontSize": "100%",
       "gridPos": {
-        "h": 17,
-        "w": 12,
-        "x": 12,
-        "y": 11
+        "h": 15,
+        "w": 15,
+        "x": 9,
+        "y": 12
       },
       "id": 177,
       "links": [],
@@ -1167,7 +2152,7 @@
       ],
       "targets": [
         {
-          "expr": "ALERTS",
+          "expr": "ALERTS{alertstate=\"firing\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -1186,30 +2171,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
-        "datasource": "prometheus",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "host",
-        "options": [],
-        "query": "label_values(probe_success, host)",
-        "refresh": 1,
-        "regex": "/.*/",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
         "allValue": "blank=All",
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
         "datasource": "prometheus",
         "hide": 2,
         "includeAll": true,
@@ -1253,7 +2215,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

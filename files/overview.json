@@ -15,54 +15,8 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1541517159028,
   "links": [],
   "panels": [
-    {
-      "content": "### Health",
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 0
-      },
-      "id": 137,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "### System",
-      "gridPos": {
-        "h": 2,
-        "w": 12,
-        "x": 5,
-        "y": 0
-      },
-      "id": 136,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "### Network",
-      "gridPos": {
-        "h": 2,
-        "w": 6,
-        "x": 18,
-        "y": 0
-      },
-      "id": 140,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
     {
       "cacheTimeout": null,
       "colorBackground": true,
@@ -70,7 +24,7 @@
       "colors": [
         "#9ac48a",
         "rgba(237, 129, 40, 0.89)",
-        "#f29191"
+        "#eab839"
       ],
       "datasource": null,
       "format": "none",
@@ -85,7 +39,7 @@
         "h": 3,
         "w": 2,
         "x": 0,
-        "y": 2
+        "y": 0
       },
       "id": 128,
       "interval": null,
@@ -168,7 +122,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 2
+        "y": 0
       },
       "id": 131,
       "interval": null,
@@ -214,7 +168,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(ALERTS) OR vector(0)",
+          "expr": "count(ALERTS{alertstate=\"firing\"}) OR vector(0)",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -251,7 +205,7 @@
         "h": 4,
         "w": 3,
         "x": 5,
-        "y": 2
+        "y": 0
       },
       "id": 10,
       "interval": null,
@@ -291,7 +245,7 @@
       "targets": [
         {
           "dsType": "influxdb",
-          "expr": "avg(netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",dimension=\"user\",instance=~\"[[host]]\"})",
+          "expr": "avg(netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",dimension=\"user\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -383,7 +337,7 @@
         "h": 4,
         "w": 3,
         "x": 8,
-        "y": 2
+        "y": 0
       },
       "id": 11,
       "interval": null,
@@ -424,7 +378,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "100 * sum(netdata_system_ram_MB_average{dimension=\"used\",instance=~\"[[host]]\"}) / sum(netdata_system_ram_MB_average{instance=~\"[[host]]\"})",
+          "expr": "100 * sum(netdata_system_ram_MB_average{dimension=\"used\"}) / sum(netdata_system_ram_MB_average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -514,7 +468,7 @@
         "h": 4,
         "w": 3,
         "x": 11,
-        "y": 2
+        "y": 0
       },
       "id": 111,
       "interval": null,
@@ -555,7 +509,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GB_average{instance=~\"[[host]]\"}))",
+          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\"}) / sum(netdata_disk_space_GB_average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -644,7 +598,7 @@
         "h": 4,
         "w": 3,
         "x": 14,
-        "y": 2
+        "y": 0
       },
       "id": 75,
       "interval": null,
@@ -683,7 +637,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(netdata_openio_score__average{instance=~\"[[host]]\"})",
+          "expr": "avg(aggr:netdata_openio_score:avg_per_service)",
           "format": "time_series",
           "groupBy": [
             {
@@ -735,300 +689,14 @@
       "valueName": "current"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "datasource": "prometheus",
-      "format": "Kbits",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 18,
-        "y": 2
-      },
-      "id": 25,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "dsType": "influxdb",
-          "expr": "sum(netdata_net_net_kilobits_persec_average{dimension=\"received\", instance=~\"[[host]]\"}) - sum(netdata_net_net_kilobits_persec_average{dimension=\"sent\", instance=~\"[[host]]\"})\n",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 1,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "type",
-              "operator": "=",
-              "value": "received"
-            }
-          ]
-        }
-      ],
-      "thresholds": "",
-      "title": "Bandwidth (System)",
-      "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
-      "format": "Kbits",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 21,
-        "y": 2
-      },
-      "id": 95,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 1,
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": "",
-      "title": "Bandwidth (Gateway)",
-      "transparent": false,
-      "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "content": "### Navigation",
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 5
-      },
-      "id": 138,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "### Storage",
-      "gridPos": {
-        "h": 2,
-        "w": 6,
-        "x": 5,
-        "y": 6
-      },
-      "id": 139,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "### Internals",
-      "gridPos": {
-        "h": 2,
-        "w": 6,
-        "x": 11,
-        "y": 6
-      },
-      "id": 148,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
       "columns": [],
       "datasource": null,
       "fontSize": "100%",
       "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 6,
         "x": 18,
-        "y": 6
+        "y": 0
       },
       "id": 147,
       "links": [],
@@ -1062,7 +730,7 @@
           "unit": "short"
         },
         {
-          "alias": "Installed count",
+          "alias": "Count",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1141,7 +809,7 @@
         "h": 13,
         "w": 4,
         "x": 0,
-        "y": 7
+        "y": 3
       },
       "headings": false,
       "id": 118,
@@ -1157,6 +825,21 @@
       "type": "dashlist"
     },
     {
+      "content": "### Storage",
+      "gridPos": {
+        "h": 2,
+        "w": 12,
+        "x": 5,
+        "y": 4
+      },
+      "id": 139,
+      "links": [],
+      "mode": "markdown",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
@@ -1166,7 +849,9 @@
         "rgba(50, 172, 45, 0.97)"
       ],
       "datasource": "prometheus",
-      "format": "decgbytes",
+      "decimals": 1,
+      "description": "Total storage used by the application. Does include replication / EC overhead.",
+      "format": "decbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1178,7 +863,7 @@
         "h": 4,
         "w": 3,
         "x": 5,
-        "y": 8
+        "y": 6
       },
       "id": 24,
       "interval": null,
@@ -1219,7 +904,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"})",
+          "expr": "sum(avg(label_replace(netdata_openio_byte_used__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim))",
           "format": "time_series",
           "groupBy": [
             {
@@ -1237,6 +922,7 @@
           ],
           "hide": false,
           "intervalFactor": 1,
+          "legendFormat": "",
           "measurement": "disk_space",
           "orderByTime": "ASC",
           "policy": "default",
@@ -1274,9 +960,99 @@
         }
       ],
       "thresholds": "",
-      "title": "Raw capacity used",
+      "title": "Used storage capacity",
       "type": "singlestat",
-      "valueFontSize": "50%",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "description": "Total storage usable by the applications. Doesn't take into account replication / EC overhead",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 6
+      },
+      "id": 150,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) + sum(netdata_disk_space_GB_average{dimension=\"avail\",instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        },
+        {
+          "expr": "sum(avg(label_replace(netdata_openio_byte_used__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim)) + sum(avg(label_replace(netdata_openio_byte_avail__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "B"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total storage capacity",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -1296,6 +1072,8 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
+      "decimals": 1,
+      "description": "Total amount of actual data stored in OpenIO.",
       "format": "deckbytes",
       "gauge": {
         "maxValue": 100,
@@ -1307,8 +1085,8 @@
       "gridPos": {
         "h": 4,
         "w": 3,
-        "x": 8,
-        "y": 8
+        "x": 11,
+        "y": 6
       },
       "id": 97,
       "interval": null,
@@ -1342,7 +1120,7 @@
         "fillColor": "#badff4",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": true
+        "show": false
       },
       "tableColumn": "",
       "targets": [
@@ -1386,89 +1164,9 @@
         }
       ],
       "thresholds": "",
-      "title": "Actual data stored",
+      "title": "Stored data",
       "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 11,
-        "y": 8
-      },
-      "id": 109,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "#badff4",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(netdata_beanstalk_jobs_jobs_average{instance=~\"[[host]]\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "title": "Queue Events",
-      "type": "singlestat",
-      "valueFontSize": "50%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -1488,8 +1186,8 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "decimals": 1,
-      "format": "ms",
+      "description": "Total number of objects in storage. Objects uploaded using MPU (Multipart Upload) may result in multiple objects created in OpenIO.",
+      "format": "short",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1501,231 +1199,7 @@
         "h": 4,
         "w": 3,
         "x": 14,
-        "y": 8
-      },
-      "id": 91,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "#badff4",
-        "full": false,
-        "lineColor": "#5195ce",
-        "show": true
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\", instance=~\"[[host]]\"})",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 1,
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": "",
-      "title": "Gateway Response time",
-      "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 5,
-        "y": 12
-      },
-      "id": 101,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "#badff4",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(netdata_openio_container_count__average)",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 1,
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": "",
-      "title": "Containers",
-      "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 8,
-        "y": 12
+        "y": 6
       },
       "id": 99,
       "interval": null,
@@ -1759,7 +1233,7 @@
         "fillColor": "#badff4",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": true
+        "show": false
       },
       "tableColumn": "",
       "targets": [
@@ -1803,9 +1277,9 @@
         }
       ],
       "thresholds": "",
-      "title": "Objects",
+      "title": "Objects (OpenIO)",
       "type": "singlestat",
-      "valueFontSize": "50%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -1816,19 +1290,492 @@
       "valueName": "current"
     },
     {
-      "content": "",
+      "content": "### Usage",
       "gridPos": {
-        "h": 5,
+        "h": 2,
         "w": 12,
         "x": 5,
-        "y": 16
+        "y": 10
       },
-      "id": 135,
+      "id": 148,
       "links": [],
       "mode": "markdown",
       "title": "",
       "transparent": true,
       "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "prometheus",
+      "decimals": 1,
+      "description": "Total bandwidth as seen by the system.",
+      "format": "Kbits",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 12
+      },
+      "id": 25,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "dsType": "influxdb",
+          "expr": "sum(netdata_net_net_kilobits_persec_average{dimension=\"received\"}) - sum(netdata_net_net_kilobits_persec_average{dimension=\"sent\"})",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "type",
+              "operator": "=",
+              "value": "received"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "title": "Bandwidth (System)",
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "decimals": 1,
+      "description": "Total bandwidth as seen by the S3/Swift gateway",
+      "format": "bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 12
+      },
+      "id": 95,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"received\", chart2=~\".*.oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"sent\", chart2=~\".*.oioswift\"})",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "",
+      "title": "Bandwidth (Gateway)",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "decimals": 1,
+      "description": "Average response time of the S3 / Swift gateway",
+      "format": "ms",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 11,
+        "y": 12
+      },
+      "id": 91,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "#badff4",
+        "full": false,
+        "lineColor": "#5195ce",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\"})",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "",
+      "title": "Gateway Response time",
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "decimals": 1,
+      "description": "Total number of server (5xx) errors during the past hour",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 14,
+        "y": 12
+      },
+      "id": 151,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "#badff4",
+        "full": false,
+        "lineColor": "#5195ce",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(rate(aggr:netdata_web_log_response_codes:sum{dimension=\"5xx\"}[1h]))",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "",
+      "title": "Server errors (1h)",
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     }
   ],
   "refresh": "10s",
@@ -1836,30 +1783,10 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "allValue": null,
-        "datasource": "prometheus",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "host",
-        "options": [],
-        "query": "label_values(netdata_system_cpu_percentage_average, instance)",
-        "refresh": 1,
-        "regex": "/.*/",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

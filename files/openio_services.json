@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1542204282606,
+  "iteration": 1552579991533,
   "links": [],
   "panels": [
     {
@@ -184,69 +184,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_namespace: $tag_service_type",
-          "dsType": "influxdb",
-          "expr": "avg(label_replace(netdata_openio_score__average{chart=\"openio.score\",family=\"Score\",instance=~\"[[host]]\"}, \"dim2\", \"$1\", \"dimension\", \"(.*?)[_].*\")) by (dim2)",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "service_type"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "namespace"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "{{dim2}}",
-          "measurement": "openio_score",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"[[DS]]\".\"openio_score\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"service_type\", \"namespace\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        },
-        {
           "expr": "aggr:netdata_openio_score:avg_per_service",
           "format": "time_series",
           "hide": false,
@@ -287,7 +224,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ]
     },
@@ -366,6 +303,7 @@
         "show": true,
         "showHistogram": false
       },
+      "transparent": false,
       "type": "heatmap",
       "xAxis": {
         "show": true
@@ -376,8 +314,8 @@
         "decimals": null,
         "format": "short",
         "logBase": 1,
-        "max": null,
-        "min": null,
+        "max": "120",
+        "min": "0",
         "show": true,
         "splitFactor": null
       },
@@ -743,7 +681,7 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "format": "none",
+      "format": "short",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -967,7 +905,7 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "format": "none",
+      "format": "short",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1149,7 +1087,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1229,7 +1167,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1243,12 +1181,193 @@
       ]
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 36
+      },
+      "id": 127,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(netdata_openio_meta2_cache_bases_cold__average{instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "cold",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(netdata_openio_meta2_cache_bases_max__average{instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "max",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meta2 cache bases",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 36
+      },
+      "id": 129,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(netdata_openio_meta2_elections_total__average{instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "total",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(netdata_openio_meta2_elections_failed__average{instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "failed",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(netdata_openio_meta2_elections_none__average{instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "none",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meta2 elections",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 45
       },
       "id": 113,
       "panels": [],
@@ -1277,7 +1396,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 37
+        "y": 46
       },
       "id": 95,
       "interval": null,
@@ -1316,7 +1435,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"})",
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\", chart2=~\".*.oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\", chart2=~\".*.oioswift\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -1379,7 +1498,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 37
+        "y": 46
       },
       "id": 44,
       "legend": {
@@ -1494,7 +1613,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1530,7 +1649,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 45
+        "y": 54
       },
       "id": 91,
       "interval": null,
@@ -1631,7 +1750,7 @@
         "h": 7,
         "w": 9,
         "x": 6,
-        "y": 45
+        "y": 54
       },
       "id": 46,
       "legend": {
@@ -1663,7 +1782,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\", instance=~\"[[host]]\"}) by (chart2, dimension)",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{chart2=~\".*.oioswift\", instance=~\"[[host]]\"}) by (chart2, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1746,7 +1865,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1770,7 +1889,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 45
+        "y": 54
       },
       "id": 49,
       "legend": {
@@ -1830,7 +1949,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1854,7 +1973,7 @@
         "h": 7,
         "w": 9,
         "x": 6,
-        "y": 52
+        "y": 61
       },
       "id": 45,
       "legend": {
@@ -1970,7 +2089,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1994,7 +2113,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 52
+        "y": 61
       },
       "id": 47,
       "legend": {
@@ -2109,7 +2228,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2128,7 +2247,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 68
       },
       "id": 115,
       "panels": [],
@@ -2145,7 +2264,7 @@
         "#d44a3a"
       ],
       "datasource": "prometheus",
-      "format": "none",
+      "format": "short",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -2157,7 +2276,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 60
+        "y": 69
       },
       "id": 107,
       "interval": null,
@@ -2227,7 +2346,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 60
+        "y": 69
       },
       "id": 71,
       "legend": {
@@ -2315,7 +2434,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2339,7 +2458,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 60
+        "y": 69
       },
       "id": 67,
       "legend": {
@@ -2427,7 +2546,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2462,7 +2581,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 68
+        "y": 77
       },
       "id": 93,
       "interval": null,
@@ -2563,7 +2682,7 @@
         "h": 9,
         "w": 9,
         "x": 6,
-        "y": 68
+        "y": 77
       },
       "id": 103,
       "legend": {
@@ -2619,7 +2738,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2643,7 +2762,7 @@
         "h": 9,
         "w": 9,
         "x": 15,
-        "y": 68
+        "y": 77
       },
       "id": 105,
       "legend": {
@@ -2699,7 +2818,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2718,7 +2837,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 86
       },
       "id": 117,
       "panels": [],
@@ -2736,7 +2855,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 78
+        "y": 87
       },
       "id": 38,
       "legend": {
@@ -2838,14 +2957,6 @@
               "value": "/^current.*/"
             }
           ]
-        },
-        {
-          "expr": "sum(netdata_beanstalk_current_jobs_jobs_average{instance=~\"[[host]]\"}) by (dimension)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -2871,7 +2982,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -2895,7 +3006,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 78
+        "y": 87
       },
       "id": 39,
       "legend": {
@@ -3035,7 +3146,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3054,7 +3165,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 86
+        "y": 95
       },
       "id": 119,
       "panels": [],
@@ -3072,7 +3183,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 87
+        "y": 96
       },
       "id": 41,
       "legend": {
@@ -3181,7 +3292,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3205,7 +3316,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 87
+        "y": 96
       },
       "id": 43,
       "legend": {
@@ -3314,7 +3425,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3338,7 +3449,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 95
+        "y": 104
       },
       "id": 40,
       "legend": {
@@ -3444,7 +3555,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3468,7 +3579,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 95
+        "y": 104
       },
       "id": 42,
       "legend": {
@@ -3574,7 +3685,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3616,7 +3727,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
