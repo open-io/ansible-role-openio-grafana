@@ -3,7 +3,7 @@
   become: true
   vars:
     NS: TRAVIS
-
+    grafana_provision_only: true
   roles:
     - role: users
     - role: role_under_test
