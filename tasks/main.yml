@@ -60,7 +60,7 @@
     group: grafana
     mode: 0644
     backup: true
-  with_items: "{{ grafana_dashboards }}"
+  with_items: "{{ grafana_dashboards + (['filesystem_connector'] if grafana_oiofs_enabled else []) }}"
   notify: restart grafana
 
 - name: Provision - dashboard config

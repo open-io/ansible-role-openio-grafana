@@ -28,6 +28,8 @@ grafana_theme: light
 prometheus_host: localhost
 prometheus_port: 9090
 
+grafana_oiofs_enabled: false
+
 grafana_dashboards:
   - overview
   - openio_services
@@ -37,4 +39,5 @@ grafana_dashboards:
   - system
   - health
   - software_version_info
+  - diagnostics
 ...

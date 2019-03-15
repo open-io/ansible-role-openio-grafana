@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1541517206075,
+  "iteration": 1552580662739,
   "links": [],
   "panels": [
     {
@@ -61,7 +61,7 @@
         {
           "alias": "$tag_servicetype: $tag_mode",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "100 * netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -90,7 +90,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -206,7 +206,7 @@
         {
           "alias": "$tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -235,7 +235,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "reads - {{dimension}}",
+          "legendFormat": "reads - {{instance}} - {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -274,7 +274,7 @@
         {
           "alias": "$tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -303,7 +303,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "writes - {{dimension}}",
+          "legendFormat": "writes - {{instance}} - {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -363,7 +363,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -419,7 +419,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_files_open_files_average{chart=\"apps.files\",family=\"disk\",instance=~\"[[host]]\"}) by (dimension)\n",
+          "expr": "netdata_apps_files_open_files_average{chart=\"apps.files\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -442,7 +442,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -496,7 +496,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -552,7 +552,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_mem_MB_average{chart=\"apps.mem\",family=\"mem\",instance=~\"[[host]]\"}) by (dimension)\n",
+          "expr": "netdata_apps_mem_MB_average{chart=\"apps.mem\",family=\"mem\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -575,7 +575,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -629,7 +629,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -648,6 +648,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "prometheus",
+      "decimals": null,
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -685,7 +686,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_processes_processes_average{chart=\"apps.processes\",family=\"processes\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "netdata_apps_processes_processes_average{chart=\"apps.processes\",family=\"processes\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -708,7 +709,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -758,11 +759,12 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": null,
+          "decimals": 0,
+          "format": "none",
+          "label": "",
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -771,7 +773,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ]
     },
@@ -818,7 +820,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_threads_threads_average{chart=\"apps.threads\",family=\"processes\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "netdata_apps_threads_threads_average{chart=\"apps.threads\",family=\"processes\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -841,7 +843,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -895,7 +897,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -951,7 +953,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(netdata_apps_sockets_open_sockets_average{chart=\"apps.sockets\",family=\"net\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "netdata_apps_sockets_open_sockets_average{chart=\"apps.sockets\",family=\"net\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -974,7 +976,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "{{instance}} {{dimension}}",
           "measurement": "openio",
           "orderByTime": "ASC",
           "policy": "default",
@@ -1028,87 +1030,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 21
-      },
-      "id": 35,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "netdata_apps_sockets_open_sockets_average{instance=~'[[host]]', dimension='openio.meta2'}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{dimension}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Opened Sockets (META2)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1141,6 +1063,223 @@
         "refresh": 1,
         "regex": "/.*/",
         "sort": 2,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "openio.meta2",
+          "value": [
+            "openio.meta2"
+          ]
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "service",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "apps.plugin",
+            "value": "apps.plugin"
+          },
+          {
+            "selected": false,
+            "text": "cron",
+            "value": "cron"
+          },
+          {
+            "selected": false,
+            "text": "email",
+            "value": "email"
+          },
+          {
+            "selected": false,
+            "text": "haproxy",
+            "value": "haproxy"
+          },
+          {
+            "selected": false,
+            "text": "httpd",
+            "value": "httpd"
+          },
+          {
+            "selected": false,
+            "text": "java",
+            "value": "java"
+          },
+          {
+            "selected": false,
+            "text": "keepalived",
+            "value": "keepalived"
+          },
+          {
+            "selected": false,
+            "text": "kernel",
+            "value": "kernel"
+          },
+          {
+            "selected": false,
+            "text": "ksmd",
+            "value": "ksmd"
+          },
+          {
+            "selected": false,
+            "text": "logs",
+            "value": "logs"
+          },
+          {
+            "selected": false,
+            "text": "mysqld",
+            "value": "mysqld"
+          },
+          {
+            "selected": false,
+            "text": "netdata",
+            "value": "netdata"
+          },
+          {
+            "selected": false,
+            "text": "nfs",
+            "value": "nfs"
+          },
+          {
+            "selected": false,
+            "text": "nosql",
+            "value": "nosql"
+          },
+          {
+            "selected": false,
+            "text": "openio-keystone",
+            "value": "openio-keystone"
+          },
+          {
+            "selected": false,
+            "text": "openio.account",
+            "value": "openio.account"
+          },
+          {
+            "selected": false,
+            "text": "openio.beanstalkd",
+            "value": "openio.beanstalkd"
+          },
+          {
+            "selected": false,
+            "text": "openio.blob-indexer",
+            "value": "openio.blob-indexer"
+          },
+          {
+            "selected": false,
+            "text": "openio.conscience",
+            "value": "openio.conscience"
+          },
+          {
+            "selected": false,
+            "text": "openio.conscienceagent",
+            "value": "openio.conscienceagent"
+          },
+          {
+            "selected": false,
+            "text": "openio.event-agent",
+            "value": "openio.event-agent"
+          },
+          {
+            "selected": false,
+            "text": "openio.meta0",
+            "value": "openio.meta0"
+          },
+          {
+            "selected": false,
+            "text": "openio.meta1",
+            "value": "openio.meta1"
+          },
+          {
+            "selected": true,
+            "text": "openio.meta2",
+            "value": "openio.meta2"
+          },
+          {
+            "selected": false,
+            "text": "openio.oio-proxy",
+            "value": "openio.oio-proxy"
+          },
+          {
+            "selected": false,
+            "text": "openio.rawx",
+            "value": "openio.rawx"
+          },
+          {
+            "selected": false,
+            "text": "openio.rdir",
+            "value": "openio.rdir"
+          },
+          {
+            "selected": false,
+            "text": "openio.redis",
+            "value": "openio.redis"
+          },
+          {
+            "selected": false,
+            "text": "openio.swift-proxy",
+            "value": "openio.swift-proxy"
+          },
+          {
+            "selected": false,
+            "text": "openio.zookeeper",
+            "value": "openio.zookeeper"
+          },
+          {
+            "selected": false,
+            "text": "other",
+            "value": "other"
+          },
+          {
+            "selected": false,
+            "text": "python.d.plugin",
+            "value": "python.d.plugin"
+          },
+          {
+            "selected": false,
+            "text": "sql",
+            "value": "sql"
+          },
+          {
+            "selected": false,
+            "text": "ssh",
+            "value": "ssh"
+          },
+          {
+            "selected": false,
+            "text": "system",
+            "value": "system"
+          },
+          {
+            "selected": false,
+            "text": "tc-qos-helper",
+            "value": "tc-qos-helper"
+          },
+          {
+            "selected": false,
+            "text": "timedb",
+            "value": "timedb"
+          }
+        ],
+        "query": "label_values(netdata_apps_cpu_system_cpu_time___average, dimension)",
+        "refresh": 0,
+        "regex": "",
+        "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",

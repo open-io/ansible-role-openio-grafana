@@ -16,7 +16,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1530202915031,
+  "iteration": 1552580691389,
   "links": [],
   "panels": [
     {
@@ -213,7 +213,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GB_average{instance=~\"[[host]]\"}))",
+          "expr": "100 * sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GB_average{instance=~\"[[host]]\"}))",
           "format": "time_series",
           "groupBy": [
             {
@@ -748,7 +748,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1024,7 +1024,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1157,7 +1157,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1166,7 +1166,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ]
     },
@@ -1290,7 +1290,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1299,7 +1299,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ]
     }
