@@ -17,6 +17,12 @@ grafana_http:
   port: 3000
   domain: localhost
 
+grafana_bind_interface: "{{ ansible_default_ipv4.alias }}"
+grafana_bind_address:
+  "{{ hostvars[inventory_hostname]['ansible_' + grafana_bind_interface]['ipv4']['address'] }}"
+
+grafana_provision_only: false
+
 grafana_auth:
   user: admin
   password: admin
