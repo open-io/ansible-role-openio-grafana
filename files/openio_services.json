@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1552579991533,
+  "iteration": 1552905504483,
   "links": [],
   "panels": [
     {
@@ -1474,7 +1474,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Bandwidth",
+      "title": "Gateway bandwidth",
       "transparent": false,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1593,7 +1593,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Bandwidth per service from logs",
+      "title": "Per-service bandwidth",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1727,7 +1727,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Response time",
+      "title": "Gateway response time",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1782,7 +1782,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{chart2=~\".*.oioswift\", instance=~\"[[host]]\"}) by (chart2, dimension)",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", instance=~\"[[host]]\"}) by (chart2, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -3727,7 +3727,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
