@@ -71,7 +71,7 @@
   service:
     name: "{{ grafana_service_name }}"
     state: "{{'started' if grafana_provision_only else 'restarted' }}"
-    enabled: true
+    enabled: "{{ grafana_service_enabled }}"
 
 - name: Ensure the service is started
   wait_for:
