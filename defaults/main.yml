@@ -1,6 +1,7 @@
 ---
 grafana_repo_release: stable
 grafana_service_name: grafana-server
+grafana_service_enabled: true
 grafana_version: 5.0.0
 grafana_paths:
   conf: /etc/grafana
