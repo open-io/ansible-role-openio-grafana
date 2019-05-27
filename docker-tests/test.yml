@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  vars:
+    NS: TRAVIS
+  roles:
+    - role: users
+    - role: role_under_test
+...

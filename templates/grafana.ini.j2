@@ -2,16 +2,16 @@ app_mode = production
 instance_name = ${HOSTNAME}
 
 [paths]
-data = {{ grafana_paths['data'] }}
-logs = {{ grafana_paths['log'] }}
-plugins = {{ grafana_paths['plugins'] }}
-provisioning = {{ grafana_paths['provisioning'] }}
+data = {{ openio_grafana_paths['data'] }}
+logs = {{ openio_grafana_paths['log'] }}
+plugins = {{ openio_grafana_paths['plugins'] }}
+provisioning = {{ openio_grafana_paths['provisioning'] }}
 
 [server]
-protocol = {{ grafana_http['protocol'] }}
-http_addr = {{ grafana_http['host'] }}
-http_port = {{ grafana_http['port'] }}
-domain = {{ grafana_http['domain'] }}
+protocol = {{ openio_grafana_bind_protocol }}
+http_addr = {{ openio_grafana_ext_bind_address | d(grafana_bind_address) }}
+http_port = {{ openio_grafana_bind_port }}
+domain = {{ openio_grafana_bind_domain }}
 enforce_domain = false
 root_url = %(protocol)s://%(domain)s:%(http_port)s/
 router_logging = false
@@ -54,9 +54,9 @@ reporting_enabled = false
 check_for_updates = false
 
 [security]
-admin_user = {{ grafana_auth['user'] }}
-admin_password = {{ grafana_auth['password'] }}
-secret_key = {{ grafana_auth['secret_key'] }}
+admin_user = {{ openio_grafana_user }}
+admin_password = {{ openio_grafana_password }}
+secret_key = {{ openio_grafana_secret_key }}
 login_remember_days = 7
 cookie_username = grafana_user
 cookie_remember_name = grafana_remember
@@ -77,7 +77,7 @@ auto_assign_org = true
 auto_assign_org_role = Viewer
 verify_email_enabled = false
 login_hint = user
-default_theme = {{ grafana_theme }}
+default_theme = {{ openio_grafana_theme }}
 viewers_can_edit = false
 
 [auth]

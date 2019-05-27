@@ -51,6 +51,8 @@ aborting due to warning")
         for k in ('id', 'version', 'uid'):
             if k in data:
                 del data[k]
+        if 'time' in data:
+            data['time'] = {"from": "now-15m", "to": "now"}
         try:
             del data['templating']['list'][0]['current']
         except Exception:

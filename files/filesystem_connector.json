@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1552561821409,
+  "iteration": 1558366224699,
   "links": [],
   "panels": [
     {
@@ -84,7 +84,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (sum(probe_success{service=\"oiofs\"} == 1) / count(probe_success{service=\"oiofs\"}) or vector(1))",
+          "expr": "100 * ((sum(probe_success{service=\"oiofs\"} == 1) or vector(0)) / (count(probe_success{service=\"oiofs\"}) or vector(1)))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -240,10 +240,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(rate(netdata_oiofs_cache_ops_average{instance=~\"[[host]]\"}[5m]), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_ops_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}} - {{dimension}}",
+          "legendFormat": "{{dimension}} - {{family}} ",
           "refId": "A"
         }
       ],
@@ -320,10 +320,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_oiofs_cache_chunks_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_chunks_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -400,10 +400,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_oiofs_cache_latency_us_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_latency_us_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -480,10 +480,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_oiofs_cache_age_us_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_age_us_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -560,10 +560,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_oiofs_cache_size_bytes_average{instance=~\"[[host]]\", dimension!~\"read\"}, \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_size_bytes_average{instance=~\"[[host]]\", dimension!~\"read\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}} - {{chart2}} - {{dimension}}",
+          "legendFormat": "{{dimension}} - {{family}} ",
           "refId": "A"
         }
       ],
@@ -640,10 +640,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(rate(netdata_oiofs_cache_size_bytes_average{instance=~\"[[host]]\", dimension=\"read\"}[5m]), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_cache_size_bytes_average{instance=~\"[[host]]\", dimension=\"read\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}} - {{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -735,10 +735,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_sds_bytes_average{instance=~\"[[host]]\"}[5m])) by (instance, chart, dimension), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_sds_bytes_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}} - {{instance}} - {{chart2}} ",
+          "legendFormat": "{{dimension}} - {{family}} ",
           "refId": "A"
         }
       ],
@@ -815,10 +815,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_fuse_bytes_average{instance=~\"[[host]]\"}[5m])) by (instance, chart, dimension), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_fuse_bytes_average{instance=~\"[[host]]\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{dimension}} - {{instance}} - {{chart2}} ",
+          "legendFormat": "{{dimension}} - {{family}} ",
           "refId": "A"
         }
       ],
@@ -895,25 +895,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_sds_dl_ops_average{instance=~\"[[host]]\"}[5m])) by (instance, chart), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "sum(netdata_oiofs_sds_dl_ops_average{instance=~\"[[host]]\", family=~\"[[instance]]\"}) by (instance, family)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "download - {{instance}} - {{chart2}} ",
+          "legendFormat": "download - {{family}} ",
           "refId": "A"
         },
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_sds_ul_ops_average{instance=~\"[[host]]\"}[5m])) by (instance, chart), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "sum(netdata_oiofs_sds_ul_ops_average{instance=~\"[[host]]\", family=~\"[[instance]]\"}) by (instance, family)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "upload - {{instance}} - {{chart2}} ",
+          "legendFormat": "upload - {{family}} ",
           "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "SDS ops",
+      "title": "SDS ops total",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -983,18 +983,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_sds_dl_ops_average{instance=~\"[[host]]\", dimension=\"failed\"}[5m])) by (instance, chart), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_sds_dl_ops_average{instance=~\"[[host]]\", dimension=\"failed\", family=\"[[instance]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "download - {{instance}} - {{chart2}} ",
+          "legendFormat": "download - {{family}}",
           "refId": "A"
         },
         {
-          "expr": "label_replace(sum(rate(netdata_oiofs_sds_ul_ops_average{instance=~\"[[host]]\", dimension=\"failed\"}[5m])) by (instance, chart), \"chart2\", \"$1\", \"chart\", \"oiofs_(.*)\\\\..*\")",
+          "expr": "netdata_oiofs_sds_ul_ops_average{instance=~\"[[host]]\", dimension=\"failed\", family=\"[[instance]]\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "upload - {{instance}} - {{chart2}} ",
+          "legendFormat": "upload - {{family}}",
           "refId": "B"
         }
       ],
@@ -1035,6 +1035,7 @@
       ]
     }
   ],
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -1053,6 +1054,29 @@
         "refresh": 1,
         "regex": "/.*/",
         "sort": 2,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "instance",
+        "options": [],
+        "query": "label_values(netdata_oiofs_cache_latency_us_average{instance=~\"[[host]]\"}, family)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",

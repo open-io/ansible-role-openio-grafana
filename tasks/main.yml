@@ -19,15 +19,16 @@
     mode: 0644
     state: directory
   with_items:
-    "{{ grafana_paths.values() }}"
+    "{{ openio_grafana_paths.values() }}"
 
 - name: Configure
   template:
     src: "grafana.ini.j2"
-    dest: "{{ grafana_paths['conf'] | realpath }}/grafana.ini"
+    dest: "{{ openio_grafana_paths['conf'] | realpath }}/grafana.ini"
     owner: grafana
     group: grafana
     mode: 0644
+  register: _grafana_conf
 
 - name: Overwrite systemd unit
   template:
@@ -36,6 +37,7 @@
     owner: root
     group: root
     mode: 0644
+  register: _grafana_systemd
 
 - name: Reload daemon
   systemd: daemon_reload=yes
@@ -44,44 +46,54 @@
 - name: Provision - datasources
   template:
     src: "prometheus.yaml.j2"
-    dest: "{{ grafana_paths['datasources'] | realpath }}/prometheus.yaml"
+    dest: "{{ openio_grafana_paths['datasources'] | realpath }}/prometheus.yaml"
     owner: grafana
     group: grafana
     mode: 0644
+  register: _grafana_datasources
 
 - name: Provision - dashboards
   copy:
     src: "{{item}}.json"
-    dest: "{{ grafana_paths['dashboards'] | realpath }}/{{ item }}.json"
+    dest: "{{ openio_grafana_paths['dashboards'] | realpath }}/{{ item }}.json"
     owner: grafana
     group: grafana
     mode: 0644
     backup: true
-  with_items: "{{ grafana_dashboards + (['filesystem_connector'] if grafana_oiofs_enabled else []) }}"
+  with_items: "{{ openio_grafana_dashboards + (['filesystem_connector'] if openio_grafana_oiofs_hosts else []) }}"
+  register: _grafana_dashboards
 
 - name: Provision - dashboard config
   template:
     src: "openio.yml.j2"
-    dest: "{{ grafana_paths['dashboards'] | realpath }}/openio.yml"
+    dest: "{{ openio_grafana_paths['dashboards'] | realpath }}/openio.yml"
     owner: grafana
     group: grafana
     mode: 0644
+  register: _grafana_dashboard_conf
 
-- name: Start service
-  service:
-    name: "{{ grafana_service_name }}"
-    state: "{{'started' if grafana_provision_only else 'restarted' }}"
-    enabled: "{{ grafana_service_enabled }}"
+- name: Ensure grafana is started and enabled
+  systemd:
+    daemon_reload: true
+    name: "grafana-server"
+    state: "restarted"
+    enabled: "{{ openio_grafana_service_enabled }}"
+  when:
+    - _grafana_conf is changed or _grafana_datasources is changed or _grafana_dashboards is changed or
+      _grafana_dashboard_conf is changed
+    - not openio_grafana_provision_only
+
 
 - name: Ensure the service is started
   wait_for:
-    host: "{{ grafana_bind_address }}"
-    port: "{{ grafana_http['port'] }}"
+    host: "{{ openio_grafana_bind_address }}"
+    port: "{{ openio_grafana_bind_port }}"
     delay: 10
 
 - name: Set overview as the default dashboard
   debug:
-    msg: "{{ grafana_http | set_default_dashboard(grafana_auth, grafana_bind_address) }}"
+    msg: "{{ openio_grafana_bind_address | set_default_dashboard(openio_grafana_user, openio_grafana_password,
+    openio_grafana_bind_protocol, openio_grafana_bind_port) }}"
   when:
-    - not grafana_provision_only
+    - not openio_grafana_provision_only
 ...
