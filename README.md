@@ -14,16 +14,13 @@ Role Variables
 
 | Variable name           | Description                                     | Type    |
 | ----------------------- | ----------------------------------------------- | ------- |
-| grafana_version         | Version of grafana to use                       | String  |
 | grafana_paths           | Configuration paths used by grafana-server      | Object  |
 | grafana_http            | Host/Port on which grafana listens              | Object  |
 | grafana_auth            | Grafana credentials                             | Object  |
 | grafana_thene           | Theme (dark or light) used by grafana           | String  |
-| grafana_oiofs_enabled   | Provision dashboard for filesystem connector    | Boolean |
 | grafana_bind_interface  | Grafana Network interface to run checks against | String  |
 | grafana_bind_address    | Grafana Network address to run checks against   | Boolean |
 | grafana_service_enabled | Enable Grafana at system boot                   | Boolean |
-| grafana_service_name    | Grafana service name                            | String  |
 | prometheus_host         | Host on which prometheus source is configured   | String  |
 | prometheus_port         | Port on which prometheus source is configured   | Integer |
 

@@ -17,7 +17,7 @@
 
 - name: Install
   apt:
-    name: "grafana={{ grafana_version }}"
+    name: "grafana={{ openio_grafana_version }}"
     state: present
   register: install_packages
   until: install_packages is success

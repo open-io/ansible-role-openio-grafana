@@ -1,9 +1,6 @@
 ---
-grafana_repo_release: stable
-grafana_service_name: grafana-server
-grafana_service_enabled: true
-grafana_version: 5.0.0
-grafana_paths:
+openio_grafana_service_enabled: true
+openio_grafana_paths:
   conf: /etc/grafana
   provisioning: /etc/grafana/provisioning
   log: /var/log/grafana
@@ -12,32 +9,26 @@ grafana_paths:
   datasources: /etc/grafana/provisioning/datasources
   dashboards: /etc/grafana/provisioning/dashboards
 
-grafana_http:
-  protocol: http
-  host: 0.0.0.0
-  port: 3000
-  domain: localhost
+openio_grafana_bind_port: 3000
+openio_grafana_bind_protocol: http
+openio_grafana_bind_domain: localhost
+openio_grafana_bind_interface: "{{ openio_bind_mgmt_interface | d(ansible_default_ipv4.alias) }}"
+openio_grafana_bind_address: "{{ openio_bind_mgmt_address \
+| d(hostvars[inventory_hostname]['ansible_' + openio_grafana_bind_interface]['ipv4']['address']) }}"
+openio_grafana_ext_bind_address: ""
 
-grafana_bind_interface: "{{ ansible_default_ipv4.alias }}"
-grafana_bind_address:
-  "{{ hostvars[inventory_hostname]['ansible_' + grafana_bind_interface]['ipv4']['address'] }}"
+openio_grafana_provision_only: false
 
-grafana_provision_only: false
+openio_grafana_password: admin
+openio_grafana_user: admin
+openio_grafana_secret_key: 59b579be5dfcfd1d4cc56a8c52d8d700
 
-grafana_auth:
-  user: admin
-  password: admin
-  #secret_key: "{{999999999999999999999 | random | to_uuid | hash('md5')}}"
-  secret_key: "2dbdd78852f5db31d990a9bec62499db"
+openio_grafana_theme: light
 
-grafana_theme: light
+openio_grafana_prometheus_host: localhost
+openio_grafana_prometheus_port: 9090
 
-prometheus_host: localhost
-prometheus_port: 9090
-
-grafana_oiofs_enabled: false
-
-grafana_dashboards:
+openio_grafana_dashboards:
   - overview
   - openio_services
   - openio_system
@@ -47,4 +38,6 @@ grafana_dashboards:
   - health
   - software_version_info
   - diagnostics
+
+openio_grafana_oiofs_hosts: "{{( groups['oiofs'] | d([]) + groups['oiofs_ha'] | d([])) | unique }}"
 ...
