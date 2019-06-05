@@ -10,6 +10,7 @@
     gpgcheck: true
     sslverify: 1
     sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+  when: openio_grafana_upstream_package_repository
 
 - name: Install
   package:

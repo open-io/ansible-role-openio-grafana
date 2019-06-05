@@ -1,3 +1,4 @@
 ---
 openio_grafana_version: 5.0.4
+openio_grafana_upstream_package_repository: false
 ...

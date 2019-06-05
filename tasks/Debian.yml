@@ -14,6 +14,7 @@
   apt_repository:
     repo: 'deb https://packages.grafana.com/oss/deb stable main'
     state: present
+  when: openio_grafana_upstream_package_repository
 
 - name: Install
   apt:
