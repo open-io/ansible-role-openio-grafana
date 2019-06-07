@@ -53,7 +53,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "title": "Hosts comparison",
   "annotations": {
