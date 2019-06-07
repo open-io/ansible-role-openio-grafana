@@ -38,6 +38,8 @@ openio_grafana_dashboards:
   - health
   - software_version_info
   - diagnostics
+  - diag_host_details
+  - diag_hosts_comparison
 
 openio_grafana_oiofs_hosts: "{{( groups['oiofs'] | d([]) + groups['oiofs_ha'] | d([])) | unique }}"
 ...
