@@ -1,2168 +1,20 @@
 {
-  "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
-  },
-  "editable": false,
-  "gnetId": null,
-  "graphTooltip": 1,
-  "iteration": 1559894507145,
-  "links": [],
-  "panels": [
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 14,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 1
-          },
-          "id": 2,
-          "interval": ">10s",
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",instance=~\"[[host]]\",dimension=\"idle\"}",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "CPU idle",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "percent",
-              "label": "",
-              "logBase": 1,
-              "max": "102",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 1
-          },
-          "id": 6,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"$host\",dimension=\"free\"}",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "RAM free",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "decmbytes",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 10
-          },
-          "id": 7,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(netdata_system_load_load_average{chart=\"system.load\",family=\"load\",instance=~\"$host\"}) by (instance)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Load Average (avg)",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "short",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 10
-          },
-          "id": 40,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"$host\",dimension=\"cached\"}",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "RAM cached",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "decmbytes",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "repeat": null,
-      "title": "System",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 1
-      },
-      "id": 16,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 2
-          },
-          "id": 4,
-          "interval": ">10s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(netdata_net_net_kilobits_persec_average{instance=~\"$host\"}) by (dimension,instance)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}-{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Network Bandwidth (bps)",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "Kbits",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 2
-          },
-          "id": 5,
-          "interval": ">10s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(netdata_net_net_kilobits_persec_average{instance=~\"$host\"}) by (dimension,instance) /8",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}}-{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Network Bandwidth (Bps)",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "KBs",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "Network",
-      "type": "row"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 2
-      },
-      "id": 18,
-      "panels": [],
-      "title": "Disks",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 3
-      },
-      "id": 11,
-      "interval": "",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(netdata_disk_ops_operations_persec_average{dimension=\"reads\", instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance  }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disks read IOps",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ops",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 3
-      },
-      "id": 9,
-      "interval": "1m",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "-sum(netdata_disk_ops_operations_persec_average{dimension=\"writes\", instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance  }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disks write IOps",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ops",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 12
-      },
-      "id": 8,
-      "interval": "",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(netdata_disk_io_kilobytes_persec_average{dimension=\"reads\", instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance  }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disks read bandwidth",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "KBs",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 12
-      },
-      "id": 12,
-      "interval": "1m",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "-sum(netdata_disk_io_kilobytes_persec_average{dimension=\"writes\", instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance  }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disks write bandwidth",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "KBs",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "id": 20,
-      "interval": "1m",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Sum",
-          "fill": 0,
-          "linewidth": 3
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disk backlog avg",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ms",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 28
-      },
-      "id": 21,
-      "interval": "1m",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Sum",
-          "fill": 0,
-          "linewidth": 3
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "  avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"$host\"}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Disk utilization avg",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 35
-      },
-      "id": 23,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 4
-          },
-          "id": 25,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"$host$\"}) by (dimension)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "CPU usage by service",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 4
-          },
-          "id": 26,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"$host\"}) by (dimension)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Disks reads usage by service",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "KBs",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 12
-          },
-          "id": 28,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(label_replace(netdata_openio_score__average{chart=\"openio.score\",family=\"Score\",instance=~\"$host\"}, \"dim2\", \"$1\", \"dimension\", \"(.*?)[_].*\")) by (dim2)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{dim2}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Scores",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": "102",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 12
-          },
-          "id": 39,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"$host\"}) by (dimension)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{ dimension }}",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Disks writes usage by service",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "KBs",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "OpenIO System",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 36
-      },
-      "id": 30,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 5
-          },
-          "id": 33,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\"}) by (chart2)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{chart2}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Requests / s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 13
-          },
-          "id": 35,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.oioswift\"}) by (dimension)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Swift req/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 13
-          },
-          "id": 34,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.meta1\"}) by (dimension)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "META1 req/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 21
-          },
-          "id": 36,
-          "interval": "",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.rawx\"}) by (dimension)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "RAWX req/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 21
-          },
-          "id": 32,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.meta2\"}) by (dimension)",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{dimension}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "META2 req/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 29
-          },
-          "id": 37,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "aggr:netdata_web_log_response_time_ms:sum{instance=~\"$host\", chart2=~\".*.oioswift\"}",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{ dimension }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Swift Response time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 29
-          },
-          "id": 38,
-          "interval": "30s",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "aggr:netdata_web_log_response_time_ms:sum{instance=~\"$host\", chart2=~\".*.rawx\"}",
-              "format": "time_series",
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{ dimension }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "RAWX Response time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "OpenIO Services Req/s",
-      "type": "row"
-    }
-  ],
-  "refresh": false,
-  "schemaVersion": 18,
   "style": "dark",
+  "graphTooltip": 1,
   "tags": [],
-  "templating": {
-    "list": [
-      {
-        "allValue": null,
-        "current": {
-          "tags": [],
-          "text": "sds1 + sds2",
-          "value": [
-            "sds1",
-            "sds2"
-          ]
-        },
-        "datasource": "prometheus",
-        "definition": "label_values(netdata_system_cpu_percentage_average, instance)",
-        "hide": 0,
-        "includeAll": false,
-        "label": "",
-        "multi": true,
-        "name": "host",
-        "options": [],
-        "query": "label_values(netdata_system_cpu_percentage_average, instance)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      }
-    ]
-  },
-  "time": {
-    "from": "now-15m",
-    "to": "now"
-  },
+  "timezone": "",
   "timepicker": {
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
     "refresh_intervals": [
       "5s",
       "10s",
@@ -2174,19 +26,2165 @@
       "1h",
       "2h",
       "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
     ]
   },
-  "timezone": "",
-  "title": "Hosts comparison"
+  "templating": {
+    "list": [
+      {
+        "tagValuesQuery": "",
+        "multi": true,
+        "name": "host",
+        "refresh": 1,
+        "allValue": null,
+        "skipUrlSync": false,
+        "type": "query",
+        "tags": [],
+        "sort": 5,
+        "regex": "",
+        "useTags": false,
+        "hide": 0,
+        "options": [],
+        "tagsQuery": "",
+        "definition": "label_values(netdata_system_cpu_percentage_average, instance)",
+        "query": "label_values(netdata_system_cpu_percentage_average, instance)",
+        "includeAll": false,
+        "datasource": "prometheus",
+        "label": ""
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "title": "Hosts comparison",
+  "annotations": {
+    "list": [
+      {
+        "matchAny": true,
+        "limit": 100,
+        "datasource": "-- Grafana --",
+        "name": "Annotations & Alerts",
+        "hide": false,
+        "tags": [
+          "bench"
+        ],
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "builtIn": 1,
+        "type": "tags",
+        "enable": true,
+        "showIn": 0
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 14,
+      "repeat": null,
+      "gridPos": {
+        "y": 0,
+        "w": 24,
+        "h": 1,
+        "x": 0
+      },
+      "panels": [
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "percent",
+              "decimals": null,
+              "label": "",
+              "show": true,
+              "logBase": 1,
+              "min": "0",
+              "max": "102"
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": ">10s",
+          "title": "CPU idle",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "rightSide": false,
+            "values": false,
+            "alignAsTable": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 2,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 1,
+            "w": 12,
+            "h": 9,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "netdata_system_cpu_percentage_average{chart=\"system.cpu\",family=\"cpu\",instance=~\"[[host]]\",dimension=\"idle\"}",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{instance}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "decimals": null,
+              "label": "",
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "title": "RAM free",
+          "stack": true,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "rightSide": false,
+            "values": false,
+            "alignAsTable": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 6,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 1,
+            "w": 12,
+            "h": 9,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"$host\",dimension=\"free\"}",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{instance}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "short",
+              "decimals": null,
+              "label": "",
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "title": "Load Average (avg)",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "rightSide": false,
+            "values": false,
+            "alignAsTable": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 7,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 10,
+            "w": 12,
+            "h": 9,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "avg(netdata_system_load_load_average{chart=\"system.load\",family=\"load\",instance=~\"$host\"}) by (instance)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{instance}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "decimals": null,
+              "label": "",
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "title": "RAM cached",
+          "stack": true,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "rightSide": false,
+            "values": false,
+            "alignAsTable": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 40,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 10,
+            "w": 12,
+            "h": 9,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"$host\",dimension=\"cached\"}",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{instance}}"
+            }
+          ],
+          "nullPointMode": "null"
+        }
+      ],
+      "collapsed": true,
+      "type": "row",
+      "title": "System"
+    },
+    {
+      "id": 16,
+      "gridPos": {
+        "y": 1,
+        "w": 24,
+        "h": 1,
+        "x": 0
+      },
+      "panels": [
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "Kbits",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": ">10s",
+          "title": "Network Bandwidth (bps)",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 4,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 2,
+            "w": 12,
+            "h": 9,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(netdata_net_net_kilobits_persec_average{instance=~\"$host\"}) by (dimension,instance)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}-{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "KBs",
+              "show": true,
+              "label": "",
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": ">10s",
+          "title": "Network Bandwidth (Bps)",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 5,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 2,
+            "w": 12,
+            "h": 9,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(netdata_net_net_kilobits_persec_average{instance=~\"$host\"}) by (dimension,instance) /8",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}-{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        }
+      ],
+      "collapsed": true,
+      "type": "row",
+      "title": "Network"
+    },
+    {
+      "id": 18,
+      "gridPos": {
+        "y": 2,
+        "w": 24,
+        "h": 1,
+        "x": 0
+      },
+      "panels": [],
+      "collapsed": false,
+      "type": "row",
+      "title": "Disks"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "ops",
+          "show": true,
+          "label": "",
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "",
+      "title": "Disks read IOps",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 11,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 3,
+        "w": 12,
+        "h": 9,
+        "x": 0
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "sum(netdata_disk_ops_operations_persec_average{dimension=\"reads\", instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance  }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "ops",
+          "show": true,
+          "label": "",
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "1m",
+      "title": "Disks write IOps",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 9,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 3,
+        "w": 12,
+        "h": 9,
+        "x": 12
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "-sum(netdata_disk_ops_operations_persec_average{dimension=\"writes\", instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance  }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "KBs",
+          "show": true,
+          "label": "",
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "",
+      "title": "Disks read bandwidth",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 8,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 12,
+        "w": 12,
+        "h": 9,
+        "x": 0
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "sum(netdata_disk_io_kilobytes_persec_average{dimension=\"reads\", instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance  }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "KBs",
+          "show": true,
+          "label": "",
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "1m",
+      "title": "Disks write bandwidth",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 12,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 12,
+        "w": 12,
+        "h": 9,
+        "x": 12
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "-sum(netdata_disk_io_kilobytes_persec_average{dimension=\"writes\", instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance  }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "ms",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [
+        {
+          "fill": 0,
+          "alias": "Sum",
+          "linewidth": 3
+        }
+      ],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "1m",
+      "title": "Disk backlog avg",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 20,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 21,
+        "w": 24,
+        "h": 7,
+        "x": 0
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "steppedLine": false,
+      "tooltip": {
+        "sort": 2,
+        "shared": true,
+        "value_type": "individual"
+      },
+      "thresholds": [],
+      "yaxes": [
+        {
+          "format": "percent",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        },
+        {
+          "format": "short",
+          "show": true,
+          "label": null,
+          "logBase": 1,
+          "min": null,
+          "max": null
+        }
+      ],
+      "points": false,
+      "yaxis": {
+        "alignLevel": null,
+        "align": false
+      },
+      "linewidth": 1,
+      "seriesOverrides": [
+        {
+          "fill": 0,
+          "alias": "Sum",
+          "linewidth": 3
+        }
+      ],
+      "xaxis": {
+        "name": null,
+        "buckets": null,
+        "values": [],
+        "mode": "time",
+        "show": true
+      },
+      "fill": 1,
+      "spaceLength": 10,
+      "bars": false,
+      "percentage": false,
+      "interval": "1m",
+      "title": "Disk utilization avg",
+      "stack": false,
+      "dashLength": 10,
+      "type": "graph",
+      "renderer": "flot",
+      "lines": true,
+      "pointradius": 2,
+      "legend": {
+        "current": false,
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "avg": false,
+        "total": false
+      },
+      "id": 21,
+      "dashes": false,
+      "timeRegions": [],
+      "timeShift": null,
+      "aliasColors": {},
+      "options": {},
+      "gridPos": {
+        "y": 28,
+        "w": 24,
+        "h": 7,
+        "x": 0
+      },
+      "links": [],
+      "timeFrom": null,
+      "targets": [
+        {
+          "expr": "  avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"$host\"}) by (instance)",
+          "format": "time_series",
+          "refId": "A",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance }}"
+        }
+      ],
+      "nullPointMode": "null"
+    },
+    {
+      "id": 23,
+      "gridPos": {
+        "y": 35,
+        "w": 24,
+        "h": 1,
+        "x": 0
+      },
+      "panels": [
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "percent",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "CPU usage by service",
+          "stack": true,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 25,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 4,
+            "w": 12,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"$host$\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "KBs",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "title": "Disks reads usage by service",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 26,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 4,
+            "w": 12,
+            "h": 8,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"$host\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "hide": false,
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "short",
+              "decimals": null,
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": "0",
+              "max": "102"
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "Scores",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 28,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 12,
+            "w": 12,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "avg(label_replace(netdata_openio_score__average{chart=\"openio.score\",family=\"Score\",instance=~\"$host\"}, \"dim2\", \"$1\", \"dimension\", \"(.*?)[_].*\")) by (dim2)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "hide": false,
+              "legendFormat": "{{dim2}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "KBs",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "Disks writes usage by service",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 39,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 12,
+            "w": 12,
+            "h": 8,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"$host\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "B",
+              "intervalFactor": 1,
+              "hide": false,
+              "legendFormat": "{{ dimension }}"
+            }
+          ],
+          "nullPointMode": "null"
+        }
+      ],
+      "collapsed": true,
+      "type": "row",
+      "title": "OpenIO System"
+    },
+    {
+      "id": 30,
+      "gridPos": {
+        "y": 36,
+        "w": 24,
+        "h": 1,
+        "x": 0
+      },
+      "panels": [
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ops",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "Requests / s",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 33,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 5,
+            "w": 24,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\"}) by (chart2)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{chart2}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ops",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "Swift req/s",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 35,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 13,
+            "w": 12,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.oioswift\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ops",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "title": "META1 req/s",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 34,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 13,
+            "w": 12,
+            "h": 8,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.meta1\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ops",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "",
+          "title": "RAWX req/s",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 36,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 21,
+            "w": 12,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.rawx\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ops",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "META2 req/s",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 32,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 21,
+            "w": 12,
+            "h": 8,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"$host\",chart2=\"RAKUTEN.meta2\"}) by (dimension)",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{dimension}}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ms",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "Swift Response time",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 37,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 29,
+            "w": 12,
+            "h": 8,
+            "x": 0
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "aggr:netdata_web_log_response_time_ms:sum{instance=~\"$host\", chart2=~\".*.oioswift\"}",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{ dimension }}"
+            }
+          ],
+          "nullPointMode": "null"
+        },
+        {
+          "steppedLine": false,
+          "tooltip": {
+            "sort": 2,
+            "shared": true,
+            "value_type": "individual"
+          },
+          "thresholds": [],
+          "yaxes": [
+            {
+              "format": "ms",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            },
+            {
+              "format": "short",
+              "show": true,
+              "label": null,
+              "logBase": 1,
+              "min": null,
+              "max": null
+            }
+          ],
+          "points": false,
+          "yaxis": {
+            "alignLevel": null,
+            "align": false
+          },
+          "linewidth": 1,
+          "seriesOverrides": [],
+          "xaxis": {
+            "name": null,
+            "buckets": null,
+            "values": [],
+            "mode": "time",
+            "show": true
+          },
+          "fill": 1,
+          "spaceLength": 10,
+          "bars": false,
+          "percentage": false,
+          "interval": "30s",
+          "title": "RAWX Response time",
+          "stack": false,
+          "dashLength": 10,
+          "type": "graph",
+          "renderer": "flot",
+          "lines": true,
+          "pointradius": 2,
+          "legend": {
+            "current": false,
+            "show": false,
+            "hideEmpty": true,
+            "values": false,
+            "min": false,
+            "hideZero": true,
+            "max": false,
+            "avg": false,
+            "total": false
+          },
+          "id": 38,
+          "dashes": false,
+          "timeRegions": [],
+          "timeShift": null,
+          "aliasColors": {},
+          "options": {},
+          "gridPos": {
+            "y": 29,
+            "w": 12,
+            "h": 8,
+            "x": 12
+          },
+          "links": [],
+          "timeFrom": null,
+          "targets": [
+            {
+              "expr": "aggr:netdata_web_log_response_time_ms:sum{instance=~\"$host\", chart2=~\".*.rawx\"}",
+              "format": "time_series",
+              "refId": "A",
+              "intervalFactor": 1,
+              "interval": "",
+              "legendFormat": "{{ dimension }}"
+            }
+          ],
+          "nullPointMode": "null"
+        }
+      ],
+      "collapsed": true,
+      "type": "row",
+      "title": "OpenIO Services Req/s"
+    }
+  ],
+  "schemaVersion": 18,
+  "links": [],
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "iteration": 1559181991504,
+  "refresh": "5s"
 }
