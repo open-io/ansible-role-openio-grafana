@@ -9,7 +9,11 @@ provisioning = {{ openio_grafana_paths['provisioning'] }}
 
 [server]
 protocol = {{ openio_grafana_bind_protocol }}
-http_addr = {{ openio_grafana_ext_bind_address | d(grafana_bind_address) }}
+{% if openio_grafana_ext_bind_address != "" %}
+http_addr = {{ openio_grafana_ext_bind_address }}
+{% else %}
+http_addr = {{ openio_grafana_bind_address }}
+{% endif %}
 http_port = {{ openio_grafana_bind_port }}
 domain = {{ openio_grafana_bind_domain }}
 enforce_domain = false

@@ -72,6 +72,15 @@
     mode: 0644
   register: _grafana_dashboard_conf
 
+- name: Provision - defaults
+  template:
+    src: "grafana_defaults.j2"
+    dest: "{{ openio_grafana_defaults_path }}"
+    owner: grafana
+    group: grafana
+    mode: 0644
+  register: _grafana_defaults
+
 - name: Ensure grafana is started and enabled
   systemd:
     daemon_reload: true
@@ -80,9 +89,8 @@
     enabled: "{{ openio_grafana_service_enabled }}"
   when:
     - _grafana_conf is changed or _grafana_datasources is changed or _grafana_dashboards is changed or
-      _grafana_dashboard_conf is changed
+      _grafana_dashboard_conf is changed or _grafana_defaults is changed
     - not openio_grafana_provision_only
-
 
 - name: Ensure the service is started
   wait_for:
@@ -90,10 +98,29 @@
     port: "{{ openio_grafana_bind_port }}"
     delay: 10
 
-- name: Set overview as the default dashboard
-  debug:
-    msg: "{{ openio_grafana_bind_address | set_default_dashboard(openio_grafana_user, openio_grafana_password,
-    openio_grafana_bind_protocol, openio_grafana_bind_port) }}"
+- name: Search for overview dashboard id
+  uri:
+    url: http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/search
+    user: "{{ openio_grafana_user }}"
+    password: "{{ openio_grafana_password }}"
+    method: GET
+    force_basic_auth: true
+    status_code: 200
+  register: _dashboards
   when:
     - not openio_grafana_provision_only
+
+- name: Update preferences
+  uri:
+    url: http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/user/preferences
+    user: "{{ openio_grafana_user }}"
+    password: "{{ openio_grafana_password }}"
+    method: PUT
+    status_code: 200
+    body_format: json
+    force_basic_auth: true
+    body: "{ \"homeDashboardId\": {{ _dashboards.json | selectattr('title', 'equalto','Overview')
+| map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
+    when:
+      - not openio_grafana_provision_only
 ...
