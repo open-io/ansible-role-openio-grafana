@@ -25,7 +25,8 @@ openio_grafana_secret_key: 59b579be5dfcfd1d4cc56a8c52d8d700
 
 openio_grafana_theme: light
 
-openio_grafana_prometheus_host: localhost
+openio_grafana_prometheus_host: "{{ openio_bind_mgmt_address \
+| d(hostvars[inventory_hostname]['ansible_' + openio_grafana_bind_interface]['ipv4']['address']) }}"
 openio_grafana_prometheus_port: 9090
 
 openio_grafana_dashboards:
