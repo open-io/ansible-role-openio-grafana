@@ -4,12 +4,16 @@
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
+  tags:
+    - install
+    - configure
 
 - name: Include per distro tasks
   include: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
+  tags: install
 
 - name: Ensure directories
   file:
@@ -20,6 +24,7 @@
     state: directory
   with_items:
     "{{ openio_grafana_paths.values() }}"
+  tags: configure
 
 - name: Configure
   template:
@@ -29,6 +34,7 @@
     group: grafana
     mode: 0644
   register: _grafana_conf
+  tags: configure
 
 - name: Overwrite systemd unit
   template:
@@ -38,10 +44,12 @@
     group: root
     mode: 0644
   register: _grafana_systemd
+  tags: configure
 
 - name: Reload daemon
   systemd: daemon_reload=yes
   when: ansible_virtualization_type != 'docker'
+  tags: configure
 
 - name: Provision - datasources
   template:
@@ -51,6 +59,7 @@
     group: grafana
     mode: 0644
   register: _grafana_datasources
+  tags: configure
 
 - name: Provision - dashboards
   copy:
@@ -62,6 +71,7 @@
     backup: true
   with_items: "{{ openio_grafana_dashboards + (['filesystem_connector'] if openio_grafana_oiofs_hosts else []) }}"
   register: _grafana_dashboards
+  tags: configure
 
 - name: Provision - dashboard config
   template:
@@ -71,6 +81,7 @@
     group: grafana
     mode: 0644
   register: _grafana_dashboard_conf
+  tags: configure
 
 - name: Provision - defaults
   template:
@@ -80,6 +91,7 @@
     group: grafana
     mode: 0644
   register: _grafana_defaults
+  tags: configure
 
 - name: Ensure grafana is started and enabled
   systemd:
@@ -91,12 +103,14 @@
     - _grafana_conf is changed or _grafana_datasources is changed or _grafana_dashboards is changed or
       _grafana_dashboard_conf is changed or _grafana_defaults is changed
     - not openio_grafana_provision_only
+  tags: configure
 
 - name: Ensure the service is started
   wait_for:
     host: "{{ openio_grafana_bind_address }}"
     port: "{{ openio_grafana_bind_port }}"
     delay: 10
+  tags: configure
 
 - name: Search for overview dashboard id
   uri:
@@ -109,6 +123,7 @@
   register: _dashboards
   when:
     - not openio_grafana_provision_only
+  tags: configure
 
 - name: Update preferences
   uri:
@@ -123,4 +138,5 @@
 | map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
     when:
       - not openio_grafana_provision_only
+  tags: configure
 ...
