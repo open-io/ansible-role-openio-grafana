@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1558364805565,
+  "iteration": 1560861966173,
   "links": [],
   "panels": [
     {
@@ -1057,7 +1057,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_roundtrip_response_time_ms_average, \"request\", \"$1\", \"dimension\", \".*_(.*)\")",
+          "expr": "avg(label_replace(netdata_roundtrip_response_time_ms_average, \"request\", \"$1\", \"dimension\", \".*_(.*)\")) by (request)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{request}}",
@@ -1106,6 +1106,8 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": 0,
+      "description": "Irregularities in response codes may indicate service outage",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1127,13 +1129,13 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "percentage": false,
+      "percentage": true,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -1147,7 +1149,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "S3 Response codes",
+      "title": "S3 Response code distribution",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1163,8 +1165,9 @@
       },
       "yaxes": [
         {
+          "decimals": null,
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1176,7 +1179,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ]
     },
@@ -1186,6 +1189,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "The time it takes to successfully PUT/GET exacty 1 byte of data. Used to measure system responsiveness.",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1217,7 +1221,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace(netdata_roundtrip_ttfb_ms_average, \"request\", \"$1\", \"dimension\", \".*_(.*)\")",
+          "expr": "avg(label_replace(netdata_roundtrip_ttfb_ms_average, \"request\", \"$1\", \"dimension\", \".*_(.*)\")) by (request)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{request}}",
@@ -1247,7 +1251,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1688,7 +1692,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\", chart2=~\".*.oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\", chart2=~\".*.oioswift\"})",
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\", type=\"oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\", type=\"oioswift\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -1783,7 +1787,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) by (chart2) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"}) by (chart2)",
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) by (type) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"}) by (type)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1806,7 +1810,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{type}}",
           "measurement": "openio_log_bandwidth",
           "orderByTime": "ASC",
           "policy": "default",
@@ -1941,7 +1945,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\", instance=~\"[[host]]\"})",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", type=\"oioswift\", instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -1980,7 +1984,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Gateway response time",
+      "title": "Average Gateway response time",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -2035,7 +2039,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", instance=~\"[[host]]\"}) by (chart2, dimension)",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", instance=~\"[[host]]\"}) by (type)",
           "format": "time_series",
           "groupBy": [
             {
@@ -2064,7 +2068,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}} {{dimension}}",
+          "legendFormat": "{{type}}",
           "measurement": "openio_log_response_time",
           "orderByTime": "ASC",
           "policy": "default",
@@ -2172,10 +2176,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(aggr:netdata_web_log_response_codes:sum{dimension=~\"4xx|5xx\", instance=~\"[[host]]\"}) by (dimension, chart2)",
+          "expr": "sum(aggr:netdata_web_log_response_codes:sum{dimension=~\"4xx|5xx\", instance=~\"[[host]]\"}) by (dimension, type)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}} {{dimension}}",
+          "legendFormat": "{{type}} {{dimension}}",
           "refId": "B"
         }
       ],
@@ -2214,6 +2218,119 @@
           "show": true
         }
       ]
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "decimals": 1,
+      "format": "ms",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 80
+      },
+      "id": 138,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgb(232, 232, 232)",
+        "full": false,
+        "lineColor": "#5195ce",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "max(aggr:netdata_web_log_response_time_ms:sum{dimension=\"max\", type=\"oioswift\", instance=~\"[[host]]\"})",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "",
+      "title": "Max Gateway response time",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "aliasColors": {},
@@ -2258,7 +2375,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(aggr:netdata_web_log_response_codes:sum{instance=~\"[[host]]\"}) by (dimension, chart2)",
+          "expr": "sum(aggr:netdata_web_log_response_codes:sum{instance=~\"[[host]]\"}) by (dimension, type)",
           "format": "time_series",
           "groupBy": [
             {
@@ -2288,7 +2405,7 @@
           ],
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}} {{dimension}}",
+          "legendFormat": "{{type}} {{dimension}}",
           "measurement": "openio_log_response_codes",
           "orderByTime": "ASC",
           "policy": "default",
@@ -2338,6 +2455,7 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "ops",
           "label": null,
           "logBase": 1,
@@ -2398,7 +2516,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"[[host]]\"}) by (chart2, dimension)",
+          "expr": "sum(aggr:netdata_web_log_http_request_methods:sum{instance=~\"[[host]]\"}) by (type, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -2427,7 +2545,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}} {{dimension}}",
+          "legendFormat": "{{type}} {{dimension}}",
           "measurement": "openio_log_http_method",
           "orderByTime": "ASC",
           "policy": "default",

@@ -1490,7 +1490,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"received\", chart2=~\".*.oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"sent\", chart2=~\".*.oioswift\"})",
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"received\", type=\"oioswift\"}) - sum(aggr:netdata_web_log_bandwidth:sum{dimension=\"sent\", type=\"oioswift\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -1605,7 +1605,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", chart2=~\".*.oioswift\"})",
+          "expr": "avg(aggr:netdata_web_log_response_time_ms:sum{dimension=\"avg\", type=\"oioswift\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -2301,6 +2301,10 @@
   "tags": [],
   "templating": {
     "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
   },
   "timepicker": {
     "hidden": false,
