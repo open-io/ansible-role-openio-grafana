@@ -15,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1552499282784,
+  "iteration": 1560861927150,
   "links": [],
   "panels": [
     {
@@ -731,8 +731,8 @@
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "conscience",
-          "value": "conscience"
+          "text": "account",
+          "value": "account"
         }
       },
       "sparkline": {
@@ -744,7 +744,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -814,13 +814,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "zookeeper",
-          "value": "zookeeper"
+          "text": "beanstalkd",
+          "value": "beanstalkd"
         }
       },
       "sparkline": {
@@ -832,7 +832,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -902,13 +902,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "oioproxy",
-          "value": "oioproxy"
+          "text": "conscience",
+          "value": "conscience"
         }
       },
       "sparkline": {
@@ -920,7 +920,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -990,13 +990,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "oioswift",
-          "value": "oioswift"
+          "text": "meta0",
+          "value": "meta0"
         }
       },
       "sparkline": {
@@ -1008,7 +1008,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1078,13 +1078,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "account",
-          "value": "account"
+          "text": "meta1",
+          "value": "meta1"
         }
       },
       "sparkline": {
@@ -1096,7 +1096,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1166,13 +1166,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "redis",
-          "value": "redis"
+          "text": "meta2",
+          "value": "meta2"
         }
       },
       "sparkline": {
@@ -1184,7 +1184,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1254,13 +1254,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "redissentinel",
-          "value": "redissentinel"
+          "text": "oioproxy",
+          "value": "oioproxy"
         }
       },
       "sparkline": {
@@ -1272,7 +1272,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1342,13 +1342,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "beanstalkd",
-          "value": "beanstalkd"
+          "text": "oioswift",
+          "value": "oioswift"
         }
       },
       "sparkline": {
@@ -1360,7 +1360,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1430,13 +1430,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "meta1",
-          "value": "meta1"
+          "text": "rawx",
+          "value": "rawx"
         }
       },
       "sparkline": {
@@ -1448,7 +1448,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1518,13 +1518,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "meta2",
-          "value": "meta2"
+          "text": "rdir",
+          "value": "rdir"
         }
       },
       "sparkline": {
@@ -1536,7 +1536,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1606,13 +1606,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "rawx",
-          "value": "rawx"
+          "text": "redis",
+          "value": "redis"
         }
       },
       "sparkline": {
@@ -1624,7 +1624,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1694,13 +1694,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "rdir",
-          "value": "rdir"
+          "text": "redissentinel",
+          "value": "redissentinel"
         }
       },
       "sparkline": {
@@ -1712,7 +1712,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1782,13 +1782,13 @@
       "rangeMaps": [],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552499282784,
+      "repeatIteration": 1560861927150,
       "repeatPanelId": 123,
       "scopedVars": {
         "service": {
           "selected": false,
-          "text": "meta0",
-          "value": "meta0"
+          "text": "zookeeper",
+          "value": "zookeeper"
         }
       },
       "sparkline": {
@@ -1800,7 +1800,95 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "100 * (count(probe_success{service=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service=\"[[service]]\"})",
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,100",
+      "title": "[[service]]",
+      "transparent": false,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "?",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#f29191",
+        "#f2c96d",
+        "#9ac48a"
+      ],
+      "datasource": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 15,
+        "y": 8
+      },
+      "id": 281,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": 3,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1560861927150,
+      "repeatPanelId": 123,
+      "scopedVars": {
+        "service": {
+          "selected": false,
+          "text": "oiofs",
+          "value": "oiofs"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 * (count(probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(probe_success{service_type=\"[[service]]\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1964,6 +2052,51 @@
           "thresholds": [],
           "type": "hidden",
           "unit": "short"
+        },
+        {
+          "alias": "IP:PORT",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "s_instance",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "service",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
         }
       ],
       "targets": [
@@ -2118,7 +2251,7 @@
           "unit": "short"
         },
         {
-          "alias": "",
+          "alias": "IP:PORT",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -2129,7 +2262,7 @@
           "decimals": 2,
           "pattern": "s_instance",
           "thresholds": [],
-          "type": "hidden",
+          "type": "number",
           "unit": "short"
         },
         {
@@ -2145,6 +2278,21 @@
           "pattern": "alertstate",
           "preserveFormat": false,
           "sanitize": false,
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "instance",
           "thresholds": [],
           "type": "hidden",
           "unit": "short"
@@ -2179,7 +2327,7 @@
         "multi": false,
         "name": "service",
         "options": [],
-        "query": "label_values(probe_success, service)",
+        "query": "label_values(probe_success, service_type)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
