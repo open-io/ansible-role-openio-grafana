@@ -9,7 +9,7 @@
     - configure
 
 - name: Include per distro tasks
-  include: "{{ item }}"
+  include_tasks: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
