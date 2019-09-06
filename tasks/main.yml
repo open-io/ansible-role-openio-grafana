@@ -112,7 +112,7 @@
     delay: 10
   tags: configure
 
-- name: Search for overview dashboard id
+- name: Ensure all dashboards are loaded
   uri:
     url: http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/search
     user: "{{ openio_grafana_user }}"
@@ -124,6 +124,9 @@
   when:
     - not openio_grafana_provision_only
   tags: configure
+  until: (_dashboards.json) | length >= (openio_grafana_dashboards | length) + (1 if openio_grafana_oiofs_hosts else 0)
+  retries: 3
+  delay: 5
 
 - name: Update preferences
   uri:
