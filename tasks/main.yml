@@ -137,7 +137,7 @@
     status_code: 200
     body_format: json
     force_basic_auth: true
-    body: "{ \"homeDashboardId\": {{ _dashboards.json | selectattr('title', 'equalto','Overview')
+    body: "{ \"homeDashboardId\": {{ _dashboards.json | selectattr('title', 'match','^Overview$')
 | map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
     when:
       - not openio_grafana_provision_only
