@@ -1530,7 +1530,7 @@
         {
           "alias": "$tag_namespace: $tag_servicetype",
           "dsType": "influxdb",
-          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"received\"}) by (chart2) - sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\", dimension=\"sent\"}) by (chart2)",
+          "expr": "sum(aggr:netdata_web_log_bandwidth:sum{instance=~\"[[host]]\"}) by (chart2, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1553,7 +1553,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{chart2}} {{dimension}}",
           "measurement": "openio_log_bandwidth",
           "orderByTime": "ASC",
           "policy": "default",
@@ -1613,7 +1613,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
