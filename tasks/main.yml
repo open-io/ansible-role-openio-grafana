@@ -23,7 +23,7 @@
     mode: 0644
     state: directory
   with_items:
-    "{{ openio_grafana_paths.values() }}"
+    "{{ openio_grafana_paths.values() | list }}"
   tags: configure
 
 - name: Configure
