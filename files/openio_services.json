@@ -1,5 +1,4 @@
 {
-  "uid": "openio_services",
   "annotations": {
     "list": [
       {
@@ -16,7 +15,7 @@
   "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1560861966173,
+  "iteration": 1575307267726,
   "links": [],
   "panels": [
     {
@@ -2687,7 +2686,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "max(netdata_redis_keys_keys_average{instance=~\"[[host]]\"})",
+          "expr": "max(netdata_redis_keys__count_average{instance=~\"[[host]]\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
@@ -2744,7 +2743,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(label_replace(netdata_redis_keys_keys_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*?_(.*).keys\")) by (chart2)",
+          "expr": "max(label_replace(netdata_redis_keys__count_average, 'cluster', '$1', 'family', '.*:(\\\\d+)')) by (cluster)",
           "format": "time_series",
           "groupBy": [
             {
@@ -2761,7 +2760,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "cluster {{cluster}}",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2856,7 +2855,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(label_replace(netdata_redis_operations_operations_persec_average{instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \".*?_(.*).operations\")) by (chart2)\n",
+          "expr": "sum(netdata_redis_ops_ops_average) by (family)",
           "format": "time_series",
           "groupBy": [
             {
@@ -2873,7 +2872,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2992,7 +2991,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(netdata_redis_hit_rate_percent_average{instance=~\"[[host]]\"})",
+          "expr": "100 * sum(netdata_redis_cache_ops_average{dimension=\"hits\"}) / sum(netdata_redis_cache_ops_average)",
           "format": "time_series",
           "groupBy": [
             {
@@ -3009,6 +3008,7 @@
             }
           ],
           "intervalFactor": 1,
+          "legendFormat": "",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -3080,10 +3080,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(label_replace(netdata_redis_memory_kilobytes_average{dimension=\"total\",instance=~\"[[host]]\"}, \"chart2\", \"$1\", \"chart\", \"redis_(.*?).memory\")) by (chart2)",
+          "expr": "netdata_redis_memory_bytes_average{dimension=\"total\", instance=~\"[[host]]\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -3106,7 +3106,7 @@
       },
       "yaxes": [
         {
-          "format": "deckbytes",
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -3160,10 +3160,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(label_replace(netdata_redis_net_kilobits_persec_average{instance=~\"[[host]]\", dimension=\"in\"}, \"chart2\", \"$1\", \"chart\", \"redis_(.*?).net\")) by (chart2)\n- sum(label_replace(netdata_redis_net_kilobits_persec_average{instance=~\"[[host]]\", dimension=\"out\"}, \"chart2\", \"$1\", \"chart\", \"redis_(.*?).net\")) by (chart2)\n",
+          "expr": "sum(netdata_redis_net_bytes_average{instance=~\"[[host]]\"}) by (family)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{chart2}}",
+          "legendFormat": "{{family}}",
           "refId": "A"
         }
       ],
@@ -4126,5 +4126,6 @@
     ]
   },
   "timezone": "browser",
-  "title": "OpenIO Services"
+  "title": "OpenIO Services",
+  "uid": "openio_services"
 }

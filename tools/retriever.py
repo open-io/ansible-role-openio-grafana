@@ -48,7 +48,7 @@ aborting due to warning")
         if 'dashboard' not in data:
             raise Exception('Invalid dashboard format')
         data = data['dashboard']
-        for k in ('id', 'version', 'uid'):
+        for k in ('id', 'version'):
             if k in data:
                 del data[k]
         if 'time' in data:

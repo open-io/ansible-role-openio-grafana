@@ -1,5 +1,4 @@
 {
-  "uid": "openio_system",
   "annotations": {
     "list": [
       {
@@ -1317,5 +1316,6 @@
     ]
   },
   "timezone": "browser",
-  "title": "OpenIO System"
+  "title": "OpenIO System",
+  "uid": "openio_system"
 }

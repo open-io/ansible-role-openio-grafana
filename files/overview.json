@@ -1,5 +1,4 @@
 {
-  "uid": "overview",
   "annotations": {
     "list": [
       {
@@ -2331,5 +2330,6 @@
     ]
   },
   "timezone": "browser",
-  "title": "Overview"
+  "title": "Overview",
+  "uid": "overview"
 }
