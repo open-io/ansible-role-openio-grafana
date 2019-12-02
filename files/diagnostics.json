@@ -1,5 +1,4 @@
 {
-  "uid": "diagnostics",
   "annotations": {
     "list": [
       {
@@ -255,5 +254,6 @@
     ]
   },
   "timezone": "",
-  "title": "Diagnostics"
+  "title": "Diagnostics",
+  "uid": "diagnostics"
 }

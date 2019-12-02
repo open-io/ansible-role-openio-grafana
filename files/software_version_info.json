@@ -1,5 +1,4 @@
 {
-  "uid": "software_version_info",
   "annotations": {
     "list": [
       {
@@ -179,5 +178,6 @@
     ]
   },
   "timezone": "",
-  "title": "Software version info"
+  "title": "Software version info",
+  "uid": "software_version_info"
 }

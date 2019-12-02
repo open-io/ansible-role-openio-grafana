@@ -1,5 +1,4 @@
 {
-  "uid": "system",
   "annotations": {
     "list": [
       {
@@ -850,5 +849,6 @@
     ]
   },
   "timezone": "browser",
-  "title": "System"
+  "title": "System",
+  "uid": "system"
 }
