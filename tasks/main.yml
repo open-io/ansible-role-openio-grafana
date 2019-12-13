@@ -127,6 +127,7 @@
   until: (_dashboards.json) | length >= (openio_grafana_dashboards | length) + (1 if openio_grafana_oiofs_hosts else 0)
   retries: 3
   delay: 5
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Update preferences
   uri:
@@ -142,4 +143,5 @@
     when:
       - not openio_grafana_provision_only
   tags: configure
+  ignore_errors: "{{ ansible_check_mode }}"
 ...
