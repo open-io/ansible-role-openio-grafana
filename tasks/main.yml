@@ -140,8 +140,8 @@
     force_basic_auth: true
     body: "{ \"homeDashboardId\": {{ _dashboards.json | selectattr('title', 'match','^Overview$')
 | map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
-    when:
-      - not openio_grafana_provision_only
+  when:
+    - not openio_grafana_provision_only
   tags: configure
   ignore_errors: "{{ ansible_check_mode }}"
 ...
