@@ -20,7 +20,7 @@
     path: "{{ item }}"
     owner: grafana
     group: grafana
-    mode: 0644
+    mode: 0755
     state: directory
   with_items:
     "{{ openio_grafana_paths.values() }}"
