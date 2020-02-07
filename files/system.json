@@ -196,7 +196,7 @@
         {
           "alias": "$tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_system_ram_MB_average{chart=\"system.ram\",family=\"ram\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "sum(netdata_system_ram_MiB_average{chart=\"system.ram\",family=\"ram\",instance=~\"[[host]]\"}) by (dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -269,7 +269,7 @@
       },
       "yaxes": [
         {
-          "format": "decmbytes",
+          "format": "mbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -709,7 +709,7 @@
         {
           "alias": "commited_memory",
           "dsType": "influxdb",
-          "expr": "sum(netdata_mem_committed_MB_average{chart=\"mem.committed\",family=\"system\",dimension=\"Committed_AS\",instance=~\"[[host]]\"})",
+          "expr": "sum(netdata_mem_committed_MiB_average{chart=\"mem.committed\",family=\"system\",dimension=\"Committed_AS\",instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -776,7 +776,7 @@
       },
       "yaxes": [
         {
-          "format": "decmbytes",
+          "format": "mbytes",
           "label": null,
           "logBase": 1,
           "max": null,

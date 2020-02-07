@@ -1394,7 +1394,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(netdata_apps_mem_MB_average{instance=~\"[[host]]\", dimension=\"openio.meta2\"}) by (instance)",
+          "expr": "sum(netdata_apps_mem_MiB_average{instance=~\"[[host]]\", dimension=\"openio.meta2\"}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -1420,7 +1420,7 @@
       },
       "yaxes": [
         {
-          "format": "decmbytes",
+          "format": "mbytes",
           "label": null,
           "logBase": 1,
           "max": null,
