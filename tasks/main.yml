@@ -114,6 +114,7 @@
   delay: 2
   until: _status is success and _status.json.database == "ok"
   tags: configure
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure all dashboards are loaded
   uri:
