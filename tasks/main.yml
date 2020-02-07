@@ -106,10 +106,13 @@
   tags: configure
 
 - name: Ensure the service is started
-  wait_for:
-    host: "{{ openio_grafana_bind_address }}"
-    port: "{{ openio_grafana_bind_port }}"
-    delay: 10
+  uri:
+    url: "http://{{ openio_grafana_bind_address}}:{{ openio_grafana_bind_port }}/api/health"
+    status_code: 200
+  register: _status
+  retries: 10
+  delay: 2
+  until: _status is success and _status.json.database == "ok"
   tags: configure
 
 - name: Ensure all dashboards are loaded
