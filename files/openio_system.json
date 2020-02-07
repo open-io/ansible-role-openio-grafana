@@ -61,7 +61,7 @@
         {
           "alias": "$tag_servicetype: $tag_mode",
           "dsType": "influxdb",
-          "expr": "100 * netdata_apps_cpu_system_cpu_time___average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
+          "expr": "100 * netdata_apps_cpu_system_percentage_average{chart=\"apps.cpu_system\",family=\"cpu\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -206,7 +206,7 @@
         {
           "alias": "$tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "netdata_apps_preads_kilobytes_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
+          "expr": "netdata_apps_preads_KiB_persec_average{chart=\"apps.preads\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -274,7 +274,7 @@
         {
           "alias": "$tag_servicetype: $tag_type",
           "dsType": "influxdb",
-          "expr": "netdata_apps_pwrites_kilobytes_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
+          "expr": "netdata_apps_pwrites_KiB_persec_average{chart=\"apps.pwrites\",family=\"disk\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -552,7 +552,7 @@
         {
           "alias": "$tag_servicetype",
           "dsType": "influxdb",
-          "expr": "netdata_apps_mem_MB_average{chart=\"apps.mem\",family=\"mem\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
+          "expr": "netdata_apps_mem_MiB_average{chart=\"apps.mem\",family=\"mem\",instance=~\"[[host]]\", dimension=~\"[[service]]\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -625,7 +625,7 @@
       },
       "yaxes": [
         {
-          "format": "decmbytes",
+          "format": "mbytes",
           "label": null,
           "logBase": 1,
           "max": null,

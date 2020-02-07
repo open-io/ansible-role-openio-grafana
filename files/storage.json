@@ -29,7 +29,7 @@
         "rgba(50, 172, 45, 0.97)"
       ],
       "datasource": "prometheus",
-      "format": "decgbytes",
+      "format": "gbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -82,7 +82,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"})",
+          "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -213,7 +213,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "100 * sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GB_average{instance=~\"[[host]]\"}))",
+          "expr": "100 * sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GiB_average{instance=~\"[[host]]\"}))",
           "format": "time_series",
           "groupBy": [
             {
@@ -324,7 +324,7 @@
         {
           "alias": "$tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) by (dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -392,7 +392,7 @@
       "yaxes": [
         {
           "decimals": 2,
-          "format": "decgbytes",
+          "format": "gbytes",
           "label": "",
           "logBase": 1,
           "max": null,
@@ -419,7 +419,7 @@
         "rgba(50, 172, 45, 0.97)"
       ],
       "datasource": "prometheus",
-      "format": "decgbytes",
+      "format": "gbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -472,7 +472,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}) + sum(netdata_disk_space_GB_average{dimension=\"avail\",instance=~\"[[host]]\"})",
+          "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) + sum(netdata_disk_space_GiB_average{dimension=\"avail\",instance=~\"[[host]]\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -602,7 +602,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "1024 * 1024 * 1024 * sum(deriv(netdata_disk_space_GB_average{dimension=\"used\",instance=~\"[[host]]\"}[10m])) by (dimension)",
+          "expr": "1024 * 1024 * 1024 * sum(deriv(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}[10m])) by (dimension)",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -940,7 +940,7 @@
         {
           "alias": "$tag_operation",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_io_kilobytes_persec_average{instance=~\"[[host]]\", dimension=\"reads\"})",
+          "expr": "sum(netdata_disk_io_KiB_persec_average{instance=~\"[[host]]\", dimension=\"reads\"})",
           "format": "time_series",
           "groupBy": [
             {
@@ -994,7 +994,7 @@
           ]
         },
         {
-          "expr": "-sum(netdata_disk_io_kilobytes_persec_average{instance=~\"[[host]]\", dimension=\"writes\"})",
+          "expr": "-sum(netdata_disk_io_KiB_persec_average{instance=~\"[[host]]\", dimension=\"writes\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "write",
@@ -1080,7 +1080,7 @@
         {
           "alias": "$tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_disk_inodes_Inodes_average{instance=~\"[[host]]\"}) by (dimension)",
+          "expr": "sum(netdata_disk_inodes_inodes_average{instance=~\"[[host]]\"}) by (dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -1211,7 +1211,7 @@
         {
           "alias": "maximum",
           "dsType": "influxdb",
-          "expr": "quantile(0.95, avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"[[host]]\"}))",
+          "expr": "quantile(0.95, avg(netdata_disk_backlog_milliseconds_average{dimension=\"backlog\",instance=~\"[[host]]\"}))",
           "format": "time_series",
           "groupBy": [
             {
@@ -1260,7 +1260,7 @@
           ]
         },
         {
-          "expr": "avg(netdata_disk_backlog_backlog__ms__average{dimension=\"backlog\",instance=~\"[[host]]\"})",
+          "expr": "avg(netdata_disk_backlog_milliseconds_average{dimension=\"backlog\",instance=~\"[[host]]\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "maximum",
