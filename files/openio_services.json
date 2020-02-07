@@ -3231,16 +3231,16 @@
       },
       "id": 38,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
         "hideEmpty": true,
         "hideZero": true,
-        "max": true,
+        "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -3259,7 +3259,7 @@
         {
           "alias": "$tag_namespace: $tag_tube: $tag_type",
           "dsType": "influxdb",
-          "expr": "sum(netdata_beanstalk_jobs_jobs_average{instance=~\"[[host]]\"}) by (family, dimension)",
+          "expr": "sum(netdata_beanstalk_job__average{instance=~\"[[host]]\",dimension!=\"total\",family!=\"general\"}) by (family, dimension)",
           "format": "time_series",
           "groupBy": [
             {
@@ -3294,7 +3294,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "{{ dimension }} {{ family }}",
+          "legendFormat": "[{{ family }}] {{ dimension }} ",
           "measurement": "openio_beanstalkd_tubes",
           "orderByTime": "ASC",
           "policy": "default",
@@ -3382,17 +3382,17 @@
       },
       "id": 39,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
         "hideEmpty": true,
         "hideZero": true,
-        "max": true,
+        "max": false,
         "min": false,
         "rightSide": false,
-        "show": false,
+        "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -3411,7 +3411,7 @@
         {
           "alias": "$tag_namespace: $tag_host: processed",
           "dsType": "influxdb",
-          "expr": "sum(netdata_beanstalk_jobs_rate_jobs_persec_average{dimension=\"total\",instance=~\"[[host]]\"})",
+          "expr": "sum(netdata_beanstalk_job__average{dimension=\"total\",family!=\"general\",instance=~\"[[host]]\"}) by (family)",
           "format": "time_series",
           "groupBy": [
             {
@@ -3452,7 +3452,7 @@
             }
           ],
           "intervalFactor": 1,
-          "legendFormat": "events",
+          "legendFormat": "{{ family }}",
           "measurement": "openio_beanstalkd_tubes",
           "orderByTime": "ASC",
           "policy": "default",
@@ -3532,12 +3532,328 @@
       ]
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 114
+      },
+      "id": 210,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "minSpan": 6,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Connections rate",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_namespace: $tag_tube: $tag_type",
+          "dsType": "influxdb",
+          "expr": "sum(netdata_beanstalk_connections__average{family=\"general\",host=~\"[[host]]\",dimension!=\"total\"}) by (dimension)",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "namespace"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "tube"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "legendFormat": "{{ dimension }} ",
+          "measurement": "openio_beanstalkd_tubes",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"openio_beanstalkd_tubes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND \"type\" =~ /^current.*/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\", \"tube\", \"type\" fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "type",
+              "operator": "=~",
+              "value": "/^current.*/"
+            }
+          ]
+        },
+        {
+          "expr": "sum(netdata_beanstalk_connections__average{family=\"general\",host=~\"[[host]]\",dimension=\"total\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Connections rate",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Connections",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {
+        "put ": "#d683ce"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 114
+      },
+      "id": 211,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "minSpan": 6,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_namespace: $tag_tube: $tag_type",
+          "dsType": "influxdb",
+          "expr": "sum(netdata_beanstalk_commands__average{family=\"general\",host=~\"[[host]]\"}) by (dimension)",
+          "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "namespace"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "tube"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "intervalFactor": 1,
+          "legendFormat": "{{ dimension }} ",
+          "measurement": "openio_beanstalkd_tubes",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"openio_beanstalkd_tubes\" WHERE \"namespace\" =~ /^$namespace$/ AND \"host\" =~ /^$host$/ AND \"type\" =~ /^current.*/ AND $timeFilter GROUP BY time([[ds_int]]), \"namespace\", \"tube\", \"type\" fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "type",
+              "operator": "=~",
+              "value": "/^current.*/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Commands",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 114
+        "y": 122
       },
       "id": 119,
       "panels": [],
@@ -3555,7 +3871,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 115
+        "y": 123
       },
       "id": 41,
       "legend": {
@@ -3688,7 +4004,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 115
+        "y": 123
       },
       "id": 43,
       "legend": {
@@ -3821,7 +4137,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 123
+        "y": 131
       },
       "id": 40,
       "legend": {
@@ -3951,7 +4267,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 123
+        "y": 131
       },
       "id": 42,
       "legend": {
@@ -4076,7 +4392,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y":131
+        "y": 139
       },
       "id": 200,
       "panels": [],
@@ -4105,7 +4421,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y":132
+        "y": 140
       },
       "id": 201,
       "interval": null,
@@ -4175,7 +4491,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 132
+        "y": 140
       },
       "id": 202,
       "legend": {
@@ -4304,7 +4620,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 132
+        "y": 140
       },
       "id": 203,
       "legend": {
@@ -4428,7 +4744,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 140
+        "y": 148
       },
       "id": 204,
       "interval": null,
@@ -4530,7 +4846,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 140
+        "y": 148
       },
       "id": 205,
       "legend": {
@@ -4611,7 +4927,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 140
+        "y": 148
       },
       "id": 206,
       "legend": {
@@ -4700,7 +5016,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 148
+        "y": 156
       },
       "id": 207,
       "legend": {
@@ -4817,7 +5133,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 148
+        "y": 156
       },
       "id": 208,
       "legend": {
@@ -4898,7 +5214,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 148
+        "y": 156
       },
       "id": 209,
       "legend": {
