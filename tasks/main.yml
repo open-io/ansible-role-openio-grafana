@@ -29,7 +29,7 @@
 - name: Configure
   template:
     src: "grafana.ini.j2"
-    dest: "{{ openio_grafana_paths['conf'] | realpath }}/grafana.ini"
+    dest: "{{ openio_grafana_paths['conf'] }}/grafana.ini"
     owner: grafana
     group: grafana
     mode: 0644
@@ -54,7 +54,7 @@
 - name: Provision - datasources
   template:
     src: "prometheus.yaml.j2"
-    dest: "{{ openio_grafana_paths['datasources'] | realpath }}/prometheus.yaml"
+    dest: "{{ openio_grafana_paths['datasources'] }}/prometheus.yaml"
     owner: grafana
     group: grafana
     mode: 0644
@@ -64,7 +64,7 @@
 - name: Provision - dashboards
   copy:
     src: "{{item}}.json"
-    dest: "{{ openio_grafana_paths['dashboards'] | realpath }}/{{ item }}.json"
+    dest: "{{ openio_grafana_paths['dashboards'] }}/{{ item }}.json"
     owner: grafana
     group: grafana
     mode: 0644
@@ -76,7 +76,7 @@
 - name: Provision - dashboard config
   template:
     src: "openio.yml.j2"
-    dest: "{{ openio_grafana_paths['dashboards'] | realpath }}/openio.yml"
+    dest: "{{ openio_grafana_paths['dashboards'] }}/openio.yml"
     owner: grafana
     group: grafana
     mode: 0644
