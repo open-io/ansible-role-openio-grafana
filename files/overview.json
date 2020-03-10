@@ -904,7 +904,7 @@
         {
           "alias": "",
           "dsType": "influxdb",
-          "expr": "sum(avg(label_replace(netdata_openio_byte_used__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim))",
+          "expr": "sum(avg(label_replace(netdata_openio_byte_used__average, 'dim', '$1', 'dimension', '.*[.].*[.]([0-9]*)')) by (instance, dim))",
           "format": "time_series",
           "groupBy": [
             {
@@ -1035,7 +1035,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(sum(label_replace(netdata_openio_byte_used__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim)) + sum(sum(label_replace(netdata_openio_byte_avail__average, 'dim', '$2', 'dimension', '(%s)[.].*[.]([0-9]*)')) by (dim))",
+          "expr": "sum(avg(label_replace(netdata_openio_byte_avail__average, 'dim', '$1', 'dimension', '.*[.].*[.]([0-9]*)')) by (instance, dim)) + sum(avg(label_replace(netdata_openio_byte_used__average, 'dim', '$1', 'dimension', '.*[.].*[.]([0-9]*)')) by (instance, dim))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "B"
