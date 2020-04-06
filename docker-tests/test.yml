@@ -2,11 +2,12 @@
 - hosts: all
   become: true
   vars:
-    NS: TRAVIS
+    namespace: TRAVIS
   roles:
     - role: users
-    - role: repo
+    - role: repository
       openio_repository_no_log: false
       openio_repository_mirror_host: mirror2.openio.io
+    - role: gridinit
     - role: role_under_test
 ...

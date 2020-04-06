@@ -4,11 +4,8 @@
   become: true
   gather_facts: true
 
-#  vars:
-#    var: 'value'
-
   roles:
-    - { role: grafana }
+    - role: grafana
 
   pre_tasks:
     - name: "Processing playbook on following servers"

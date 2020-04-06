@@ -1,124 +1,112 @@
 ---
-- name: Include per distro vars
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}.yml"
-  tags:
-    - install
-    - configure
+- include_role:
+    name: openio-service
+  vars:
+    openio_service_type: "oio-grafana"
+    openio_service_namespace: "{{ openio_grafana_namespace }}"
+    openio_service_maintenance_mode: "{{ openio_grafana_maintenance_mode }}"
+    openio_service_packages:
+      - oio-grafana
+    openio_service_directories:
+      - path: "{{ openio_service_conf_dir }}/provisioning"
+      - path: "{{ openio_service_conf_dir }}/provisioning/dashboards"
+      - path: "{{ openio_service_conf_dir }}/provisioning/dashboards/openio"
+      - path: "{{ openio_service_conf_dir }}/provisioning/datasources"
+      - path: "{{ openio_service_conf_dir }}/provisioning/notifiers"
+      - path: "{{ openio_service_volume }}"
+    openio_service_configuration_files:
+      - name: grafana.ini
+      - name: provisioning/dashboards/openio.yml
+      - name: provisioning/dashboards/openio/diagnostics.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/filesystem-connector.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/health.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/network.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/openio-services.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/openio-system.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/overview.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/software-version-info.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/storage.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/system.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/accounts.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/datasources/prometheus.yaml
+      - name: provisioning/datasources/loki.yaml
+      - name: provisioning/datasources/elasticsearch.yaml
 
-- name: Include per distro tasks
-  include_tasks: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}.yml"
-  tags: install
+    openio_service_services:
+      - command: >-
+          /usr/share/oio-grafana/bin/grafana-server
+          -config {{ openio_service_conf_dir }}/grafana.ini
+          -homepath /usr/share/oio-grafana
 
-- name: Ensure directories
-  file:
-    path: "{{ item }}"
-    owner: grafana
-    group: grafana
-    mode: 0755
-    state: directory
-  with_items:
-    "{{ openio_grafana_paths.values() | list }}"
-  tags: configure
+    openio_service_checks:
+      - uri:
+          url: "http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/health"
+        until: "'json' in _return and _return.json.database | d('nok') == 'ok'"
+        retries: 10
+        delay: 2
 
-- name: Configure
-  template:
-    src: "grafana.ini.j2"
-    dest: "{{ openio_grafana_paths['conf'] }}/grafana.ini"
-    owner: grafana
-    group: grafana
-    mode: 0644
-  register: _grafana_conf
-  tags: configure
-
-- name: Overwrite systemd unit
-  template:
-    src: "grafana-server.service.j2"
-    dest: "/usr/lib/systemd/system/grafana-server.service"
-    owner: root
-    group: root
-    mode: 0644
-  register: _grafana_systemd
-  tags: configure
-
-- name: Reload daemon
-  systemd: daemon_reload=yes
-  when: ansible_virtualization_type != 'docker'
-  tags: configure
-
-- name: Provision - datasources
-  template:
-    src: "prometheus.yaml.j2"
-    dest: "{{ openio_grafana_paths['datasources'] }}/prometheus.yaml"
-    owner: grafana
-    group: grafana
-    mode: 0644
-  register: _grafana_datasources
-  tags: configure
-
-- name: Provision - dashboards
-  copy:
-    src: "{{item}}.json"
-    dest: "{{ openio_grafana_paths['dashboards'] }}/{{ item }}.json"
-    owner: grafana
-    group: grafana
-    mode: 0644
-    backup: true
-  with_items: "{{ openio_grafana_dashboards + (['filesystem_connector'] if openio_grafana_oiofs_hosts else []) }}"
-  register: _grafana_dashboards
-  tags: configure
-
-- name: Provision - dashboard config
-  template:
-    src: "openio.yml.j2"
-    dest: "{{ openio_grafana_paths['dashboards'] }}/openio.yml"
-    owner: grafana
-    group: grafana
-    mode: 0644
-  register: _grafana_dashboard_conf
-  tags: configure
-
-- name: Provision - defaults
-  template:
-    src: "grafana_defaults.j2"
-    dest: "{{ openio_grafana_defaults_path }}"
-    owner: grafana
-    group: grafana
-    mode: 0644
-  register: _grafana_defaults
-  tags: configure
-
-- name: Ensure grafana is started and enabled
-  systemd:
-    daemon_reload: true
-    name: "grafana-server"
-    state: "restarted"
-    enabled: "{{ openio_grafana_service_enabled }}"
-  when:
-    - _grafana_conf is changed or _grafana_datasources is changed or _grafana_dashboards is changed or
-      _grafana_dashboard_conf is changed or _grafana_defaults is changed
-    - not openio_grafana_provision_only
-  tags: configure
-
-- name: Ensure the service is started
+- name: Ensure OpenIO folder exist
   uri:
-    url: "http://{{ openio_grafana_bind_address}}:{{ openio_grafana_bind_port }}/api/health"
+    url: "http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/folders/openio"
+    user: "{{ openio_grafana_user }}"
+    password: "{{ openio_grafana_password }}"
+    method: GET
+    force_basic_auth: true
     status_code: 200
-  register: _status
-  retries: 10
-  delay: 2
-  until: _status is success and _status.json.database == "ok"
+  register: _folder
+  when:
+    - not openio_grafana_maintenance_mode | bool
   tags: configure
+  failed_when: "_folder is failed or 'json' not in _folder or _folder.json.uid != 'openio'"
   ignore_errors: "{{ ansible_check_mode }}"
 
-- name: Ensure all dashboards are loaded
+- name: Ensure OpenIO dashboards exists
   uri:
-    url: http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/search
+    url: "{{ openio_grafana_url }}/api/search?type=dash-db&folderIds={{ _folder.json.id }}"
     user: "{{ openio_grafana_user }}"
     password: "{{ openio_grafana_password }}"
     method: GET
@@ -126,26 +114,29 @@
     status_code: 200
   register: _dashboards
   when:
-    - not openio_grafana_provision_only
+    - not openio_grafana_maintenance_mode | bool
   tags: configure
-  until: (_dashboards.json) | length >= (openio_grafana_dashboards | length) + (1 if openio_grafana_oiofs_hosts else 0)
-  retries: 3
-  delay: 5
+  vars:
+    nb_dashboards: "{{ lookup('fileglob', 'templates/provisioning/dashboards/openio/*.json.j2').split(',') | length }}"
+  failed_when: "_dashboards is failed
+    or 'json' not in _dashboards
+    or  _dashboards.json | length != (nb_dashboards | int)"
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Update preferences
   uri:
-    url: http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/user/preferences
+    url: "http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/user/preferences"
     user: "{{ openio_grafana_user }}"
     password: "{{ openio_grafana_password }}"
     method: PUT
     status_code: 200
     body_format: json
     force_basic_auth: true
-    body: "{ \"homeDashboardId\": {{ _dashboards.json | selectattr('title', 'match','^Overview$')
-| map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
+    body: "{ 'homeDashboardId': {{ _dashboards.json | selectattr('title', 'match','^Overview$')
+           | map(attribute='id') | list | first | int }}, \"timezone\": \"\", \"theme\": \"\"}"
   when:
-    - not openio_grafana_provision_only
+    - not openio_grafana_maintenance_mode | bool
   tags: configure
   ignore_errors: "{{ ansible_check_mode }}"
+
 ...
