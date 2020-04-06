@@ -1,0 +1,59 @@
+#
+# Playbook to update provisionned dashboards
+#
+# To retrieve all dashbaords, use:
+#    ansible-playbook roles/grafana/tools/retrieve_dashboards.yml
+#
+# To retrieve one dashboard, use:
+#    ansible-playbook roles/grafana/tools/retrieve_dashboards.yml -e dashboard=%uid%
+#
+# CAUTION: this will erase the files in templates/provisioning/dashboards/openio/
+#
+---
+- name: Retrieve grafana dashboards
+  hosts: grafana[0]
+  connection: local
+  gather_subset: network
+  vars:
+    _user: "{{ user | d(openio_grafana_user) | d('admin') }}"
+    _password: "{{ password | d(openio_grafana_password) | d('admin') }}"
+
+  tasks:
+    - name: include default variables
+      include_vars: "{{ playbook_dir }}/../defaults/main.yml"
+
+    - name: Ensure OpenIO folder exist
+      uri:
+        url: "http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port }}/api/folders/openio"
+        user: "{{ _user }}"
+        password: "{{ _password }}"
+        method: GET
+        force_basic_auth: true
+        status_code: 200
+      register: _folder
+      failed_when: "_folder is failed or 'json' not in _folder or _folder.json.uid != 'openio'"
+
+    - debug:
+        msg: "OpenIO folder exists with id {{ _folder.json.id }} and uid {{ _folder.json.uid }}"
+
+    - name: List dashboards in the OpenIO folder
+      uri:
+        url: "{{openio_grafana_url}}/api/search?type=dash-db&folderIds={{_folder.json.id}}&query={{dashboard|d('')}}"
+        user: "{{ _user }}"
+        password: "{{ _password }}"
+        method: GET
+        force_basic_auth: true
+        status_code: 200
+      register: _dashboards
+      failed_when: "_dashboards is failed
+        or 'json' not in _dashboards
+        or  _dashboards.json | length == 0"
+
+    - debug:
+        msg: "We got {{ _dashboards.json | length }} selected dashboards from the OpenIO folder"
+
+    - name: Loop each dashboard
+      include_tasks: _dashboard.yml
+      loop: "{{ _dashboards.json }}"
+
+...

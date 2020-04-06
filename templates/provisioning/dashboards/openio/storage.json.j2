@@ -1,0 +1,1480 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "$$hashKey": "object:1785",
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "date": {
+        "from": "now-15m",
+        "to": "now"
+    },
+    "description": "Storage device information",
+    "editable": false,
+    "gnetId": null,
+    "graphTooltip": 1,
+    "id": null,
+    "iteration": 1587284260708,
+    "links": [],
+    "panels": [
+        {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "prometheus",
+            "format": "gbytes",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 0,
+                "y": 0
+            },
+            "id": 25,
+            "interval": null,
+            "links": [],
+            "mappingType": 2,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+            ],
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "alias": "",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"})",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "intervalFactor": 1,
+                    "measurement": "disk_space",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_space\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'used' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "used"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": "",
+            "title": "Capacity used",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+            ],
+            "valueName": "avg"
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "prometheus",
+            "decimals": 2,
+            "format": "percent",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 4,
+                "y": 0
+            },
+            "id": 29,
+            "interval": null,
+            "links": [],
+            "mappingType": 2,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+            ],
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "alias": "",
+                    "dsType": "influxdb",
+                    "expr": "100 * sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) / (sum(netdata_disk_space_GiB_average{instance=~\"[[host]]\"}))",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "intervalFactor": 1,
+                    "measurement": "disk_space",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_space\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'used' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "used"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": "",
+            "title": "Percent used",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+            ],
+            "valueName": "current"
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 10,
+                "w": 16,
+                "x": 8,
+                "y": 0
+            },
+            "hiddenSeries": false,
+            "id": 6,
+            "interval": "",
+            "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": true,
+                "hideZero": true,
+                "max": true,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "$tag_type",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) by (dimension)",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "type"
+                            ],
+                            "type": "tag"
+                        }
+                    ],
+                    "intervalFactor": 1,
+                    "legendFormat": "{{dimension}}",
+                    "measurement": "disk_space",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_space\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\"",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Capacity over time",
+            "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "decimals": 2,
+                    "format": "gbytes",
+                    "label": "",
+                    "logBase": 1,
+                    "max": null,
+                    "min": "0",
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "prometheus",
+            "format": "gbytes",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 0,
+                "y": 5
+            },
+            "id": 26,
+            "interval": null,
+            "links": [],
+            "mappingType": 2,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+            ],
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "alias": "",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}) + sum(netdata_disk_space_GiB_average{dimension=\"avail\",instance=~\"[[host]]\"})",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "intervalFactor": 1,
+                    "measurement": "disk_space",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_space\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'used' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "type",
+                            "operator": "=",
+                            "value": "used"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": "",
+            "title": "Capacity total",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+            ],
+            "valueName": "avg"
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+            ],
+            "datasource": null,
+            "decimals": 2,
+            "format": "Bps",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 4,
+                "y": 5
+            },
+            "id": 28,
+            "interval": null,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+            ],
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "expr": "1024 * 1024 * 1024 * sum(deriv(netdata_disk_space_GiB_average{dimension=\"used\",instance=~\"[[host]]\"}[10m])) by (dimension)",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "refId": "A"
+                }
+            ],
+            "thresholds": "",
+            "title": "Fill rate",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+            ],
+            "valueName": "current"
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 0,
+                "y": 10
+            },
+            "hiddenSeries": false,
+            "id": 5,
+            "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": true,
+                "hideZero": true,
+                "max": true,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "$tag_operation",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_ops_operations_persec_average{instance=~\"[[host]]\",family=~\"[[disk]]\"}) by (dimension)",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "operation"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{ dimension }}",
+                    "measurement": "disk_ops",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk IOps",
+            "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:2145",
+                    "format": "iops",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:2146",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 12,
+                "y": 10
+            },
+            "hiddenSeries": false,
+            "id": 23,
+            "legend": {
+                "alignAsTable": true,
+                "avg": false,
+                "current": true,
+                "hideEmpty": true,
+                "hideZero": true,
+                "max": false,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "maximum",
+                    "dsType": "influxdb",
+                    "expr": "avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"[[host]]\",family=~\"[[disk]]\"})",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "maximum",
+                    "measurement": "disk_util",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT max(\"value\") FROM \"[[DS]]\".\"disk_util\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+                    "rawQuery": true,
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "max"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                },
+                {
+                    "expr": "quantile(0.95, avg(netdata_disk_util___of_time_working_average{dimension=\"utilization\",instance=~\"[[host]]\",family=~\"[[disk]]\"}))",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "95th percentile",
+                    "refId": "A"
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk Utilization",
+            "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "format": "percent",
+                    "label": null,
+                    "logBase": 1,
+                    "max": "102",
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 0,
+                "y": 17
+            },
+            "hiddenSeries": false,
+            "id": 4,
+            "interval": "",
+            "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": true,
+                "hideZero": true,
+                "max": true,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "$tag_operation",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_io_KiB_persec_average{instance=~\"[[host]]\", family=~\"[[disk]]\"}) by (dimension)",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "operation"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{ dimension }}",
+                    "measurement": "io",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"io\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"operation\" fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk Throughput",
+            "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:2371",
+                    "format": "KBs",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:2372",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 12,
+                "y": 17
+            },
+            "hiddenSeries": false,
+            "id": 7,
+            "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": true,
+                "hideZero": true,
+                "max": true,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "$tag_type",
+                    "dsType": "influxdb",
+                    "expr": "sum(netdata_disk_inodes_inodes_average{instance=~\"[[host]]\",family=~\"[[mountpoint]]\"}) by (dimension)",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "type"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{dimension}}",
+                    "measurement": "disk_inodes",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"disk_inodes\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]), \"type\" fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk Files Usage",
+            "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": "0",
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": false
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "prometheus",
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 24,
+                "x": 0,
+                "y": 24
+            },
+            "hiddenSeries": false,
+            "id": 22,
+            "interval": "",
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "maxPerRow": 4,
+            "nullPointMode": "null",
+            "options": {
+                "dataLinks": []
+            },
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "maximum",
+                    "dsType": "influxdb",
+                    "expr": "quantile(0.95, avg(netdata_disk_backlog_milliseconds_average{dimension=\"backlog\",instance=~\"[[host]]\",family=~\"[[disk]]\"}))",
+                    "format": "time_series",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "95th percentile",
+                    "measurement": "disk_backlog",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT max(\"value\") FROM \"[[DS]]\".\"disk_backlog\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
+                    "rawQuery": true,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "max"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "host",
+                            "operator": "=~",
+                            "value": "/^$host$/"
+                        }
+                    ]
+                },
+                {
+                    "expr": "avg(netdata_disk_backlog_milliseconds_average{dimension=\"backlog\",instance=~\"[[host]]\",family=~\"[[disk]]\"})",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "maximum",
+                    "refId": "B"
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk Backlog",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "format": "ms",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": "0",
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": false
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 22,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": [
+            {
+                "allValue": null,
+                "current": {},
+                "datasource": "prometheus",
+                "definition": "label_values(up, host)",
+                "hide": 0,
+                "includeAll": true,
+                "index": -1,
+                "label": "Host",
+                "multi": true,
+                "name": "host",
+                "options": [],
+                "query": "label_values(up, host)",
+                "refresh": 2,
+                "regex": "/.*/",
+                "skipUrlSync": false,
+                "sort": 2,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {},
+                "datasource": "prometheus",
+                "definition": "label_values(netdata_disk_ops_operations_persec_average, family)",
+                "hide": 0,
+                "includeAll": true,
+                "index": -1,
+                "label": "Disk",
+                "multi": false,
+                "name": "disk",
+                "options": [],
+                "query": "label_values(netdata_disk_ops_operations_persec_average, family)",
+                "refresh": 2,
+                "regex": "/.*/",
+                "skipUrlSync": false,
+                "sort": 2,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {},
+                "datasource": "prometheus",
+                "definition": "label_values(netdata_disk_inodes_inodes_average, family)",
+                "hide": 0,
+                "includeAll": true,
+                "index": -1,
+                "label": "Mountpoint",
+                "multi": false,
+                "name": "mountpoint",
+                "options": [],
+                "query": "label_values(netdata_disk_inodes_inodes_average, family)",
+                "refresh": 2,
+                "regex": "/.*/",
+                "skipUrlSync": false,
+                "sort": 2,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            }
+        ]
+    },
+    "time": {
+        "from": "now-15m",
+        "to": "now"
+    },
+    "timepicker": {
+        "hidden": false,
+        "refresh_intervals": [
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h"
+        ],
+        "time_options": [
+            "5m",
+            "15m",
+            "1h",
+            "6h",
+            "12h",
+            "24h",
+            "2d",
+            "7d",
+            "30d"
+        ]
+    },
+    "timezone": "browser",
+    "title": "Storage",
+    "uid": "storage",
+    "variables": {
+        "list": []
+    },
+    "version": null
+}

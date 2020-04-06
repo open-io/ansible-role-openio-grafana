@@ -1,71 +1,77 @@
 [![Build Status](https://travis-ci.org/open-io/ansible-role-openio-grafana.svg?branch=master)](https://travis-ci.org/open-io/ansible-role-openio-grafana)
-ansible-role-grafana
-=========
+# Ansible role `grafana`
 
-This role will deploy Grafana and provision a dashboard onto it
+An Ansible role for install grafana. Specifically, the responsibilities of this role are to:
 
-Requirements
-------------
+- install and configure grafana
 
-None
+## Requirements
 
-Role Variables
---------------
+- Ansible 2.9+
 
-| Variable name           | Description                                     | Type    |
-| ----------------------- | ----------------------------------------------- | ------- |
-| grafana_paths           | Configuration paths used by grafana-server      | Object  |
-| grafana_http            | Host/Port on which grafana listens              | Object  |
-| grafana_auth            | Grafana credentials                             | Object  |
-| grafana_thene           | Theme (dark or light) used by grafana           | String  |
-| grafana_bind_interface  | Grafana Network interface to run checks against | String  |
-| grafana_bind_address    | Grafana Network address to run checks against   | Boolean |
-| grafana_service_enabled | Enable Grafana at system boot                   | Boolean |
-| prometheus_host         | Host on which prometheus source is configured   | String  |
-| prometheus_port         | Port on which prometheus source is configured   | Integer |
+## Role Variables
 
+| Variable   | Default | Comments (type)  |
+| :---       | :---    | :---             |
+| `openio_grafana_namespace` | `"{{ namespace \| d('OPENIO') }}"` | OpenIO Namespace|
+| `openio_grafana_maintenance_mode` | `"{{ openio_maintenance_mode \| d(false) }}"` | Maintenance mode |
+| `openio_grafana_bind_address` | `"{{ openio_mgmt_bind_address \| d(ansible_default_ipv4.address) }}"` | Binding IP address |
+| `openio_grafana_bind_port` | `6910` | Binding port |
+| `openio_grafana_ext_bind_address` | `"{{ openio_grafana_bind_address }}"` | |
+| `openio_grafana_ext_bind_port` | `"{{ openio_grafana_bind_port }}"` | |
+| `openio_grafana_url` | `"http://{{ openio_grafana_bind_address }}:{{ openio_grafana_bind_port}}"` | URL to access grafana |
+| `openio_grafana_path_data` | `"{{ openio_service_volume }}/data"` | Where the data is stored |
+| `openio_grafana_path_plugins` | `"{{ openio_service_volume }}/plugins"` | Where the plugins are stored |
+| `openio_grafana_path_provisioning` | `"{{ openio_service_conf_dir }}/provisioning"` | Where to find provisionnized dashboards and datasources |
+| `openio_grafana_temp_data_lifetime` | `"24h"` | Lifetime of temporary files |
+| `openio_grafana_user` | `"admin"` | Admin username |
+| `openio_grafana_password` | `"admin"` | Admin password |
+| `openio_grafana_secret_key` | `59b579be5dfcfd1d4cc56a8c52d8d700` | Admin password hash |
+| `openio_grafana_theme` | `light` | Theme to use |
+| `openio_grafana_prometheus_group` | `"prometheus"` | The name of the prometheus group in the inventory |
+| `openio_grafana_prometheus_bind_port` | `6900` | Port to use if `openio_prometheus_bind_port` is not set for the target |
+| `openio_grafana_loki_group` | `"loki"` | The name of the loki group in the inventory |
+| `openio_grafana_loki_bind_port` | `6901` | Port to use if `openio_loki_bind_port` is not set for the target |
+| `openio_grafana_elasticsearch_group` | `"elasticsearch"` | The name of the elasticsearch group in the inventory |
+| `openio_grafana_elasticsearch_bind_port` | `6903` | Port to use if `openio_elasticsearch_bind_port` is not set for the target |
 
-Tools - Dashboard retriever
------
+## Dependencies
+- https://github.com/open-io/ansible-role-openio-service
 
-### Description:
+## Example Playbook
 
-This role is outfitted with a tool that updates provisioned dashboards. In order to update a dashboard you need to:
+```yaml
+- hosts: all
+  gather_facts: true
+  become: true
 
-### Requirements:
+  tasks:
+    - include_role:
+        name: grafana
+```
 
-- python3
-- python-requests
+## Update provisioning dashboards
+When updating provisioned dashboards, use the `retrive_dashboards.yml`
+playbook which will download the dashboards from grafana. This way to update
+a provisioned dashboard, please follow the following procedure:
+- log in grafana
+- make changes in the dashboard(s) and save them
+- run the `retrive_dashboards.yml` playbook
+- commit your changes and PR
 
-### How to use
+To retrieve: 
+- all dashbaords, use: `ansible-playbook roles/grafana/tools/retrieve_dashboards.yml`
+- one dashboard, use: `ansible-playbook roles/grafana/tools/retrieve_dashboards.yml -e dashboard=%uid%`
 
-- Head to grafana dashboards, and modify them using the Web Interface (Make it editable first in the gear menu)
-- Once done, run the tool: `python3 tools/retriever.py HOST:PORT USER PASSWORD ./files [STRICT]` where:
-    - HOST:PORT is the IP/PORT of your Grafana
-    - USER: is the Grafana user
-    - PASSWORD: is the Grafana password
-    - STRICT will fail on warnings
-- If you have added a new dashboard, make sure you add it to vars/main.yml (grafana_dashboards)
-- Your provisioned dashboards are now updated and are ready to be committed
+**CAUTION**: this will erase the corresponding file(s) in `templates/provisioning/dashboards/openio/`
 
-Dependencies
-------------
+## Contributing
 
-None
+Issues, feature requests, ideas are appreciated and can be posted in the Issues section.
 
-Example Playbook
-----------------
+Pull requests are also very welcome.
+The best way to submit a PR is by first creating a fork of this Github project, then creating a topic branch for the suggested change and pushing that branch to your own fork.
+Github can then easily create a PR based on that branch.
 
-See docker-tests branch
-
-License
--------
-
-GNU AFFERO GENERAL PUBLIC LICENSE, Version 3
-
-Author Information
-------------------
-
-- [Cedric DELGEHIER](https://github.com/cdelgehier) (maintainer)
-- [Romain ACCIARI](https://github.com/racciari) (maintainer)
-- [Vladimir DOMBROVSKI](https://github.com/vdombrovski) (maintainer)
+## License
+Copyright (C) 2015-2020 OpenIO SAS

@@ -1,0 +1,14 @@
+{% set d = _dashboard.json.dashboard %}
+{% set d = d | combine({'id': None}) %}
+{% set d = d | combine({'uid': dashboard_name}) %}
+{% set d = d | combine({'editable': false}) %}
+{% set d = d | combine({'version': None}) %}
+{% set d = d | combine({'date': {'from': 'now-15m', 'to': 'now'} }) %}
+{% set list = d.templating.list | d([]) %}
+{% set new_list = [] %}
+{% for l in list %}
+{%   set l = l | combine({ 'current' : {} }) %}
+{%   set new_list = new_list.append(l) %}
+{% endfor %}
+{% set d = d | combine({ 'templating': { 'list': new_list } }, recursive=True) %}
+{{ d | to_nice_json }}
