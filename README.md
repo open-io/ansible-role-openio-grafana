@@ -31,9 +31,9 @@ An Ansible role for install grafana. Specifically, the responsibilities of this 
 | `openio_grafana_prometheus_group` | `"prometheus"` | The name of the prometheus group in the inventory |
 | `openio_grafana_prometheus_bind_port` | `6900` | Port to use if `openio_prometheus_bind_port` is not set for the target |
 | `openio_grafana_loki_group` | `"loki"` | The name of the loki group in the inventory |
-| `openio_grafana_loki_bind_port` | `6901` | Port to use if `openio_loki_bind_port` is not set for the target |
+| `openio_grafana_loki_bind_port` | `6902` | Port to use if `openio_loki_bind_port` is not set for the target |
 | `openio_grafana_elasticsearch_group` | `"elasticsearch"` | The name of the elasticsearch group in the inventory |
-| `openio_grafana_elasticsearch_bind_port` | `6903` | Port to use if `openio_elasticsearch_bind_port` is not set for the target |
+| `openio_grafana_elasticsearch_bind_port` | `6904` | Port to use if `openio_elasticsearch_bind_port` is not set for the target |
 
 ## Dependencies
 - https://github.com/open-io/ansible-role-openio-service
