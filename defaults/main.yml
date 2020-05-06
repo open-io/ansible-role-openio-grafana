@@ -24,7 +24,7 @@ openio_grafana_theme: light
 openio_grafana_prometheus_group: "prometheus"
 openio_grafana_prometheus_bind_port: 6900
 openio_grafana_loki_group: "loki"
-openio_grafana_loki_bind_port: 6901
+openio_grafana_loki_bind_port: 6902
 openio_grafana_elasticsearch_group: "elasticsearch"
-openio_grafana_elasticsearch_bind_port: 6903
+openio_grafana_elasticsearch_bind_port: 6904
 ...

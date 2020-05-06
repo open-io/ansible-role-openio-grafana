@@ -1,9 +1,10 @@
 ---
-{% if openio_grafana_elasticsearch_group | length > 0 and openio_grafana_elasticsearch_group in groups%}
-{%   set host = groups[openio_grafana_elasticsearch_group] | first %}
-{%   if host %}
-{%     set port = hostvars[host].openio_elasticsearch_bind_port | d(openio_grafana_elasticsearch_bind_port) %}
-{%     set address = hostvars[host].openio_elasticsearch_bind_address | d(hostvars[host].openio_bind_mgmt_address) | d(hostvars[host].openio_bind_address) | d(hostvars[host].ansible_default_ipv4.address) %}
+{% if openio_efk | d(false) %}
+{%   if openio_grafana_elasticsearch_group | length > 0 and openio_grafana_elasticsearch_group in groups%}
+{%     set host = groups[openio_grafana_elasticsearch_group] | first %}
+{%     if host %}
+{%       set port = hostvars[host].openio_elasticsearch_bind_port | d(openio_grafana_elasticsearch_bind_port) %}
+{%       set address = hostvars[host].openio_elasticsearch_bind_address | d(hostvars[host].openio_bind_mgmt_address) | d(hostvars[host].openio_bind_address) | d(hostvars[host].ansible_default_ipv4.address) %}
 apiVersion: 1
 
 datasources:
@@ -15,6 +16,7 @@ datasources:
   isDefault: false
   version: 1
   editable: false
+{%     endif %}
 {%   endif %}
 {% endif %}
 ...
