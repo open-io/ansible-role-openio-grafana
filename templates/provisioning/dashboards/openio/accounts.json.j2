@@ -21,7 +21,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": null,
-    "iteration": 1588575316279,
+    "iteration": 1588850844385,
     "links": [],
     "panels": [
         {
@@ -65,7 +65,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "max(openio_redis_account_containers{account=~\"[[account]]\"})",
+                    "expr": "sum(max(openio_redis_account_containers{account=~\"[[account]]\"}) by (account))",
                     "interval": "",
                     "legendFormat": "Total",
                     "refId": "A"
@@ -153,7 +153,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "max(openio_redis_account_objects{account=~\"[[account]]\"})",
+                    "expr": "sum(max(openio_redis_account_objects{account=~\"[[account]]\"}) by (account))",
                     "interval": "",
                     "legendFormat": "Total",
                     "refId": "A"
@@ -242,7 +242,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "max(openio_redis_account_size_bytes{account=~\"[[account]]\"})",
+                    "expr": "sum(max(openio_redis_account_size_bytes{account=~\"[[account]]\"}) by (account))",
                     "interval": "",
                     "legendFormat": "Total",
                     "refId": "A"
@@ -306,7 +306,7 @@
                 "includeAll": true,
                 "index": -1,
                 "label": "Account",
-                "multi": true,
+                "multi": false,
                 "name": "account",
                 "options": [],
                 "query": "label_values(openio_redis_account_containers, account)",
