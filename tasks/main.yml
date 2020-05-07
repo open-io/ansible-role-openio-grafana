@@ -72,6 +72,15 @@
         block_end_string: '%§'
         variable_start_string: '§!!'
         variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/loki-logs-by-txid.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
+        variable_end_string: '!!§'
+      - name: provisioning/dashboards/openio/loki-logs-by-services.json
+        block_start_string: '§%'
+        block_end_string: '%§'
+        variable_start_string: '§!!'
       - name: provisioning/datasources/prometheus.yaml
       - name: provisioning/datasources/loki.yaml
       - name: provisioning/datasources/elasticsearch.yaml
