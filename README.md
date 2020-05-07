@@ -15,7 +15,7 @@ An Ansible role for install grafana. Specifically, the responsibilities of this 
 | :---       | :---    | :---             |
 | `openio_grafana_namespace` | `"{{ namespace \| d('OPENIO') }}"` | OpenIO Namespace|
 | `openio_grafana_maintenance_mode` | `"{{ openio_maintenance_mode \| d(false) }}"` | Maintenance mode |
-| `openio_grafana_bind_address` | `"{{ openio_mgmt_bind_address \| d(ansible_default_ipv4.address) }}"` | Binding IP address |
+| `openio_grafana_bind_address` | `"{{ openio_bind_mgmt_address \| d(ansible_default_ipv4.address) }}"` | Binding IP address |
 | `openio_grafana_bind_port` | `6910` | Binding port |
 | `openio_grafana_ext_bind_address` | `"{{ openio_grafana_bind_address }}"` | |
 | `openio_grafana_ext_bind_port` | `"{{ openio_grafana_bind_port }}"` | |
