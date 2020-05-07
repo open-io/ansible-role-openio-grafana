@@ -1052,7 +1052,7 @@
             "datasource": "prometheus",
             "decimals": 1,
             "description": "Total amount of actual data stored in OpenIO.",
-            "format": "deckbytes",
+            "format": "decbytes",
             "gauge": {
                 "maxValue": 100,
                 "minValue": 0,
@@ -1072,10 +1072,12 @@
             "mappingType": 1,
             "mappingTypes": [
                 {
+                    "$$hashKey": "object:323",
                     "name": "value to text",
                     "value": 1
                 },
                 {
+                    "$$hashKey": "object:324",
                     "name": "range to text",
                     "value": 2
                 }
@@ -1103,7 +1105,7 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "sum(openio_account_kiB)",
+                    "expr": "sum(max(openio_redis_account_size_bytes) by (account))",
                     "format": "time_series",
                     "groupBy": [
                         {
@@ -1149,6 +1151,7 @@
             "valueFontSize": "70%",
             "valueMaps": [
                 {
+                    "$$hashKey": "object:326",
                     "op": "=",
                     "text": "N/A",
                     "value": "null"
@@ -1187,10 +1190,12 @@
             "mappingType": 1,
             "mappingTypes": [
                 {
+                    "$$hashKey": "object:473",
                     "name": "value to text",
                     "value": 1
                 },
                 {
+                    "$$hashKey": "object:474",
                     "name": "range to text",
                     "value": 2
                 }
@@ -1218,7 +1223,7 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "sum(openio_account_objects)",
+                    "expr": "sum(max(openio_redis_account_objects) by(account))",
                     "format": "time_series",
                     "groupBy": [
                         {
@@ -1234,7 +1239,9 @@
                             "type": "fill"
                         }
                     ],
+                    "interval": "",
                     "intervalFactor": 1,
+                    "legendFormat": "",
                     "orderByTime": "ASC",
                     "policy": "default",
                     "refId": "A",
@@ -1262,6 +1269,7 @@
             "valueFontSize": "70%",
             "valueMaps": [
                 {
+                    "$$hashKey": "object:476",
                     "op": "=",
                     "text": "N/A",
                     "value": "null"
