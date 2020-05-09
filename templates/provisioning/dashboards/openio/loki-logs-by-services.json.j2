@@ -1,3 +1,4 @@
+§% if openio_loki | d(false) and  openio_grafana_loki_group | length > 0 and openio_grafana_loki_group in groups  and groups[openio_grafana_loki_group] | length > 0 %§
 {
     "annotations": {
         "list": [
@@ -132,3 +133,4 @@
     },
     "version": null
 }
+§% endif %§

@@ -81,6 +81,7 @@
         block_start_string: '§%'
         block_end_string: '%§'
         variable_start_string: '§!!'
+        variable_end_string: '!!§'
       - name: provisioning/datasources/prometheus.yaml
       - name: provisioning/datasources/loki.yaml
       - name: provisioning/datasources/elasticsearch.yaml
@@ -126,10 +127,18 @@
     - not openio_grafana_maintenance_mode | bool
   tags: configure
   vars:
-    nb_dashboards: "{{ lookup('fileglob', 'templates/provisioning/dashboards/openio/*.json.j2').split(',') | length }}"
+    _path: "templates/provisioning/dashboards/openio/"
+    is_loki: "{{ (openio_loki | d(false)
+                  and openio_grafana_loki_group | length > 0
+                  and openio_grafana_loki_group in groups
+                  and groups[openio_grafana_loki_group] | length > 0) }}"
+    nb_loki_to_remove: "{{ 0 if is_loki
+                        else
+                        lookup('fileglob', _path ~ '/loki-*.json.j2').split(',') | length }}"
+    nb_dashboards: "{{ lookup('fileglob', _path ~ '/*.json.j2').split(',') | length }}"
   failed_when: "_dashboards is failed
     or 'json' not in _dashboards
-    or  _dashboards.json | length != (nb_dashboards | int)"
+    or  _dashboards.json | length != (nb_dashboards | int - nb_loki_to_remove | int)"
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Update preferences

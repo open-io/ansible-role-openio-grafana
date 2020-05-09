@@ -23,5 +23,5 @@
   #run bash -c "curl 'http://admin:admin@${SUT_IP}:6910/api/search?type=dash-db&folderIds=1'"
   run bash -c "curl -qs 'http://admin:admin@${SUT_IP}:6910/api/search?type=dash-db&folderIds=1' | jq '. | length'"
   echo "output: "$output
-  [[ "${status}" -eq "0" && "$output" == "13" ]]
+  [[ "${status}" -eq "0" && "$output" == "11" ]]
 }
