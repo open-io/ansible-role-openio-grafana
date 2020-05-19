@@ -21,12 +21,18 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": null,
-    "iteration": 1588574633579,
+    "iteration": 1589874071118,
     "links": [],
     "panels": [
         {
             "columns": [],
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fontSize": "100%",
             "gridPos": {
                 "h": 16,
@@ -40,107 +46,10 @@
             "scroll": true,
             "showHeader": true,
             "sort": {
-                "col": 4,
+                "col": 1,
                 "desc": false
             },
-            "styles": [
-                {
-                    "$$hashKey": "object:9210",
-                    "alias": "Time",
-                    "align": "auto",
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "link": false,
-                    "pattern": "Time",
-                    "type": "hidden"
-                },
-                {
-                    "$$hashKey": "object:9211",
-                    "alias": "Version",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "decimals": 2,
-                    "link": false,
-                    "pattern": "version",
-                    "preserveFormat": false,
-                    "thresholds": [],
-                    "type": "string",
-                    "unit": "short"
-                },
-                {
-                    "$$hashKey": "object:9212",
-                    "alias": "Package",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "decimals": 2,
-                    "mappingType": 1,
-                    "pattern": "package",
-                    "thresholds": [],
-                    "type": "string",
-                    "unit": "short"
-                },
-                {
-                    "$$hashKey": "object:9213",
-                    "alias": "Component",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "decimals": 2,
-                    "pattern": "software",
-                    "thresholds": [],
-                    "type": "number",
-                    "unit": "short"
-                },
-                {
-                    "$$hashKey": "object:9214",
-                    "alias": "Host",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "decimals": 2,
-                    "pattern": "host",
-                    "thresholds": [],
-                    "type": "string",
-                    "unit": "short"
-                },
-                {
-                    "$$hashKey": "object:9215",
-                    "alias": "",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "decimals": 2,
-                    "pattern": "/.*/",
-                    "thresholds": [],
-                    "type": "hidden",
-                    "unit": "short"
-                }
-            ],
+            "styles": [],
             "targets": [
                 {
                     "expr": "count(openio_version{host=~\"[[host]]\",software=~\"[[software]]\"}) by (host, software, package, version)",
@@ -155,11 +64,31 @@
             ],
             "title": "Version info",
             "transform": "table",
-            "type": "table"
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true,
+                            "Value": true
+                        },
+                        "indexByName": {
+                            "Time": 0,
+                            "Value": 5,
+                            "host": 1,
+                            "package": 3,
+                            "software": 2,
+                            "version": 4
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table-old"
         }
     ],
     "refresh": "10s",
-    "schemaVersion": 22,
+    "schemaVersion": 25,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -171,7 +100,6 @@
                 "definition": "label_values(up, host)",
                 "hide": 0,
                 "includeAll": true,
-                "index": -1,
                 "label": "Host",
                 "multi": false,
                 "name": "host",
@@ -194,7 +122,6 @@
                 "definition": "label_values(openio_version, software)",
                 "hide": 0,
                 "includeAll": true,
-                "index": -1,
                 "label": "Software",
                 "multi": false,
                 "name": "software",
@@ -218,7 +145,6 @@
     },
     "timepicker": {
         "refresh_intervals": [
-            "5s",
             "10s",
             "30s",
             "1m",
@@ -244,8 +170,5 @@
     "timezone": "",
     "title": "Software version info",
     "uid": "software-version-info",
-    "variables": {
-        "list": []
-    },
     "version": null
 }
