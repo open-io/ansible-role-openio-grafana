@@ -726,87 +726,74 @@
             "valueName": "current"
         },
         {
-            "columns": [],
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": "center",
+                        "displayMode": "color-background"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "unit": "short"
                 },
                 "overrides": []
             },
-            "fontSize": "100%",
             "gridPos": {
-                "h": 13,
+                "h": 21,
                 "w": 6,
                 "x": 18,
                 "y": 0
             },
-            "id": 147,
-            "links": [],
-            "pageSize": null,
-            "scroll": true,
-            "showHeader": true,
-            "sort": {
-                "col": 0,
-                "desc": false
+            "id": 167,
+            "maxDataPoints": 1,
+            "options": {
+                "frameIndex": 37,
+                "showHeader": true
             },
-            "styles": [
-                {
-                    "$$hashKey": "object:635",
-                    "alias": "Count",
-                    "align": "auto",
-                    "colorMode": null,
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                    ],
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "decimals": 0,
-                    "mappingType": 1,
-                    "pattern": "Value",
-                    "thresholds": [],
-                    "type": "number",
-                    "unit": "short"
-                }
-            ],
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
-                    "expr": "count(openio_version) by (software, version)",
+                    "expr": "sort_desc(count(openio_version) by (software, version))",
                     "format": "table",
                     "instant": true,
                     "interval": "",
-                    "intervalFactor": 1,
                     "legendFormat": "",
                     "refId": "A"
                 }
             ],
+            "timeFrom": null,
+            "timeShift": null,
             "title": "Versions",
-            "transform": "table",
             "transformations": [
                 {
                     "id": "organize",
                     "options": {
                         "excludeByName": {
-                            "Time": true,
-                            "software": false
+                            "Time": true
                         },
-                        "indexByName": {
-                            "Time": 0,
-                            "Value": 3,
-                            "software": 1,
-                            "version": 2
-                        },
+                        "indexByName": {},
                         "renameByName": {
-                            "Time": "",
-                            "Value": "",
-                            "software": "",
-                            "version": ""
+                            "Value": "Count",
+                            "software": "Software",
+                            "version": "Version"
                         }
                     }
                 }
             ],
-            "type": "table-old"
+            "type": "table"
         },
         {
             "datasource": null,
@@ -1895,1330 +1882,319 @@
             "type": "text"
         },
         {
-            "content": "<div style=\"text-align: center;\"><h3>Simple</h3></div>",
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": "center"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
                 },
-                "overrides": []
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Request duration"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "s"
+                            },
+                            {
+                                "id": "custom.displayMode",
+                                "value": "lcd-gauge"
+                            },
+                            {
+                                "id": "thresholds",
+                                "value": {
+                                    "mode": "absolute",
+                                    "steps": [
+                                        {
+                                            "color": "green",
+                                            "value": null
+                                        },
+                                        {
+                                            "color": "#EAB839",
+                                            "value": 0.1
+                                        },
+                                        {
+                                            "color": "red",
+                                            "value": 0.25
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
             },
             "gridPos": {
-                "h": 4,
-                "w": 3,
+                "h": 5,
+                "w": 12,
                 "x": 5,
                 "y": 18
             },
-            "id": 157,
-            "links": [],
-            "mode": "html",
-            "title": "",
-            "transparent": true,
-            "type": "text"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for GET requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
+            "id": 169,
+            "options": {
+                "showHeader": true
             },
-            "format": "s",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 8,
-                "y": 18
-            },
-            "id": 152,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:621",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:622",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"simple\", method=\"get\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
+                    "expr": "sort(avg(openio_s3rt_response_time_seconds{method=\"get\"}) by (type))",
+                    "format": "table",
+                    "instant": true,
                     "interval": "",
-                    "intervalFactor": 1,
                     "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
+                    "refId": "A"
                 }
             ],
-            "thresholds": "",
-            "title": "GET",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Get Request Duration",
+            "transformations": [
                 {
-                    "$$hashKey": "object:624",
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true
+                        },
+                        "indexByName": {
+                            "Time": 0,
+                            "Value": 3,
+                            "method": 2,
+                            "type": 1
+                        },
+                        "renameByName": {
+                            "Value": "Request duration"
+                        }
+                    }
                 }
             ],
-            "valueName": "current"
+            "type": "table"
         },
         {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for PUT requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "ms",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 11,
-                "y": 18
-            },
-            "id": 153,
-            "interval": "",
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"simple\", method=\"put\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": "PUT",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Number of errors other than 2xx",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 14,
-                "y": 18
-            },
-            "id": 155,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:771",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:772",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "count(openio_s3rt_response_time_seconds{type=\"simple\",code!=\"2xx\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": " Errors",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "$$hashKey": "object:774",
-                    "op": "=",
-                    "text": "0",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "content": "<div style=\"text-align: center;\"><h3>TTFB</h3></div>",
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": "center"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
                 },
-                "overrides": []
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Request duration"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "s"
+                            },
+                            {
+                                "id": "custom.displayMode",
+                                "value": "lcd-gauge"
+                            },
+                            {
+                                "id": "thresholds",
+                                "value": {
+                                    "mode": "absolute",
+                                    "steps": [
+                                        {
+                                            "color": "green",
+                                            "value": null
+                                        },
+                                        {
+                                            "color": "#EAB839",
+                                            "value": 0.1
+                                        },
+                                        {
+                                            "color": "red",
+                                            "value": 0.25
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
             },
             "gridPos": {
-                "h": 4,
-                "w": 3,
+                "h": 5,
+                "w": 12,
                 "x": 5,
-                "y": 22
+                "y": 23
             },
-            "id": 158,
-            "links": [],
-            "mode": "html",
-            "title": "",
-            "transparent": true,
-            "type": "text"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for GET requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
+            "id": 170,
+            "options": {
+                "showHeader": true
             },
-            "format": "s",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 8,
-                "y": 22
-            },
-            "id": 159,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:621",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:622",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"ttfb\", method=\"get\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
+                    "expr": "sort(avg(openio_s3rt_response_time_seconds{method=\"put\"}) by (type))",
+                    "format": "table",
+                    "instant": true,
                     "interval": "",
-                    "intervalFactor": 1,
                     "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
+                    "refId": "A"
                 }
             ],
-            "thresholds": "",
-            "title": "GET",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "PUT Request Duration",
+            "transformations": [
                 {
-                    "$$hashKey": "object:624",
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true
+                        },
+                        "indexByName": {
+                            "Time": 0,
+                            "Value": 3,
+                            "method": 2,
+                            "type": 1
+                        },
+                        "renameByName": {
+                            "Value": "Request duration"
+                        }
+                    }
                 }
             ],
-            "valueName": "current"
+            "type": "table"
         },
         {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for PUT requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "ms",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 11,
-                "y": 22
-            },
-            "id": 163,
-            "interval": "",
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"ttfb\", method=\"put\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": "PUT",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Number of errors other than 2xx",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 14,
-                "y": 22
-            },
-            "id": 161,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:771",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:772",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "count(openio_s3rt_response_time_seconds{type=\"ttfb\",code!=\"2xx\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": " Errors",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "$$hashKey": "object:774",
-                    "op": "=",
-                    "text": "0",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "content": "<div style=\"text-align: center;\"><h3>MPU</h3></div>",
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": "center"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
                 },
-                "overrides": []
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Errors"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "short"
+                            },
+                            {
+                                "id": "custom.displayMode",
+                                "value": "lcd-gauge"
+                            },
+                            {
+                                "id": "thresholds",
+                                "value": {
+                                    "mode": "absolute",
+                                    "steps": [
+                                        {
+                                            "color": "green",
+                                            "value": null
+                                        },
+                                        {
+                                            "color": "red",
+                                            "value": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
             },
             "gridPos": {
-                "h": 4,
-                "w": 3,
+                "h": 5,
+                "w": 12,
                 "x": 5,
-                "y": 26
+                "y": 28
             },
-            "id": 162,
-            "links": [],
-            "mode": "html",
-            "title": "",
-            "transparent": true,
-            "type": "text"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for GET requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
+            "id": 171,
+            "options": {
+                "showHeader": true
             },
-            "format": "s",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 8,
-                "y": 26
-            },
-            "id": 164,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:621",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:622",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"mpu\", method=\"get\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
+                    "expr": "sort_desc(count(openio_s3rt_response_time_seconds{code!=\"2xx\"}) by (type,method))",
+                    "format": "table",
+                    "instant": true,
                     "interval": "",
-                    "intervalFactor": 1,
                     "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Errors",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true
                         },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": "GET",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "$$hashKey": "object:624",
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Average response time for PUT requests",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "ms",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 11,
-                "y": 26
-            },
-            "id": 160,
-            "interval": "",
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "avg(openio_s3rt_response_time_seconds{type=\"mpu\", method=\"put\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
+                        "indexByName": {
+                            "Time": 0,
+                            "Value": 3,
+                            "method": 2,
+                            "type": 1
                         },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
+                        "renameByName": {
+                            "Value": "Errors",
+                            "method": ""
                         }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
+                    }
                 }
             ],
-            "thresholds": "",
-            "title": "PUT",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "prometheus",
-            "decimals": 1,
-            "description": "Number of errors other than 2xx",
-            "fieldConfig": {
-                "defaults": {
-                    "custom": {}
-                },
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 4,
-                "w": 3,
-                "x": 14,
-                "y": 26
-            },
-            "id": 165,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "$$hashKey": "object:771",
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "$$hashKey": "object:772",
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "dsType": "influxdb",
-                    "expr": "count(openio_s3rt_response_time_seconds{type=\"mpu\",code!=\"2xx\"})",
-                    "format": "time_series",
-                    "groupBy": [
-                        {
-                            "params": [
-                                "$__interval"
-                            ],
-                            "type": "time"
-                        },
-                        {
-                            "params": [
-                                "null"
-                            ],
-                            "type": "fill"
-                        }
-                    ],
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "",
-                    "measurement": "net",
-                    "orderByTime": "ASC",
-                    "policy": "default",
-                    "query": "SELECT sum(\"value\") FROM \"[[DS]]\".\"net\" WHERE \"host\" =~ /^$host$/ AND \"type\" = 'received' AND $timeFilter GROUP BY time([[ds_int]]) fill(null)",
-                    "rawQuery": true,
-                    "refId": "A",
-                    "resultFormat": "time_series",
-                    "select": [
-                        [
-                            {
-                                "params": [
-                                    "value"
-                                ],
-                                "type": "field"
-                            },
-                            {
-                                "params": [],
-                                "type": "sum"
-                            }
-                        ]
-                    ],
-                    "tags": [
-                        {
-                            "key": "host",
-                            "operator": "=~",
-                            "value": "/^$host$/"
-                        },
-                        {
-                            "condition": "AND",
-                            "key": "type",
-                            "operator": "=",
-                            "value": "received"
-                        }
-                    ]
-                }
-            ],
-            "thresholds": "",
-            "title": " Errors",
-            "type": "singlestat",
-            "valueFontSize": "70%",
-            "valueMaps": [
-                {
-                    "$$hashKey": "object:774",
-                    "op": "=",
-                    "text": "0",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
+            "type": "table"
         }
     ],
     "refresh": "",
