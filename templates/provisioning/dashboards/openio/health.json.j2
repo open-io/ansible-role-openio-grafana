@@ -21,7 +21,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": null,
-    "iteration": 1589873083825,
+    "iteration": 1589958800597,
     "links": [],
     "panels": [
         {
@@ -450,9 +450,10 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "count(openio_probe_success == 0) OR vector(0)",
+                    "expr": "count(count(openio_probe_success == 0) by (service_addr)) OR vector(0)",
                     "format": "time_series",
                     "instant": true,
+                    "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "",
                     "refId": "A"
@@ -805,10 +806,12 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "100 * (count(openio_probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(openio_probe_success{service_type=\"[[service]]\"})",
+                    "expr": "100 * (count(count(openio_probe_success{service_type=\"[[service]]\"} == 1) by (service_addr)) OR vector(0)) / count(count(openio_probe_success{service_type=\"[[service]]\"}) by (service_addr))",
                     "format": "time_series",
                     "instant": true,
+                    "interval": "",
                     "intervalFactor": 1,
+                    "legendFormat": "",
                     "refId": "A"
                 }
             ],
@@ -855,7 +858,7 @@
                 "x": 3,
                 "y": 5
             },
-            "id": 269,
+            "id": 290,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -880,7 +883,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -948,7 +951,7 @@
                 "x": 6,
                 "y": 5
             },
-            "id": 270,
+            "id": 291,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -973,7 +976,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1041,7 +1044,7 @@
                 "x": 9,
                 "y": 5
             },
-            "id": 271,
+            "id": 292,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1066,7 +1069,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1134,7 +1137,7 @@
                 "x": 12,
                 "y": 5
             },
-            "id": 272,
+            "id": 293,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1159,7 +1162,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1227,7 +1230,7 @@
                 "x": 15,
                 "y": 5
             },
-            "id": 273,
+            "id": 294,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1252,7 +1255,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1320,7 +1323,7 @@
                 "x": 18,
                 "y": 5
             },
-            "id": 274,
+            "id": 295,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1345,7 +1348,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1413,7 +1416,7 @@
                 "x": 21,
                 "y": 5
             },
-            "id": 275,
+            "id": 296,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1438,7 +1441,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1506,7 +1509,7 @@
                 "x": 0,
                 "y": 8
             },
-            "id": 276,
+            "id": 297,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1531,7 +1534,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1599,7 +1602,7 @@
                 "x": 3,
                 "y": 8
             },
-            "id": 277,
+            "id": 298,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1624,7 +1627,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1692,7 +1695,7 @@
                 "x": 6,
                 "y": 8
             },
-            "id": 278,
+            "id": 299,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1717,7 +1720,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1785,7 +1788,7 @@
                 "x": 9,
                 "y": 8
             },
-            "id": 279,
+            "id": 300,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1810,7 +1813,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1878,7 +1881,7 @@
                 "x": 12,
                 "y": 8
             },
-            "id": 280,
+            "id": 301,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1903,7 +1906,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -1971,7 +1974,7 @@
                 "x": 15,
                 "y": 8
             },
-            "id": 281,
+            "id": 302,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -1996,7 +1999,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2064,7 +2067,7 @@
                 "x": 18,
                 "y": 8
             },
-            "id": 282,
+            "id": 303,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2089,7 +2092,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2157,7 +2160,7 @@
                 "x": 21,
                 "y": 8
             },
-            "id": 283,
+            "id": 304,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2182,7 +2185,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2250,7 +2253,7 @@
                 "x": 0,
                 "y": 11
             },
-            "id": 284,
+            "id": 305,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2275,7 +2278,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2343,7 +2346,7 @@
                 "x": 3,
                 "y": 11
             },
-            "id": 285,
+            "id": 306,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2368,7 +2371,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2436,7 +2439,7 @@
                 "x": 6,
                 "y": 11
             },
-            "id": 286,
+            "id": 307,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2461,7 +2464,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2529,7 +2532,7 @@
                 "x": 9,
                 "y": 11
             },
-            "id": 287,
+            "id": 308,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2554,7 +2557,7 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
@@ -2622,7 +2625,7 @@
                 "x": 12,
                 "y": 11
             },
-            "id": 288,
+            "id": 309,
             "interval": null,
             "links": [],
             "mappingType": 1,
@@ -2647,13 +2650,292 @@
             "rangeMaps": [],
             "repeat": null,
             "repeatDirection": "h",
-            "repeatIteration": 1589873083825,
+            "repeatIteration": 1589958800597,
             "repeatPanelId": 123,
             "scopedVars": {
                 "service": {
                     "selected": false,
                     "text": "keystone",
                     "value": "keystone"
+                }
+            },
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "expr": "100 * (count(openio_probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(openio_probe_success{service_type=\"[[service]]\"})",
+                    "format": "time_series",
+                    "instant": true,
+                    "intervalFactor": 1,
+                    "refId": "A"
+                }
+            ],
+            "thresholds": "50,100",
+            "title": "[[service]]",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "?",
+                    "value": "null"
+                }
+            ],
+            "valueName": "current"
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+                "#f29191",
+                "#f2c96d",
+                "#9ac48a"
+            ],
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "format": "percent",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 3,
+                "x": 15,
+                "y": 11
+            },
+            "id": 310,
+            "interval": null,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "maxPerRow": 8,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [],
+            "repeat": null,
+            "repeatDirection": "h",
+            "repeatIteration": 1589958800597,
+            "repeatPanelId": 123,
+            "scopedVars": {
+                "service": {
+                    "selected": false,
+                    "text": "kibana",
+                    "value": "kibana"
+                }
+            },
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "expr": "100 * (count(openio_probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(openio_probe_success{service_type=\"[[service]]\"})",
+                    "format": "time_series",
+                    "instant": true,
+                    "intervalFactor": 1,
+                    "refId": "A"
+                }
+            ],
+            "thresholds": "50,100",
+            "title": "[[service]]",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "?",
+                    "value": "null"
+                }
+            ],
+            "valueName": "current"
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+                "#f29191",
+                "#f2c96d",
+                "#9ac48a"
+            ],
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "format": "percent",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 3,
+                "x": 18,
+                "y": 11
+            },
+            "id": 311,
+            "interval": null,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "maxPerRow": 8,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [],
+            "repeat": null,
+            "repeatDirection": "h",
+            "repeatIteration": 1589958800597,
+            "repeatPanelId": 123,
+            "scopedVars": {
+                "service": {
+                    "selected": false,
+                    "text": "loki",
+                    "value": "loki"
+                }
+            },
+            "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false
+            },
+            "tableColumn": "",
+            "targets": [
+                {
+                    "expr": "100 * (count(openio_probe_success{service_type=\"[[service]]\"} == 1) OR vector(0)) / count(openio_probe_success{service_type=\"[[service]]\"})",
+                    "format": "time_series",
+                    "instant": true,
+                    "intervalFactor": 1,
+                    "refId": "A"
+                }
+            ],
+            "thresholds": "50,100",
+            "title": "[[service]]",
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "?",
+                    "value": "null"
+                }
+            ],
+            "valueName": "current"
+        },
+        {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+                "#f29191",
+                "#f2c96d",
+                "#9ac48a"
+            ],
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "format": "percent",
+            "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 3,
+                "x": 21,
+                "y": 11
+            },
+            "id": 312,
+            "interval": null,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+            ],
+            "maxDataPoints": 100,
+            "maxPerRow": 8,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [],
+            "repeat": null,
+            "repeatDirection": "h",
+            "repeatIteration": 1589958800597,
+            "repeatPanelId": 123,
+            "scopedVars": {
+                "service": {
+                    "selected": false,
+                    "text": "elasticsearch",
+                    "value": "elasticsearch"
                 }
             },
             "sparkline": {
@@ -2700,15 +2982,29 @@
             "type": "row"
         },
         {
-            "columns": [],
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": null
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
                 },
                 "overrides": []
             },
-            "fontSize": "100%",
             "gridPos": {
                 "h": 7,
                 "w": 9,
@@ -2717,18 +3013,15 @@
             },
             "id": 133,
             "links": [],
-            "pageSize": null,
-            "scroll": true,
-            "showHeader": true,
-            "sort": {
-                "col": 0,
-                "desc": true
+            "options": {
+                "showHeader": true
             },
-            "styles": [],
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
                     "expr": "openio_probe_success == 0",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "intervalFactor": 1,
@@ -2737,7 +3030,6 @@
                 }
             ],
             "title": "Failed checks",
-            "transform": "table",
             "transformations": [
                 {
                     "id": "organize",
@@ -2746,7 +3038,7 @@
                             "Time": true,
                             "Value": true,
                             "__name__": true,
-                            "host": true,
+                            "host": false,
                             "instance": true,
                             "job": true,
                             "namespace": true,
@@ -2765,11 +3057,16 @@
                             "service_type": 9,
                             "target": 3
                         },
-                        "renameByName": {}
+                        "renameByName": {
+                            "host": "Probe",
+                            "service": "Service",
+                            "service_addr": "Service Address",
+                            "target": "Target Host"
+                        }
                     }
                 }
             ],
-            "type": "table-old"
+            "type": "table"
         },
         {
             "columns": [],
@@ -2832,15 +3129,29 @@
             "type": "table-old"
         },
         {
-            "columns": [],
             "datasource": null,
             "fieldConfig": {
                 "defaults": {
-                    "custom": {}
+                    "custom": {
+                        "align": null
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
                 },
                 "overrides": []
             },
-            "fontSize": "100%",
             "gridPos": {
                 "h": 7,
                 "w": 9,
@@ -2849,14 +3160,10 @@
             },
             "id": 289,
             "links": [],
-            "pageSize": null,
-            "scroll": true,
-            "showHeader": true,
-            "sort": {
-                "col": 0,
-                "desc": true
+            "options": {
+                "showHeader": true
             },
-            "styles": [],
+            "pluginVersion": "7.0.0",
             "targets": [
                 {
                     "expr": "up{job=~\"netdata|oio-exporter\"} == 0",
@@ -2870,7 +3177,6 @@
                 }
             ],
             "title": "Down exporters",
-            "transform": "table",
             "transformations": [
                 {
                     "id": "organize",
@@ -2885,7 +3191,7 @@
                     }
                 }
             ],
-            "type": "table-old"
+            "type": "table"
         }
     ],
     "refresh": "10s",
