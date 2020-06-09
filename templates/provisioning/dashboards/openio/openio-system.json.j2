@@ -21,7 +21,7 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": null,
-    "iteration": 1587978533616,
+    "iteration": 1591721919993,
     "links": [],
     "panels": [
         {
@@ -30,6 +30,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -187,6 +193,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -414,6 +426,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -558,6 +576,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -705,6 +729,12 @@
             "dashes": false,
             "datasource": "prometheus",
             "decimals": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -850,6 +880,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -994,6 +1030,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -1138,6 +1180,12 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "prometheus",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -1278,7 +1326,7 @@
         }
     ],
     "refresh": "10s",
-    "schemaVersion": 22,
+    "schemaVersion": 25,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -1290,7 +1338,6 @@
                 "definition": "label_values(up, host)",
                 "hide": 0,
                 "includeAll": true,
-                "index": -1,
                 "label": "Host",
                 "multi": true,
                 "name": "host",
@@ -1313,7 +1360,6 @@
                 "definition": "label_values(netdata_apps_cpu_system_percentage_average, dimension)",
                 "hide": 0,
                 "includeAll": true,
-                "index": -1,
                 "label": "Service",
                 "multi": false,
                 "name": "service",
@@ -1322,7 +1368,7 @@
                 "refresh": 2,
                 "regex": "",
                 "skipUrlSync": false,
-                "sort": 0,
+                "sort": 5,
                 "tagValuesQuery": "",
                 "tags": [],
                 "tagsQuery": "",
@@ -1361,8 +1407,5 @@
     "timezone": "browser",
     "title": "OpenIO System",
     "uid": "openio-system",
-    "variables": {
-        "list": []
-    },
     "version": null
 }
